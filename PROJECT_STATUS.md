@@ -2,7 +2,7 @@
 
 ## Current status
 
-Initial static MVP structure has been created.
+Initial static MVP structure has been created and basic project documentation has been added.
 
 ## Completed
 
@@ -20,6 +20,12 @@ Initial static MVP structure has been created.
   - `/pogoda/warszawa/`
 - Added `robots.txt`.
 - Added `sitemap.xml`.
+- Added `404.html`.
+- Added `assets/favicon.svg`.
+- Added source research notes:
+  - `docs/SOURCES_RESEARCH.md`
+- Added Codex working brief:
+  - `docs/CODEX_BRIEF.md`
 
 ## Technical assumptions
 
@@ -37,13 +43,16 @@ python -m http.server 8000
 - Windy embeds are currently used only as MVP/test placeholders on some map pages.
 - Before production launch, all external map/data sources must be checked for embedding rules, licensing, attribution and commercial use.
 - Storm radar page currently uses a visual placeholder until a safe source for lightning/burza data is selected.
+- Do not scrape third-party weather data.
+- External source decisions should be documented in `docs/SOURCES_RESEARCH.md`.
 
 ## Next steps
 
 1. Test locally in browser.
 2. Improve mobile details and navigation if needed.
-3. Choose final external sources for storm, rain, wind, temperature and alerts.
-4. Add proper source attribution blocks.
-5. Add SEO content for each radar page.
-6. Add core city pages after domain setup.
-7. Connect to Cloudflare Pages when ready.
+3. Add favicon link tags and Open Graph metadata to all pages.
+4. Choose final external sources for storm, rain, wind, temperature and alerts.
+5. Add proper source attribution blocks on all map pages.
+6. Add stronger SEO content and FAQ sections for each radar page.
+7. Add core city pages after domain setup.
+8. Connect to Cloudflare Pages when ready.
