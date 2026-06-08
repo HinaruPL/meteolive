@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MeteoLive — radar burz, opadów, wiatru i pogoda na żywo</title>
+  <meta name="description" content="MeteoLive to nowoczesna strona pogodowa z radarami burz, opadów, wiatru, mapą temperatury i ostrzeżeniami pogodowymi dla Polski.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="logo" href="/" aria-label="MeteoLive — strona główna">
+        <span class="logo-mark">☁</span>
+        <span>MeteoLive</span>
+      </a>
+      <nav class="nav-links" aria-label="Główna nawigacja">
+        <a href="/radar-burz/">Radar burz</a>
+        <a href="/radar-opadow/">Radar opadów</a>
+        <a href="/radar-wiatru/">Radar wiatru</a>
+        <a href="/mapa-temperatury/">Temperatura</a>
+        <a href="/ostrzezenia-pogodowe/">Ostrzeżenia</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow"><span class="pulse"></span> Pogoda i radary na żywo dla Polski</span>
+          <h1>Sprawdź, co nadciąga nad Polskę.</h1>
+          <p class="lead">MeteoLive ma być szybkim i czytelnym centrum pogodowym: radar burz, radar opadów, mapa wiatru, temperatura, ostrzeżenia i lokalne strony dla miast. Bez chaosu — tylko najważniejsze mapy i proste wyjaśnienia.</p>
+          <div class="actions">
+            <a class="btn primary" href="/radar-burz/">Zobacz radar burz</a>
+            <a class="btn" href="#radary">Przejdź do radarów</a>
+          </div>
+        </div>
+
+        <aside class="weather-panel" aria-label="Podgląd mapy pogodowej">
+          <div class="map-placeholder"></div>
+          <div class="panel-card">
+            <h2>Panel pogodowy</h2>
+            <p class="notice" data-live-status>Widok testowy MVP</p>
+            <div class="live-badges">
+              <div class="badge"><strong>Burze</strong>Mapa wyładowań</div>
+              <div class="badge"><strong>Opady</strong>Radar deszczu</div>
+              <div class="badge"><strong>Wiatr</strong>Kierunek i porywy</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="radary">
+      <div class="container">
+        <h2>Radary i mapy pogodowe</h2>
+        <p class="section-intro">Pierwsza wersja strony zawiera najważniejsze sekcje radarowe. Następny krok to dopracowanie źródeł danych, opisów SEO i lokalnych podstron dla miast.</p>
+        <div class="grid">
+          <a class="card" href="/radar-burz/">
+            <div>
+              <div class="icon">⚡</div>
+              <h3>Radar burz</h3>
+              <p>Sprawdź, gdzie pojawiają się wyładowania i w którym kierunku mogą przemieszczać się burze.</p>
+            </div>
+            <span class="card-link">Otwórz radar →</span>
+          </a>
+          <a class="card" href="/radar-opadow/">
+            <div>
+              <div class="icon">🌧</div>
+              <h3>Radar opadów</h3>
+              <p>Mapa deszczu i opadów pomaga szybko ocenić, czy nadciąga ulewa lub przelotny opad.</p>
+            </div>
+            <span class="card-link">Otwórz radar →</span>
+          </a>
+          <a class="card" href="/radar-wiatru/">
+            <div>
+              <div class="icon">💨</div>
+              <h3>Radar wiatru</h3>
+              <p>Zobacz kierunek, siłę i porywy wiatru na mapie pogodowej dla Polski i Europy.</p>
+            </div>
+            <span class="card-link">Otwórz mapę →</span>
+          </a>
+          <a class="card" href="/mapa-temperatury/">
+            <div>
+              <div class="icon">🌡</div>
+              <h3>Mapa temperatury</h3>
+              <p>Aktualny rozkład temperatury i szybki podgląd najcieplejszych oraz najchłodniejszych regionów.</p>
+            </div>
+            <span class="card-link">Otwórz mapę →</span>
+          </a>
+          <a class="card" href="/ostrzezenia-pogodowe/">
+            <div>
+              <div class="icon">⚠️</div>
+              <h3>Ostrzeżenia pogodowe</h3>
+              <p>Miejsce na ostrzeżenia przed burzami, wichurami, upałem, mrozem i intensywnymi opadami.</p>
+            </div>
+            <span class="card-link">Sprawdź →</span>
+          </a>
+          <a class="card" href="/pogoda/warszawa/">
+            <div>
+              <div class="icon">🏙</div>
+              <h3>Pogoda dla miast</h3>
+              <p>Pierwszy szablon lokalnej strony pogodowej. Później dodamy największe miasta w Polsce.</p>
+            </div>
+            <span class="card-link">Zobacz przykład →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container content-card">
+        <h2>Dlaczego MeteoLive?</h2>
+        <p>Projekt powstaje jako nowoczesna alternatywa dla starszych stron z radarami pogodowymi. Celem jest szybkie ładowanie, dobra wersja mobilna, uporządkowana struktura SEO i proste wyjaśnienia dla zwykłych użytkowników.</p>
+        <p>W kolejnych etapach warto rozbudować stronę o lokalne podstrony, poradniki typu „jak czytać radar opadów” oraz czytelne opisy źródeł danych.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <span>© <span data-year></span> MeteoLive</span>
+      <span>Projekt testowy — wersja MVP</span>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>
