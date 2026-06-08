@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="MeteoLive logo">
+  <defs>
+    <linearGradient id="g" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#38d5ff"/>
+      <stop offset="1" stop-color="#79ffb7"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="20" fill="#07111f"/>
+  <path d="M21 42h25a10 10 0 0 0 1.5-19.9A15 15 0 0 0 18.3 26 8.3 8.3 0 0 0 21 42Z" fill="url(#g)"/>
+  <path d="M34 15 28 29h8l-5 17 14-22h-8l5-9h-8Z" fill="#07111f" opacity=".9"/>
+</svg>
