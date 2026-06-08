@@ -4,7 +4,8 @@ Modern Polish weather radar website with live maps for storms, rainfall, wind, t
 
 ## Project goal
 
-MetoLive is planned as a fast, mobile-friendly and SEO-focused weather website for Poland.  
+MeteoLive is planned as a fast, mobile-friendly and SEO-focused weather website for Poland.
+
 The site will include live weather maps, radar sections, city pages and educational articles explaining how to read weather data.
 
 ## Planned sections
@@ -24,6 +25,20 @@ The site will include live weather maps, radar sections, city pages and educatio
 - JavaScript
 - Static hosting
 - Cloudflare Pages
+
+## Local preview
+
+Run from the repository root:
+
+```bash
+python -m http.server 8000
+```
+
+Then open:
+
+```text
+http://localhost:8000
+```
 
 ## Status
 
