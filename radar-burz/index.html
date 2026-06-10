@@ -46,6 +46,34 @@
     #tab-weather:checked ~ .tab-panels .weather-panel-tab,
     #tab-lightning:checked ~ .tab-panels .lightning-panel-tab { display: block; }
     .tab-note { margin-top: 12px; color: var(--muted); line-height: 1.65; font-size: .95rem; }
+    .lightning-preview-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      box-shadow: var(--shadow);
+    }
+    .lightning-preview-box a { display: inline-block; }
+    .lightning-preview-box img {
+      display: block;
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: #fff;
+    }
+    .lightning-actions {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+    .lightning-actions .btn { min-width: 220px; }
   </style>
 </head>
 <body>
@@ -73,7 +101,7 @@
     <section class="section">
       <div class="container content-card">
         <h2>Radar pogody i wyładowania</h2>
-        <p>Widok podstawowy pokazuje radar pogody Windy, który pomaga ocenić strefy opadów i możliwe komórki burzowe. Druga zakładka pokazuje mapę wyładowań atmosferycznych z burze.dzis.net.</p>
+        <p>Widok podstawowy pokazuje radar pogody Windy, który pomaga ocenić strefy opadów i możliwe komórki burzowe. Druga zakładka pokazuje szybki podgląd wyładowań atmosferycznych z burze.dzis.net oraz link do pełnej mapy.</p>
 
         <div class="map-tabs">
           <input type="radio" name="storm-map-tabs" id="tab-weather" checked>
@@ -91,11 +119,16 @@
             </div>
 
             <div class="tab-panel lightning-panel-tab" role="tabpanel">
-              <div class="embed-box">
-                <a class="storm-map-link" href="https://burze.dzis.net/?page=mapa&amp;animacja=on" rel="nofollow noopener" target="_blank" aria-label="Otwórz pełną mapę burz na burze.dzis.net">
+              <div class="lightning-preview-box">
+                <a href="https://burze.dzis.net/?page=mapa&amp;animacja=on" rel="nofollow noopener" target="_blank" aria-label="Otwórz pełną mapę burz na burze.dzis.net">
                   <img src="https://burze.dzis.net/img/mapa_burzowa_anim.gif" alt="Animowana mapa burzowa Polski z wyładowaniami atmosferycznymi">
                 </a>
               </div>
+
+              <div class="lightning-actions">
+                <a class="btn primary" href="https://burze.dzis.net/?page=mapa&amp;animacja=on" rel="nofollow noopener" target="_blank">Otwórz pełną mapę wyładowań</a>
+              </div>
+
               <div class="attribution">Mapa wyładowań: <a href="https://burze.dzis.net/?page=mapa" rel="nofollow noopener" target="_blank">burze.dzis.net</a>. Źródło danych wyładowań atmosferycznych: <a href="https://www.blitzortung.org/" rel="nofollow noopener" target="_blank">Blitzortung.org</a>. MeteoLive pokazuje mapę jako zewnętrzny podgląd i nie pobiera surowych danych wyładowań.</div>
             </div>
           </div>
