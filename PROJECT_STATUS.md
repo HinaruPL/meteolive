@@ -2,7 +2,7 @@
 
 ## Current status
 
-MeteoLive is live on Cloudflare Pages and the production domain is connected. The production polish pass is complete: homepage copy no longer uses MVP/test wording, core radar pages have working external map views, trust/legal pages are in place, the first city package has been added, and the first SEO expansion pass on main radar pages is complete.
+MeteoLive is live on Cloudflare Pages and the production domain is connected. The core site is now in a stronger pre-publication state: homepage copy is production-ready, core radar/map pages are expanded, trust/legal pages are in place, the city index is expanded, and 11 local city pages are available with consistent navigation, footer, metadata and user-facing copy.
 
 Production URLs:
 
@@ -28,22 +28,30 @@ Production URLs:
   - `/radar-wiatru/`
   - `/mapa-temperatury/`
   - `/ostrzezenia-pogodowe/`
-- Added city index:
+- Added and expanded city index:
   - `/pogoda/`
-- Added first local city pages:
+- Added and standardized local city pages:
   - `/pogoda/warszawa/`
   - `/pogoda/krakow/`
   - `/pogoda/wroclaw/`
   - `/pogoda/poznan/`
   - `/pogoda/gdansk/`
   - `/pogoda/lodz/`
+  - `/pogoda/katowice/`
+  - `/pogoda/lublin/`
+  - `/pogoda/szczecin/`
+  - `/pogoda/rzeszow/`
+  - `/pogoda/bialystok/`
+- Replaced short ASCII-only city pages with fuller Polish versions where needed.
+- Unified city page navigation with links to radar pages, warnings and city index.
+- Unified city page footers with trust/legal links.
 - Added trust/legal pages:
   - `/o-nas/`
   - `/kontakt/`
   - `/polityka-prywatnosci/`
   - `/regulamin/`
 - Added `robots.txt`.
-- Added and updated `sitemap.xml`.
+- Added and updated `sitemap.xml` with all 11 city pages.
 - Added improved `404.html` with `noindex,follow` and footer links.
 - Added `assets/favicon.svg`.
 - Added source research notes:
@@ -65,6 +73,9 @@ Production URLs:
 
 - Static HTML/CSS/JS project.
 - Hosting: Cloudflare Pages.
+- Branch: `main`.
+- Build command: empty.
+- Build output directory: `.`.
 - Domain: `meteolive.pl`.
 - Local preview command:
 
@@ -78,17 +89,22 @@ python -m http.server 8000
 - The storm page uses Windy as the main radar weather view and an externally hosted lightning preview from burze.dzis.net with attribution to burze.dzis.net and Blitzortung.org.
 - MeteoLive does not scrape third-party weather or lightning data.
 - MeteoLive is not an official warning service and must not present itself as one.
+- City pages should keep clear links to official IMGW-PIB warnings instead of presenting MeteoLive as an official alert source.
 - Any future data source must be checked for embedding rules, licensing, attribution and commercial use.
 - External source decisions should remain documented in `docs/SOURCES_RESEARCH.md`.
 - The contact email `kontakt@meteolive.pl` should be activated or replaced with an active address.
+- AdSense should not be added yet. Add it after more finished content and after privacy/cookie notes are ready for advertising.
+- Analytics should be added later together with CMP/cookie consent.
 
 ## Next steps
 
-1. Verify all live URLs after Cloudflare deployment finishes.
+1. Verify the latest Cloudflare Pages deployment after GitHub changes are built.
 2. Ensure `www.meteolive.pl` redirects to `meteolive.pl` with 301 redirect.
-3. Submit `https://meteolive.pl/sitemap.xml` in Google Search Console.
-4. Add Google Analytics when ready.
-5. Add AdSense only after the site has enough finished content and privacy/cookie notes are updated.
+3. Submit or resubmit `https://meteolive.pl/sitemap.xml` in Google Search Console.
+4. Check live versions of all city URLs after deployment.
+5. Activate `kontakt@meteolive.pl` or replace it with an active contact email.
 6. Add more city pages in small batches.
-7. Consider future structured weather data provider for city forecasts.
-8. Consider adding cookie/CMP setup before analytics or advertising scripts.
+7. Add a simple editorial/weather guide section to increase useful content before AdSense.
+8. Consider future structured weather data provider for city forecasts.
+9. Add Google Analytics only when CMP/cookie consent is ready.
+10. Add AdSense only after the site has enough finished content and privacy/cookie notes are updated.
