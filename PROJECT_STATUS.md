@@ -2,7 +2,7 @@
 
 ## Current status
 
-MeteoLive is live on Cloudflare Pages and the production domain is connected. The first production polish pass is complete: homepage copy no longer uses MVP/test wording, core radar pages have working external map views, and basic trust/legal pages are in place.
+MeteoLive is live on Cloudflare Pages and the production domain is connected. The production polish pass is complete: homepage copy no longer uses MVP/test wording, core radar pages have working external map views, trust/legal pages are in place, and the first city package has been added.
 
 Production URLs:
 
@@ -22,8 +22,15 @@ Production URLs:
   - `/radar-wiatru/`
   - `/mapa-temperatury/`
   - `/ostrzezenia-pogodowe/`
-- Added first local city template:
+- Added city index:
+  - `/pogoda/`
+- Added first local city pages:
   - `/pogoda/warszawa/`
+  - `/pogoda/krakow/`
+  - `/pogoda/wroclaw/`
+  - `/pogoda/poznan/`
+  - `/pogoda/gdansk/`
+  - `/pogoda/lodz/`
 - Added trust/legal pages:
   - `/o-nas/`
   - `/kontakt/`
@@ -76,6 +83,6 @@ python -m http.server 8000
 3. Submit `https://meteolive.pl/sitemap.xml` in Google Search Console.
 4. Add Google Analytics when ready.
 5. Add AdSense only after the site has enough finished content and privacy/cookie notes are updated.
-6. Add stronger SEO content and FAQ sections for each radar page.
-7. Add city pages for the largest Polish cities.
+6. Expand SEO text on main radar pages.
+7. Add more city pages in small batches.
 8. Consider future structured weather data provider for city forecasts.
