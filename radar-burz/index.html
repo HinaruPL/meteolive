@@ -3,21 +3,50 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Radar burz — mapa burz i wyładowań na żywo | MeteoLive</title>
-  <meta name="description" content="Radar burz MeteoLive — sprawdź mapę burz i wyładowań atmosferycznych w Polsce. Wyjaśniamy, jak czytać radar burz i kiedy sprawdzić ostrzeżenia.">
+  <title>Radar burz — radar pogody i mapa wyładowań na żywo | MeteoLive</title>
+  <meta name="description" content="Radar burz MeteoLive — sprawdź radar pogody Windy oraz mapę wyładowań atmosferycznych w Polsce. Wyjaśniamy, jak czytać radar burz i kiedy sprawdzić ostrzeżenia.">
   <link rel="canonical" href="https://meteolive.pl/radar-burz/">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Radar burz — mapa burz i wyładowań | MeteoLive">
-  <meta property="og:description" content="Sprawdź radar burz i dowiedz się, jak oceniać sytuację burzową.">
+  <meta property="og:title" content="Radar burz — radar pogody i mapa wyładowań | MeteoLive">
+  <meta property="og:description" content="Sprawdź radar pogody, opady burzowe i mapę wyładowań.">
   <meta property="og:url" content="https://meteolive.pl/radar-burz/">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Radar burz — MeteoLive">
-  <meta name="twitter:description" content="Mapa burz, wyładowania i praktyczne wyjaśnienia.">
+  <meta name="twitter:description" content="Radar pogody, mapa burz i wyładowania atmosferyczne.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
+  <style>
+    .map-tabs { margin-top: 20px; }
+    .map-tabs input { position: absolute; opacity: 0; pointer-events: none; }
+    .tab-buttons { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .tab-buttons label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 16px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.07);
+      color: var(--muted);
+      font-weight: 900;
+      cursor: pointer;
+      transition: background .18s ease, border-color .18s ease, color .18s ease;
+    }
+    #tab-weather:checked ~ .tab-buttons label[for="tab-weather"],
+    #tab-lightning:checked ~ .tab-buttons label[for="tab-lightning"] {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #06101d;
+      border-color: transparent;
+    }
+    .tab-panel { display: none; }
+    #tab-weather:checked ~ .tab-panels .weather-panel-tab,
+    #tab-lightning:checked ~ .tab-panels .lightning-panel-tab { display: block; }
+    .tab-note { margin-top: 12px; color: var(--muted); line-height: 1.65; font-size: .95rem; }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -37,19 +66,40 @@
         <nav class="breadcrumbs" aria-label="Okruszki"><a href="/">Strona główna</a><span>›</span><span>Radar burz</span></nav>
         <span class="eyebrow"><span class="pulse"></span> Radar burz</span>
         <h1>Radar burz i mapa wyładowań.</h1>
-        <p class="lead">Sprawdź aktualną sytuację burzową w Polsce. Mapa pomaga zobaczyć, gdzie pojawiają się wyładowania atmosferyczne i w których regionach warto zachować szczególną ostrożność.</p>
+        <p class="lead">Sprawdź aktualną sytuację burzową w Polsce. Najpierw zobacz radar pogody z opadami i komórkami burzowymi, a potem przełącz się na mapę wyładowań atmosferycznych.</p>
       </div>
     </section>
 
     <section class="section">
       <div class="container content-card">
-        <h2>Mapa burz i wyładowań</h2>
-        <div class="embed-box">
-          <a class="storm-map-link" href="https://burze.dzis.net/?page=mapa&amp;animacja=on" rel="nofollow noopener" target="_blank" aria-label="Otwórz pełną mapę burz na burze.dzis.net">
-            <img src="https://burze.dzis.net/img/mapa_burzowa_anim.gif" alt="Animowana mapa burzowa Polski z wyładowaniami atmosferycznymi">
-          </a>
+        <h2>Radar pogody i wyładowania</h2>
+        <p>Widok podstawowy pokazuje radar pogody Windy, który pomaga ocenić strefy opadów i możliwe komórki burzowe. Druga zakładka pokazuje mapę wyładowań atmosferycznych z burze.dzis.net.</p>
+
+        <div class="map-tabs">
+          <input type="radio" name="storm-map-tabs" id="tab-weather" checked>
+          <input type="radio" name="storm-map-tabs" id="tab-lightning">
+
+          <div class="tab-buttons" role="tablist" aria-label="Wybór mapy burzowej">
+            <label for="tab-weather" role="tab">Radar pogody</label>
+            <label for="tab-lightning" role="tab">Mapa wyładowań</label>
+          </div>
+
+          <div class="tab-panels">
+            <div class="tab-panel weather-panel-tab" role="tabpanel">
+              <div class="embed-box"><iframe title="Radar pogody Windy" src="https://embed.windy.com/embed2.html?lat=52.173&lon=19.480&detailLat=52.173&detailLon=19.480&width=650&height=450&zoom=5&level=surface&overlay=radar&product=radar&menu=&message=true&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=-1"></iframe></div>
+              <div class="attribution">Radar pogody: <a href="https://www.windy.com/" rel="nofollow noopener" target="_blank">Windy.com</a>. Widok pomaga obserwować opady i możliwe komórki burzowe, ale nie zastępuje oficjalnych ostrzeżeń.</div>
+            </div>
+
+            <div class="tab-panel lightning-panel-tab" role="tabpanel">
+              <div class="embed-box">
+                <a class="storm-map-link" href="https://burze.dzis.net/?page=mapa&amp;animacja=on" rel="nofollow noopener" target="_blank" aria-label="Otwórz pełną mapę burz na burze.dzis.net">
+                  <img src="https://burze.dzis.net/img/mapa_burzowa_anim.gif" alt="Animowana mapa burzowa Polski z wyładowaniami atmosferycznymi">
+                </a>
+              </div>
+              <div class="attribution">Mapa wyładowań: <a href="https://burze.dzis.net/?page=mapa" rel="nofollow noopener" target="_blank">burze.dzis.net</a>. Źródło danych wyładowań atmosferycznych: <a href="https://www.blitzortung.org/" rel="nofollow noopener" target="_blank">Blitzortung.org</a>. MeteoLive pokazuje mapę jako zewnętrzny podgląd i nie pobiera surowych danych wyładowań.</div>
+            </div>
+          </div>
         </div>
-        <div class="attribution">Mapa burzowa: <a href="https://burze.dzis.net/?page=mapa" rel="nofollow noopener" target="_blank">burze.dzis.net</a>. Źródło danych wyładowań atmosferycznych: <a href="https://www.blitzortung.org/" rel="nofollow noopener" target="_blank">Blitzortung.org</a>. MeteoLive pokazuje mapę jako zewnętrzny podgląd i nie jest oficjalnym źródłem ostrzeżeń.</div>
       </div>
     </section>
 
@@ -57,13 +107,13 @@
       <div class="container two-col">
         <article class="content-card">
           <h2>Jak korzystać z radaru burz?</h2>
+          <p>Najpierw sprawdź radar pogody. Jeżeli widzisz intensywną strefę opadów przesuwającą się w Twoją stronę, przełącz się na mapę wyładowań i zobacz, czy w tej samej strefie występują aktywne burze.</p>
           <p>Najważniejsze jest połączenie kilku informacji: miejsca wyładowań, kierunku przemieszczania opadów i siły wiatru. Sama obecność wyładowania nie oznacza, że burza przejdzie dokładnie nad Twoją lokalizacją, ale jest ważnym sygnałem ostrzegawczym.</p>
-          <p>Jeżeli wyładowania pojawiają się blisko, a radar opadów pokazuje intensywną strefę deszczu przesuwającą się w Twoją stronę, warto zachować ostrożność i sprawdzić ostrzeżenia pogodowe.</p>
         </article>
         <article class="content-card">
           <h2>Ograniczenia mapy burz</h2>
           <p>Mapa burz nie zastępuje oficjalnych komunikatów bezpieczeństwa. Dane mogą mieć opóźnienie, a sytuacja burzowa potrafi zmienić się w kilka minut. Lokalna burza może powstać szybko, szczególnie w gorące i wilgotne dni.</p>
-          <p>Dlatego MeteoLive łączy radar burz z radarem opadów, mapą wiatru i ostrzeżeniami. Taki zestaw daje pełniejszy obraz niż jedna mapa.</p>
+          <p>Dlatego MeteoLive łączy radar pogody, mapę wyładowań, radar opadów, mapę wiatru i ostrzeżenia. Taki zestaw daje pełniejszy obraz niż jedna mapa.</p>
         </article>
       </div>
     </section>
@@ -72,9 +122,9 @@
       <div class="container content-card">
         <h2>FAQ — radar burz</h2>
         <div class="faq">
-          <details><summary>Co pokazuje radar burz?</summary><p>Pokazuje przybliżone położenie wyładowań atmosferycznych i pomaga ocenić, gdzie rozwijają się burze.</p></details>
+          <details><summary>Co pokazuje radar burz?</summary><p>Pokazuje radar pogody z opadami i osobną mapę wyładowań atmosferycznych, dzięki czemu łatwiej ocenić, gdzie rozwijają się burze.</p></details>
           <details><summary>Czy mapa burz wystarczy do oceny zagrożenia?</summary><p>Nie. Warto porównać ją z radarem opadów, mapą wiatru i oficjalnymi ostrzeżeniami.</p></details>
-          <details><summary>Jak często zmienia się sytuacja burzowa?</summary><p>Bardzo szybko. Komórki burzowe mogą narastać i przemieszczać się w ciągu kilku minut, dlatego mapę warto odświeżać i porównywać z innymi źródłami.</p></details>
+          <details><summary>Dlaczego są dwie zakładki?</summary><p>Radar pogody pomaga zobaczyć strefy opadów i komórki burzowe, a mapa wyładowań pokazuje aktywność elektryczną burz. Razem dają lepszy obraz sytuacji.</p></details>
         </div>
       </div>
     </section>
