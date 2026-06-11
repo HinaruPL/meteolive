@@ -199,7 +199,7 @@ function createCookieConsentBanner() {
   banner.innerHTML = `
     <div class="cookie-banner__content">
       <strong>Cookies, zewnętrzne mapy i analityka</strong>
-      <p>MeteoLive korzysta z podstawowych rozwiązań technicznych, zewnętrznych map pogodowych oraz Google Analytics do podstawowego pomiaru ruchu.</p>
+      <p>MeteoLive korzysta z podstawowych rozwiązań technicznych i zewnętrznych map pogodowych. Google Analytics uruchomimy tylko po kliknięciu „Akceptuję”.</p>
       <a href="/cookies/">Dowiedz się więcej</a>
     </div>
     <div class="cookie-banner__actions">
@@ -212,6 +212,11 @@ function createCookieConsentBanner() {
     button.addEventListener('click', () => {
       const choice = button.dataset.cookieChoice || 'closed';
       localStorage.setItem(cookieConsentKey, choice);
+
+      if (choice === 'accepted') {
+        loadGoogleAnalytics();
+      }
+
       banner.remove();
     });
   });
@@ -219,5 +224,8 @@ function createCookieConsentBanner() {
   document.body.appendChild(banner);
 }
 
-loadGoogleAnalytics();
+if (localStorage.getItem(cookieConsentKey) === 'accepted') {
+  loadGoogleAnalytics();
+}
+
 createCookieConsentBanner();
