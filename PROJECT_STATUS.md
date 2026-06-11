@@ -2,7 +2,7 @@
 
 ## Current status
 
-MeteoLive is live on Cloudflare Pages and the production domain is connected. The core site is now in a stronger pre-publication state: homepage copy is production-ready, core radar/map pages are expanded, trust/legal pages are in place, the city index is expanded, 21 local city pages are available, the editorial/weather guide section contains 7 practical poradniki, and structured data has been added for the guides section.
+MeteoLive is live on Cloudflare Pages and the production domain is connected. The core site is now in a stronger pre-publication state: homepage copy is production-ready, core radar/map pages are expanded, trust/legal pages are in place, the city index is expanded, 21 local city pages are available, the editorial/weather guide section contains 7 practical poradniki, structured data has been added for the guides section, and the contact page now uses a temporary working Gmail address.
 
 Production URLs:
 
@@ -74,6 +74,8 @@ Production URLs:
   - `/kontakt/`
   - `/polityka-prywatnosci/`
   - `/regulamin/`
+- Updated `/kontakt/` with temporary working email address:
+  - `kontakt.meteolive@gmail.com`
 - Added `robots.txt`.
 - Added and updated `sitemap.xml` with radar pages, city pages, trust/legal pages and all current weather guides.
 - Added improved `404.html` with `noindex,follow` and footer links.
@@ -117,7 +119,8 @@ python -m http.server 8000
 - Structured data is injected through `script.js` for guide `Article` and `FAQPage`; guide breadcrumbs are static in HTML.
 - Any future data source must be checked for embedding rules, licensing, attribution and commercial use.
 - External source decisions should remain documented in `docs/SOURCES_RESEARCH.md`.
-- The contact email `kontakt@meteolive.pl` should be activated or replaced with an active address.
+- Temporary contact email is `kontakt.meteolive@gmail.com`.
+- Domain contact email `kontakt@meteolive.pl` is planned later, after Email Routing or SMTP is configured.
 - Google Search Console property is verified and sitemap has been submitted.
 - Main pages have been manually submitted for indexing in Google Search Console.
 - AdSense should not be added yet. Add it after more finished content and after privacy/cookie notes are ready for advertising.
@@ -126,13 +129,13 @@ python -m http.server 8000
 ## Next steps
 
 1. Verify the latest Cloudflare Pages deployment after GitHub changes are built.
-2. Resubmit or refresh `https://meteolive.pl/sitemap.xml` in Google Search Console after deployment.
-3. Check whether Google discovers the expanded `/pogoda/` city URLs and `/poradniki/` URLs.
-4. Ensure `www.meteolive.pl` redirects to `meteolive.pl` with 301 redirect.
-5. Check live versions of all new city URLs after deployment.
-6. Activate `kontakt@meteolive.pl` or replace it with an active contact email.
-7. Add more weather guides in small batches.
-8. Add more city pages in small batches.
-9. Consider future structured weather data provider for city forecasts.
+2. Check `/kontakt/` after deployment and test the temporary email address.
+3. Resubmit or refresh `https://meteolive.pl/sitemap.xml` in Google Search Console after deployment.
+4. Check whether Google discovers the expanded `/pogoda/` city URLs and `/poradniki/` URLs.
+5. Ensure `www.meteolive.pl` redirects to `meteolive.pl` with 301 redirect.
+6. Add more weather guides in small batches.
+7. Add more city pages in small batches.
+8. Consider future structured weather data provider for city forecasts.
+9. Configure Email Routing or SMTP for `kontakt@meteolive.pl` later.
 10. Add Google Analytics only when CMP/cookie consent is ready.
 11. Add AdSense only after the site has enough finished content and privacy/cookie notes are updated.
