@@ -162,3 +162,37 @@ if (guideSchemas[currentPath]) {
     ]
   });
 }
+
+const cookieConsentKey = 'meteolive_cookie_consent_v1';
+
+function createCookieConsentBanner() {
+  if (localStorage.getItem(cookieConsentKey)) {
+    return;
+  }
+
+  const banner = document.createElement('section');
+  banner.className = 'cookie-banner';
+  banner.setAttribute('aria-label', 'Informacja o cookies');
+  banner.innerHTML = `
+    <div class="cookie-banner__content">
+      <strong>Cookies i zewnętrzne mapy</strong>
+      <p>MeteoLive korzysta z podstawowych rozwiązań technicznych oraz zewnętrznych map pogodowych. Analityka i reklamy nie są jeszcze uruchomione. Możesz zaakceptować informację albo zamknąć baner.</p>
+      <a href="/cookies/">Dowiedz się więcej</a>
+    </div>
+    <div class="cookie-banner__actions">
+      <button type="button" class="btn cookie-secondary" data-cookie-choice="necessary">Tylko niezbędne</button>
+      <button type="button" class="btn primary" data-cookie-choice="accepted">Akceptuję</button>
+    </div>
+  `;
+
+  banner.querySelectorAll('[data-cookie-choice]').forEach((button) => {
+    button.addEventListener('click', () => {
+      localStorage.setItem(cookieConsentKey, button.dataset.cookieChoice || 'closed');
+      banner.remove();
+    });
+  });
+
+  document.body.appendChild(banner);
+}
+
+createCookieConsentBanner();
