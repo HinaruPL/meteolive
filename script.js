@@ -164,6 +164,29 @@ if (guideSchemas[currentPath]) {
 }
 
 const cookieConsentKey = 'meteolive_cookie_consent_v1';
+const gaMeasurementId = 'G-MQ1X7GSLXX';
+
+function loadGoogleAnalytics() {
+  if (window.meteoliveGaLoaded) {
+    return;
+  }
+
+  window.meteoliveGaLoaded = true;
+
+  const gaScript = document.createElement('script');
+  gaScript.async = true;
+  gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`;
+  document.head.appendChild(gaScript);
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ window.dataLayer.push(arguments); }
+  window.gtag = gtag;
+
+  gtag('js', new Date());
+  gtag('config', gaMeasurementId, {
+    anonymize_ip: true
+  });
+}
 
 function createCookieConsentBanner() {
   if (localStorage.getItem(cookieConsentKey)) {
@@ -175,8 +198,8 @@ function createCookieConsentBanner() {
   banner.setAttribute('aria-label', 'Informacja o cookies');
   banner.innerHTML = `
     <div class="cookie-banner__content">
-      <strong>Cookies i zewnętrzne mapy</strong>
-      <p>MeteoLive korzysta z podstawowych rozwiązań technicznych oraz zewnętrznych map pogodowych. Analityka i reklamy nie są jeszcze uruchomione. Możesz zaakceptować informację albo zamknąć baner.</p>
+      <strong>Cookies, zewnętrzne mapy i analityka</strong>
+      <p>MeteoLive korzysta z podstawowych rozwiązań technicznych i zewnętrznych map pogodowych. Google Analytics uruchomimy tylko po kliknięciu „Akceptuję”.</p>
       <a href="/cookies/">Dowiedz się więcej</a>
     </div>
     <div class="cookie-banner__actions">
@@ -187,12 +210,22 @@ function createCookieConsentBanner() {
 
   banner.querySelectorAll('[data-cookie-choice]').forEach((button) => {
     button.addEventListener('click', () => {
-      localStorage.setItem(cookieConsentKey, button.dataset.cookieChoice || 'closed');
+      const choice = button.dataset.cookieChoice || 'closed';
+      localStorage.setItem(cookieConsentKey, choice);
+
+      if (choice === 'accepted') {
+        loadGoogleAnalytics();
+      }
+
       banner.remove();
     });
   });
 
   document.body.appendChild(banner);
+}
+
+if (localStorage.getItem(cookieConsentKey) === 'accepted') {
+  loadGoogleAnalytics();
 }
 
 createCookieConsentBanner();
