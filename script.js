@@ -158,29 +158,6 @@ if (guideSchemas[currentPath]) {
             text: answer
           }
         }))
-      },
-      {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          {
-            '@type': 'ListItem',
-            position: 1,
-            name: 'Strona główna',
-            item: siteBaseUrl
-          },
-          {
-            '@type': 'ListItem',
-            position: 2,
-            name: 'Poradniki',
-            item: `${siteBaseUrl}/poradniki/`
-          },
-          {
-            '@type': 'ListItem',
-            position: 3,
-            name: guide.headline,
-            item: pageUrl
-          }
-        ]
       }
     ]
   });
