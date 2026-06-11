@@ -2,7 +2,7 @@
 
 ## Current status
 
-MeteoLive is live on Cloudflare Pages and the production domain is connected. The core site is now in a stronger pre-publication state: homepage copy is production-ready, core radar/map pages are expanded, trust/legal pages are in place, the city index is expanded, 21 local city pages are available, the editorial/weather guide section contains 7 practical poradniki, structured data has been added for the guides section, the contact page uses a temporary working Gmail address, privacy/cookies pages are prepared for a future Analytics/AdSense stage, and a simple cookie consent banner is active without loading Analytics or AdSense yet.
+MeteoLive is live on Cloudflare Pages and the production domain is connected. The core site is now in a stronger pre-publication state: homepage copy is production-ready, core radar/map pages are expanded, trust/legal pages are in place, the city index is expanded, 21 local city pages are available, the editorial/weather guide section contains 7 practical poradniki, structured data has been added for the guides section, the contact page uses a temporary working Gmail address, privacy/cookies pages are prepared, a simple cookie consent banner is active, and Google Analytics 4 is configured to load only after the user clicks `Akceptuję`.
 
 Production URLs:
 
@@ -77,11 +77,14 @@ Production URLs:
   - `/regulamin/`
 - Updated `/kontakt/` with temporary working email address:
   - `kontakt.meteolive@gmail.com`
-- Expanded `/polityka-prywatnosci/` with information about technical data, cookies, external maps, future analytics and future ads.
+- Expanded `/polityka-prywatnosci/` with information about technical data, cookies, external maps, Google Analytics, future ads and contact.
 - Added `/cookies/` as a dedicated cookie information page.
+- Updated `/cookies/` after GA4 setup with measurement ID `G-MQ1X7GSLXX` and consent behavior.
 - Updated `/regulamin/` with cookies, analytics and future ads notes.
 - Added a simple global cookie consent banner through `script.js`.
 - Added cookie banner styles in `style.css`.
+- Added Google Analytics 4 through `script.js` with measurement ID `G-MQ1X7GSLXX`.
+- Configured GA4 to load only when local consent choice is `accepted`.
 - Added `robots.txt`.
 - Added and updated `sitemap.xml` with radar pages, city pages, trust/legal pages, cookies page and all current weather guides.
 - Added improved `404.html` with `noindex,follow` and footer links.
@@ -123,24 +126,26 @@ python -m http.server 8000
 - MeteoLive is not an official warning service and must not present itself as one.
 - City pages and guides should keep clear links to official IMGW-PIB warnings instead of presenting MeteoLive as an official alert source.
 - Structured data is injected through `script.js` for guide `Article` and `FAQPage`; guide breadcrumbs are static in HTML.
-- Cookie banner currently stores a local choice in `localStorage` and does not load Analytics or AdSense yet.
+- Cookie banner stores a local choice in `localStorage`.
+- GA4 loads only after user selects `Akceptuję`; it does not load after `Tylko niezbędne`.
+- Google Analytics 4 measurement ID: `G-MQ1X7GSLXX`.
+- Google AdSense is not added yet.
 - Any future data source must be checked for embedding rules, licensing, attribution and commercial use.
 - External source decisions should remain documented in `docs/SOURCES_RESEARCH.md`.
 - Temporary contact email is `kontakt.meteolive@gmail.com`.
 - Domain contact email `kontakt@meteolive.pl` is planned later, after Email Routing or SMTP is configured.
 - Google Search Console property is verified and sitemap has been submitted.
 - Main pages have been manually submitted for indexing in Google Search Console.
-- AdSense should not be added yet. Add it after more finished content and after privacy/cookie notes are ready for advertising.
-- Analytics should be added later after the cookie/CMP flow is checked.
+- AdSense should be added only after the site has enough finished content and privacy/cookie notes are updated for ads.
 
 ## Next steps
 
 1. Verify the latest Cloudflare Pages deployment after GitHub changes are built.
-2. Check the cookie banner on a fresh browser/session and verify both buttons hide the banner.
-3. Check `/kontakt/`, `/polityka-prywatnosci/`, `/cookies/` and `/regulamin/` after deployment.
-4. Check whether Google discovers the expanded `/pogoda/` city URLs and `/poradniki/` URLs.
-5. Ensure `www.meteolive.pl` redirects to `meteolive.pl` with 301 redirect.
-6. Add Google Analytics only after the cookie banner is confirmed on production.
+2. Test GA4 in an incognito browser: click `Akceptuję`, then check Realtime in Google Analytics.
+3. Test that GA4 does not load after clicking `Tylko niezbędne`.
+4. Check `/kontakt/`, `/polityka-prywatnosci/`, `/cookies/` and `/regulamin/` after deployment.
+5. Check whether Google discovers the expanded `/pogoda/` city URLs and `/poradniki/` URLs.
+6. Ensure `www.meteolive.pl` redirects to `meteolive.pl` with 301 redirect.
 7. Add more weather guides in small batches.
 8. Add more city pages in small batches.
 9. Consider future structured weather data provider for city forecasts.
