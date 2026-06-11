@@ -2,7 +2,7 @@
 
 ## Current status
 
-MeteoLive is live on Cloudflare Pages and the production domain is connected. The core site is now in a stronger pre-publication state: homepage copy is production-ready, core radar/map pages are expanded, trust/legal pages are in place, the city index is expanded, 21 local city pages are available, the editorial/weather guide section contains 7 practical poradniki, structured data has been added for the guides section, the contact page uses a temporary working Gmail address, privacy/cookies pages are prepared, a simple cookie banner is active, and Google Analytics 4 is configured to load only after the user clicks `Akceptuję`.
+MeteoLive is live on Cloudflare Pages and the production domain is connected. The core site is now in a stronger pre-publication state: homepage copy is production-ready, core radar/map pages are expanded, trust/legal pages are in place, the city index is expanded, 21 local city pages are available, the editorial/weather guide section contains 10 practical poradniki, structured data has been added for the guides section, the contact page uses a temporary working Gmail address, privacy/cookies pages are prepared, a simple cookie banner is active, and Google Analytics 4 is configured to load only after the user clicks `Akceptuję`.
 
 Production URLs:
 
@@ -35,10 +35,13 @@ Production URLs:
 - Added weather guide section:
   - `/poradniki/`
   - `/poradniki/jak-czytac-radar-opadow/`
+  - `/poradniki/jak-sprawdzic-czy-bedzie-padac/`
   - `/poradniki/co-oznaczaja-kolory-na-radarze-pogodowym/`
   - `/poradniki/jak-sprawdzic-czy-bedzie-burza/`
   - `/poradniki/jak-przygotowac-sie-na-burze/`
   - `/poradniki/jak-sprawdzic-kierunek-wiatru/`
+  - `/poradniki/jak-sprawdzic-silny-wiatr/`
+  - `/poradniki/jak-przetrwac-upal/`
   - `/poradniki/czym-rozni-sie-prognoza-od-radaru/`
   - `/poradniki/co-oznaczaja-ostrzezenia-imgw/`
 - Linked weather guides from the homepage and expanded the guides index.
@@ -142,13 +145,12 @@ python -m http.server 8000
 ## Next steps
 
 1. Verify the latest Cloudflare Pages deployment after GitHub changes are built.
-2. Test GA4 Realtime after clicking `Akceptuję` in a fresh/incognito session.
-3. Check that GA4 does not load after clicking `Tylko niezbędne`.
-4. Check `/kontakt/`, `/polityka-prywatnosci/`, `/cookies/` and `/regulamin/` after deployment.
-5. Check whether Google discovers the expanded `/pogoda/` city URLs and `/poradniki/` URLs.
-6. Ensure `www.meteolive.pl` redirects to `meteolive.pl` with 301 redirect.
-7. Add more weather guides in small batches.
-8. Add more city pages in small batches.
-9. Consider future structured weather data provider for city forecasts.
-10. Configure Email Routing or SMTP for `kontakt@meteolive.pl` later.
-11. Add AdSense only after the site has enough finished content and privacy/cookie notes are updated.
+2. Test the 3 new guide URLs after deployment.
+3. Test GA4 Realtime after clicking `Akceptuję` in a fresh/incognito session.
+4. Check whether Google discovers the expanded `/pogoda/` city URLs and `/poradniki/` URLs.
+5. Ensure `www.meteolive.pl` redirects to `meteolive.pl` with 301 redirect.
+6. Add more weather guides in small batches.
+7. Add more city pages in small batches.
+8. Consider future structured weather data provider for city forecasts.
+9. Configure Email Routing or SMTP for `kontakt@meteolive.pl` later.
+10. Add AdSense only after the site has enough finished content and privacy/cookie notes are updated.
