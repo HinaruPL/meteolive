@@ -259,7 +259,6 @@ h3 { font-size: 1.35rem; }
     radial-gradient(circle at 50% 20%, rgba(255, 209, 102, 0.16), transparent 20rem),
     #07111f;
 }
-
 .storm-map-link img {
   width: min(100%, 760px);
   height: auto;
@@ -314,11 +313,37 @@ summary::marker { color: var(--accent); }
 .footer { margin-top: 60px; padding: 36px 0; border-top: 1px solid var(--border); color: var(--muted); }
 .footer-grid { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
 
+.cookie-banner {
+  position: fixed;
+  left: 50%;
+  bottom: 18px;
+  z-index: 80;
+  width: min(980px, calc(100% - 28px));
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: rgba(5, 13, 24, 0.94);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.cookie-banner__content { max-width: 680px; }
+.cookie-banner__content strong { display: block; margin-bottom: 6px; color: var(--text); font-size: 1.05rem; }
+.cookie-banner__content p { margin: 0 0 8px; color: var(--muted); line-height: 1.6; }
+.cookie-banner__content a { color: var(--accent); font-weight: 900; }
+.cookie-banner__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.cookie-secondary { background: rgba(255,255,255,0.08); }
+
 @media (max-width: 920px) {
   .hero-grid, .grid, .two-col, .source-grid { grid-template-columns: 1fr; }
   .nav { align-items: flex-start; flex-direction: column; padding: 16px 0; }
   .nav-links { flex-wrap: wrap; }
   .weather-panel { min-height: 380px; }
+  .cookie-banner { flex-direction: column; align-items: flex-start; }
 }
 
 @media (max-width: 560px) {
@@ -329,4 +354,7 @@ summary::marker { color: var(--accent); }
   .content-card, .card { padding: 20px; }
   .embed-box iframe { height: 460px; }
   .storm-map-link { min-height: 360px; padding: 10px; }
+  .cookie-banner { bottom: 12px; padding: 15px; }
+  .cookie-banner__actions { width: 100%; }
+  .cookie-banner__actions .btn { width: 100%; }
 }
