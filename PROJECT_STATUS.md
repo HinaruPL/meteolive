@@ -8,7 +8,7 @@ The `/pogoda/` section has been rebuilt from a flat city list into a structured 
 
 - `/pogoda/` — list of 16 voivodeships + city search + geolocation.
 - `/pogoda/[wojewodztwo]/` — cities from a voivodeship.
-- `/pogoda/[miasto]/` — existing city forecast page.
+- `/pogoda/[miasto]/` — city forecast page.
 
 Existing city URLs stay flat under `/pogoda/[miasto]/`, for example `/pogoda/warszawa/`, `/pogoda/krakow/`, `/pogoda/gdynia/`.
 
@@ -18,9 +18,10 @@ The city database is stored in one structured source-of-truth file:
 
 `script.js` loads this file and uses it for city forecasts, city search, search by voivodeship/county, JSON-LD collection data and geolocation nearest-city lookup.
 
-A generator for region pages has been added:
+Two generators have been added:
 
 - `tools/generate-weather-region-pages.mjs`
+- `tools/generate-weather-city-pages.mjs`
 
 ## Completed
 
@@ -39,14 +40,33 @@ A generator for region pages has been added:
 
 ### Pogoda / city pages
 
-- Added and standardized 31 local city pages.
-- City pages show MET Norway forecast blocks through `script.js`:
-  - current conditions,
-  - hourly forecast,
-  - multi-day forecast,
-  - visible attribution to MET Norway / api.met.no,
-  - localStorage cache for about 60 minutes,
-  - fallback text if the forecast API is unavailable.
+- Added and standardized the first 31 local city pages.
+- Added 16 test city records, one from each voivodeship, to `data/weather-cities.json`.
+- Created test pages for the 16 new cities and added them to `sitemap.xml`.
+- Added full SEO city page generator:
+  - `tools/generate-weather-city-pages.mjs`
+- The generator creates full city pages with:
+  - Polish city and voivodeship names in visible content,
+  - slugs without Polish characters,
+  - SEO title,
+  - meta description,
+  - canonical URL,
+  - Open Graph tags,
+  - Twitter tags,
+  - JSON-LD `WebPage` + `Place` + `GeoCoordinates`,
+  - breadcrumb navigation,
+  - MET Norway forecast hook through existing `script.js`,
+  - Windy rain iframe centered on the city coordinates,
+  - Windy wind iframe centered on the city coordinates,
+  - full radar/map card section: rain, storms, wind, temperature, warnings, other cities.
+
+Local command for full city page regeneration:
+
+```bash
+node tools/generate-weather-city-pages.mjs
+```
+
+This command overwrites `/pogoda/[miasto]/index.html` for every valid city record in `data/weather-cities.json`.
 
 ### City data
 
@@ -129,6 +149,7 @@ node tools/generate-weather-region-pages.mjs
 - MeteoLive is not an official weather warning service and must not present itself as one.
 - For dangerous weather, pages should direct users to official IMGW-PIB warnings.
 - MET Norway / api.met.no is used for local city forecast blocks.
+- Windy iframes are used only as embedded map views with attribution/linking.
 - External source decisions should stay documented in `docs/SOURCES_RESEARCH.md`.
 - Counties remain data/grouping fields for now, not separate URL pages.
 - Existing city URLs stay flat under `/pogoda/[miasto]/`.
@@ -136,19 +157,24 @@ node tools/generate-weather-region-pages.mjs
 
 ## Next steps
 
-1. Verify Cloudflare Pages deployment after the latest GitHub commits.
-2. Test `/pogoda/`:
-   - all 16 voivodeship links,
-   - city search,
-   - search by voivodeship,
-   - search by county,
-   - geolocation button.
-3. Test the two newly finished region pages:
-   - `/pogoda/podlaskie/`
-   - `/pogoda/warminsko-mazurskie/`
-4. Then start adding new city records to `data/weather-cities.json` in verified batches.
-5. Add new city pages only after the data records are verified.
-6. Keep `sitemap.xml` updated only with pages that actually exist.
-7. Consider Cloudflare Worker cache/proxy for MET Norway if traffic grows significantly.
-8. Configure Email Routing or SMTP for `kontakt@meteolive.pl` later.
-9. Add AdSense only after the site has enough finished content and privacy/cookie notes are updated.
+1. Run locally:
+
+```bash
+node tools/generate-weather-city-pages.mjs
+node tools/generate-weather-region-pages.mjs
+```
+
+2. Commit regenerated city and region pages.
+3. Verify several city URLs after Cloudflare deployment:
+   - `/pogoda/zamosc/`
+   - `/pogoda/rybnik/`
+   - `/pogoda/swinoujscie/`
+   - `/pogoda/warszawa/`
+4. Test whether Windy iframe centers correctly on city coordinates.
+5. If test batch is OK, prepare verified full Polish city database with duplicate-name handling.
+6. Add all Polish cities to `data/weather-cities.json` with unique slugs. If two cities have the same name, use disambiguated slugs such as `nazwa-wojewodztwo` or `nazwa-powiat`.
+7. Regenerate city pages and voivodeship pages from the data file.
+8. Regenerate/update `sitemap.xml` only with pages that actually exist.
+9. Consider Cloudflare Worker cache/proxy for MET Norway if traffic grows significantly.
+10. Configure Email Routing or SMTP for `kontakt@meteolive.pl` later.
+11. Add AdSense only after the site has enough finished content and privacy/cookie notes are updated.
