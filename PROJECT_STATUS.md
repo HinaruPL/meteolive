@@ -2,7 +2,7 @@
 
 ## Current status
 
-MeteoLive is live on Cloudflare Pages and the production domain is connected. The core site is now in a stronger pre-publication state: homepage copy is production-ready, core radar/map pages are expanded, trust/legal pages are in place, the city index is expanded, 31 local city pages are available, the editorial/weather guide section contains 10 practical poradniki, structured data has been added for the guides section, the contact page uses a temporary working Gmail address, privacy/cookies pages are prepared, a simple cookie banner is active, and Google Analytics 4 is configured to load only after the user clicks `Akceptuję`.
+MeteoLive is live on Cloudflare Pages and the production domain is connected. The core site is now in a stronger pre-publication state: homepage copy is production-ready, core radar/map pages are expanded, trust/legal pages are in place, the city index is expanded, 31 local city pages are available, the editorial/weather guide section contains 14 practical poradniki, structured data has been added for the guides section, the contact page uses a temporary working Gmail address, privacy/cookies pages are prepared, a simple cookie banner is active, and Google Analytics 4 is configured to load only after the user clicks `Akceptuję`.
 
 Production URLs:
 
@@ -36,6 +36,10 @@ Production URLs:
   - `/poradniki/`
   - `/poradniki/jak-czytac-radar-opadow/`
   - `/poradniki/jak-sprawdzic-czy-bedzie-padac/`
+  - `/poradniki/jak-sprawdzic-pogode-przed-podroza/`
+  - `/poradniki/jak-sprawdzic-pogode-na-weekend/`
+  - `/poradniki/kiedy-burza-jest-blisko/`
+  - `/poradniki/jak-zabezpieczyc-balkon-przed-wichura/`
   - `/poradniki/co-oznaczaja-kolory-na-radarze-pogodowym/`
   - `/poradniki/jak-sprawdzic-czy-bedzie-burza/`
   - `/poradniki/jak-przygotowac-sie-na-burze/`
@@ -155,7 +159,7 @@ python -m http.server 8000
 ## Next steps
 
 1. Verify the latest Cloudflare Pages deployment after GitHub changes are built.
-2. Test a few new city URLs after deployment.
+2. Test a few new guide URLs after deployment.
 3. Test GA4 Realtime after clicking `Akceptuję` in a fresh/incognito session.
 4. Check whether Google discovers the expanded `/pogoda/` city URLs and `/poradniki/` URLs.
 5. Ensure `www.meteolive.pl` redirects to `meteolive.pl` with 301 redirect.
