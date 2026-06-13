@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pogoda dla miast — wyszukiwarka lokalnej prognozy | MeteoLive</title>
-  <meta name="description" content="Wyszukiwarka pogody dla miast w Polsce. Znajdź miasto po nazwie albo użyj lokalizacji, aby przejść do najbliższej prognozy, radaru i map pogodowych.">
+  <title>Pogoda w Polsce — województwa i wyszukiwarka miast | MeteoLive</title>
+  <meta name="description" content="Pogoda w Polsce według województw. Wybierz województwo, znajdź miasto po nazwie albo użyj lokalizacji, aby przejść do najbliższej prognozy.">
   <link rel="canonical" href="https://meteolive.pl/pogoda/">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Pogoda dla miast — wyszukiwarka MeteoLive">
-  <meta property="og:description" content="Znajdź lokalną prognozę pogody po nazwie miasta albo użyj swojej lokalizacji.">
+  <meta property="og:title" content="Pogoda w Polsce — województwa i miasta | MeteoLive">
+  <meta property="og:description" content="Wybierz województwo, znajdź lokalną prognozę pogody po nazwie miasta albo użyj swojej lokalizacji.">
   <meta property="og:url" content="https://meteolive.pl/pogoda/">
   <meta name="twitter:card" content="summary">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,83 +18,69 @@
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <header class="site-header"><div class="container nav"><a class="logo" href="/" aria-label="MeteoLive — strona główna"><span class="logo-mark">☁</span><span>MeteoLive</span></a><nav class="nav-links" aria-label="Główna nawigacja"><a href="/radar-burz/">Burze</a><a href="/radar-opadow/">Opady</a><a href="/radar-wiatru/">Wiatr</a><a href="/mapa-temperatury/">Temperatura</a><a href="/ostrzezenia-pogodowe/">Ostrzeżenia</a><a href="/pogoda/">Miasta</a><a href="/poradniki/">Poradniki</a></nav></div></header>
+  <header class="site-header"><div class="container nav"><a class="logo" href="/" aria-label="MeteoLive — strona główna"><span class="logo-mark">☁</span><span>MeteoLive</span></a><nav class="nav-links" aria-label="Główna nawigacja"><a href="/radar-burz/">Burze</a><a href="/radar-opadow/">Opady</a><a href="/radar-wiatru/">Wiatr</a><a href="/mapa-temperatury/">Temperatura</a><a href="/ostrzezenia-pogodowe/">Ostrzeżenia</a><a href="/pogoda/">Pogoda</a><a href="/poradniki/">Poradniki</a></nav></div></header>
 
   <main>
     <section class="hero">
       <div class="container">
         <nav class="breadcrumbs" aria-label="Okruszki"><a href="/">Strona główna</a><span>›</span><span>Pogoda</span></nav>
-        <span class="eyebrow"><span class="pulse"></span> Wyszukiwarka pogody lokalnej</span>
-        <h1>Pogoda dla miast.</h1>
-        <p class="lead">Wpisz nazwę miasta albo użyj swojej lokalizacji. MeteoLive pokaże najbliższą dostępną stronę z prognozą, radarem opadów, burzami, wiatrem, temperaturą i ostrzeżeniami.</p>
+        <span class="eyebrow"><span class="pulse"></span> Pogoda lokalna w Polsce</span>
+        <h1>Pogoda według województw.</h1>
+        <p class="lead">Wybierz województwo, wpisz nazwę miasta albo użyj swojej lokalizacji. MeteoLive pokaże najbliższą dostępną stronę z prognozą MET Norway, radarami i linkami do oficjalnych ostrzeżeń IMGW-PIB.</p>
 
         <div class="content-card city-search-box" aria-label="Wyszukiwarka miast">
           <div class="city-search-actions">
             <div>
               <h2>Znajdź miasto</h2>
-              <p class="city-search-help">Szukaj po nazwie, np. Warszawa, Kraków, Gdynia, Bielsko-Biała. Możesz też użyć lokalizacji — wtedy wybierzemy najbliższe miasto z naszej bazy.</p>
+              <p class="city-search-help">Szukaj po nazwie miasta, województwie albo powiecie. Możesz też użyć lokalizacji — wtedy wybierzemy najbliższe dostępne miasto z naszej bazy.</p>
             </div>
             <button class="btn primary" type="button" data-city-locate-button>Użyj mojej lokalizacji</button>
           </div>
           <div class="city-search-form">
-            <input type="search" data-city-search-input placeholder="Wpisz nazwę miasta..." aria-label="Wpisz nazwę miasta">
+            <input type="search" data-city-search-input placeholder="Wpisz miasto lub województwo..." aria-label="Wpisz miasto lub województwo">
             <a class="btn" href="/mapa-strony/">Mapa strony</a>
           </div>
-          <p class="city-search-status" data-city-search-count>Znaleziono 31 miast.</p>
+          <p class="city-search-status" data-city-search-count>Znaleziono 16 województw.</p>
           <p class="city-search-status" data-city-location-status></p>
+          <div class="city-search-results" data-city-search-results aria-live="polite"></div>
         </div>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <h2>Miasta w MeteoLive</h2>
-        <p class="section-intro">Każda lokalna strona ma prognozę MET Norway, prognozę godzinową i kilkudniową oraz szybkie linki do radarów i oficjalnych ostrzeżeń.</p>
-        <div class="grid" data-city-grid>
-          <a class="card" data-city-card data-city-name="Warszawa" data-city-slug="warszawa" href="/pogoda/warszawa/"><div><div class="icon">🏙</div><h3>Warszawa</h3><p>Prognoza, radary i mapy dla Warszawy.</p></div><span class="card-link">Otwórz →</span></a>
-          <a class="card" data-city-card data-city-name="Kraków" data-city-slug="krakow" href="/pogoda/krakow/"><div><div class="icon">🏙</div><h3>Kraków</h3><p>Prognoza, radary i mapy dla Krakowa.</p></div><span class="card-link">Otwórz →</span></a>
-          <a class="card" data-city-card data-city-name="Wrocław" data-city-slug="wroclaw" href="/pogoda/wroclaw/"><div><div class="icon">🏙</div><h3>Wrocław</h3><p>Prognoza, radary i mapy dla Wrocławia.</p></div><span class="card-link">Otwórz →</span></a>
-          <a class="card" data-city-card data-city-name="Poznań" data-city-slug="poznan" href="/pogoda/poznan/"><div><div class="icon">🏙</div><h3>Poznań</h3><p>Prognoza, radary i mapy dla Poznania.</p></div><span class="card-link">Otwórz →</span></a>
-          <a class="card" data-city-card data-city-name="Gdańsk" data-city-slug="gdansk" href="/pogoda/gdansk/"><div><div class="icon">🏙</div><h3>Gdańsk</h3><p>Prognoza, radary i mapy dla Gdańska.</p></div><span class="card-link">Otwórz →</span></a>
-          <a class="card" data-city-card data-city-name="Gdynia" data-city-slug="gdynia" href="/pogoda/gdynia/"><div><div class="icon">🏙</div><h3>Gdynia</h3><p>Prognoza, radary i mapy dla Gdyni.</p></div><span class="card-link">Otwórz →</span></a>
-          <a class="card" data-city-card data-city-name="Łódź" data-city-slug="lodz" href="/pogoda/lodz/"><div><div class="icon">🏙</div><h3>Łódź</h3><p>Prognoza, radary i mapy dla Łodzi.</p></div><span class="card-link">Otwórz →</span></a>
-          <a class="card" data-city-card data-city-name="Katowice" data-city-slug="katowice" href="/pogoda/katowice/"><div><div class="icon">🏙</div><h3>Katowice</h3><p>Prognoza, radary i mapy dla Katowic.</p></div><span class="card-link">Otwórz →</span></a>
-          <a class="card" data-city-card data-city-name="Lublin" data-city-slug="lublin" href="/pogoda/lublin/"><div><div class="icon">🏙</div><h3>Lublin</h3><p>Prognoza, radary i mapy dla Lublina.</p></div><span class="card-link">Otwórz →</span></a>
-          <a class="card" data-city-card data-city-name="Szczecin" data-city-slug="szczecin" href="/pogoda/szczecin/"><div><div class="icon">🏙</div><h3>Szczecin</h3><p>Prognoza, radary i mapy dla Szczecina.</p></div><span class="card-link">Otwórz →</span></a>
-          <a class="card" data-city-card data-city-name="Rzeszów" data-city-slug="rzeszow" href="/pogoda/rzeszow/"><div><div class="icon">🏙</div><h3>Rzeszów</h3><p>Prognoza, radary i mapy dla Rzeszowa.</p></div><span class="card-link">Otwórz →</span></a>
-          <a class="card" data-city-card data-city-name="Białystok" data-city-slug="bialystok" href="/pogoda/bialystok/"><div><div class="icon">🏙</div><h3>Białystok</h3><p>Prognoza, radary i mapy dla Białegostoku.</p></div><span class="card-link">Otwórz →</span></a>
-          <a class="card" data-city-card data-city-name="Bydgoszcz" data-city-slug="bydgoszcz" href="/pogoda/bydgoszcz/"><div><div class="icon">🏙</div><h3>Bydgoszcz</h3><p>Prognoza, radary i mapy dla Bydgoszczy.</p></div><span class="card-link">Otwórz →</span></a>
-          <a class="card" data-city-card data-city-name="Toruń" data-city-slug="torun" href="/pogoda/torun/"><div><div class="icon">🏙</div><h3>Toruń</h3><p>Prognoza, radary i mapy dla Torunia.</p></div><span class="card-link">Otwórz →</span></a>
-          <a class="card" data-city-card data-city-name="Olsztyn" data-city-slug="olsztyn" href="/pogoda/olsztyn/"><div><div class="icon">🏙</div><h3>Olsztyn</h3><p>Prognoza, radary i mapy dla Olsztyna.</p></div><span class="card-link">Otwórz →</span></a>
-          <a class="card" data-city-card data-city-name="Kielce" data-city-slug="kielce" href="/pogoda/kielce/"><div><div class="icon">🏙</div><h3>Kielce</h3><p>Prognoza, radary i mapy dla Kielc.</p></div><span class="card-link">Otwórz →</span></a>
-          <a class="card" data-city-card data-city-name="Opole" data-city-slug="opole" href="/pogoda/opole/"><div><div class="icon">🏙</div><h3>Opole</h3><p>Prognoza, radary i mapy dla Opola.</p></div><span class="card-link">Otwórz →</span></a>
-          <a class="card" data-city-card data-city-name="Radom" data-city-slug="radom" href="/pogoda/radom/"><div><div class="icon">🏙</div><h3>Radom</h3><p>Prognoza, radary i mapy dla Radomia.</p></div><span class="card-link">Otwórz →</span></a>
-          <a class="card" data-city-card data-city-name="Sosnowiec" data-city-slug="sosnowiec" href="/pogoda/sosnowiec/"><div><div class="icon">🏙</div><h3>Sosnowiec</h3><p>Prognoza, radary i mapy dla Sosnowca.</p></div><span class="card-link">Otwórz →</span></a>
-          <a class="card" data-city-card data-city-name="Tarnów" data-city-slug="tarnow" href="/pogoda/tarnow/"><div><div class="icon">🏙</div><h3>Tarnów</h3><p>Prognoza, radary i mapy dla Tarnowa.</p></div><span class="card-link">Otwórz →</span></a>
-          <a class="card" data-city-card data-city-name="Płock" data-city-slug="plock" href="/pogoda/plock/"><div><div class="icon">🏙</div><h3>Płock</h3><p>Prognoza, radary i mapy dla Płocka.</p></div><span class="card-link">Otwórz →</span></a>
-          <a class="card" data-city-card data-city-name="Elbląg" data-city-slug="elblag" href="/pogoda/elblag/"><div><div class="icon">🏙</div><h3>Elbląg</h3><p>Prognoza, radary i mapy dla Elbląga.</p></div><span class="card-link">Otwórz →</span></a>
-          <a class="card" data-city-card data-city-name="Wałbrzych" data-city-slug="walbrzych" href="/pogoda/walbrzych/"><div><div class="icon">🏙</div><h3>Wałbrzych</h3><p>Prognoza, radary i mapy dla Wałbrzycha.</p></div><span class="card-link">Otwórz →</span></a>
-          <a class="card" data-city-card data-city-name="Koszalin" data-city-slug="koszalin" href="/pogoda/koszalin/"><div><div class="icon">🏙</div><h3>Koszalin</h3><p>Prognoza, radary i mapy dla Koszalina.</p></div><span class="card-link">Otwórz →</span></a>
-          <a class="card" data-city-card data-city-name="Kalisz" data-city-slug="kalisz" href="/pogoda/kalisz/"><div><div class="icon">🏙</div><h3>Kalisz</h3><p>Prognoza, radary i mapy dla Kalisza.</p></div><span class="card-link">Otwórz →</span></a>
-          <a class="card" data-city-card data-city-name="Legnica" data-city-slug="legnica" href="/pogoda/legnica/"><div><div class="icon">🏙</div><h3>Legnica</h3><p>Prognoza, radary i mapy dla Legnicy.</p></div><span class="card-link">Otwórz →</span></a>
-          <a class="card" data-city-card data-city-name="Zielona Góra" data-city-slug="zielona-gora" href="/pogoda/zielona-gora/"><div><div class="icon">🏙</div><h3>Zielona Góra</h3><p>Prognoza, radary i mapy dla Zielonej Góry.</p></div><span class="card-link">Otwórz →</span></a>
-          <a class="card" data-city-card data-city-name="Gorzów Wielkopolski" data-city-slug="gorzow-wielkopolski" href="/pogoda/gorzow-wielkopolski/"><div><div class="icon">🏙</div><h3>Gorzów Wielkopolski</h3><p>Prognoza, radary i mapy dla Gorzowa Wielkopolskiego.</p></div><span class="card-link">Otwórz →</span></a>
-          <a class="card" data-city-card data-city-name="Bielsko-Biała" data-city-slug="bielsko-biala" href="/pogoda/bielsko-biala/"><div><div class="icon">🏙</div><h3>Bielsko-Biała</h3><p>Prognoza, radary i mapy dla Bielska-Białej.</p></div><span class="card-link">Otwórz →</span></a>
-          <a class="card" data-city-card data-city-name="Gliwice" data-city-slug="gliwice" href="/pogoda/gliwice/"><div><div class="icon">🏙</div><h3>Gliwice</h3><p>Prognoza, radary i mapy dla Gliwic.</p></div><span class="card-link">Otwórz →</span></a>
-          <a class="card" data-city-card data-city-name="Częstochowa" data-city-slug="czestochowa" href="/pogoda/czestochowa/"><div><div class="icon">🏙</div><h3>Częstochowa</h3><p>Prognoza, radary i mapy dla Częstochowy.</p></div><span class="card-link">Otwórz →</span></a>
+        <h2>Wybierz województwo</h2>
+        <p class="section-intro">To pierwszy etap porządkowania sekcji pogodowej. Województwa będą prowadzić do list powiatów i miast, a działające adresy miast, np. /pogoda/warszawa/, zostają bez zmian.</p>
+        <div class="grid" data-region-grid>
+          <article class="card" data-city-card data-region-name="Dolnośląskie" data-region-slug="dolnoslaskie"><div><div class="icon">🗺</div><h3>Dolnośląskie</h3><p>Miasta w bazie: 3. Strona województwa będzie dodana w kolejnym etapie.</p></div><span class="card-link">W przygotowaniu</span></article>
+          <article class="card" data-city-card data-region-name="Kujawsko-pomorskie" data-region-slug="kujawsko-pomorskie"><div><div class="icon">🗺</div><h3>Kujawsko-pomorskie</h3><p>Miasta w bazie: 2. Strona województwa będzie dodana w kolejnym etapie.</p></div><span class="card-link">W przygotowaniu</span></article>
+          <article class="card" data-city-card data-region-name="Lubelskie" data-region-slug="lubelskie"><div><div class="icon">🗺</div><h3>Lubelskie</h3><p>Miasta w bazie: 1. Strona województwa będzie dodana w kolejnym etapie.</p></div><span class="card-link">W przygotowaniu</span></article>
+          <article class="card" data-city-card data-region-name="Lubuskie" data-region-slug="lubuskie"><div><div class="icon">🗺</div><h3>Lubuskie</h3><p>Miasta w bazie: 2. Strona województwa będzie dodana w kolejnym etapie.</p></div><span class="card-link">W przygotowaniu</span></article>
+          <article class="card" data-city-card data-region-name="Łódzkie" data-region-slug="lodzkie"><div><div class="icon">🗺</div><h3>Łódzkie</h3><p>Miasta w bazie: 1. Strona województwa będzie dodana w kolejnym etapie.</p></div><span class="card-link">W przygotowaniu</span></article>
+          <article class="card" data-city-card data-region-name="Małopolskie" data-region-slug="malopolskie"><div><div class="icon">🗺</div><h3>Małopolskie</h3><p>Miasta w bazie: 2. Strona województwa będzie dodana w kolejnym etapie.</p></div><span class="card-link">W przygotowaniu</span></article>
+          <a class="card" data-city-card data-region-name="Mazowieckie" data-region-slug="mazowieckie" href="/pogoda/mazowieckie/"><div><div class="icon">🗺</div><h3>Mazowieckie</h3><p>Warszawa, Radom i Płock.</p></div><span class="card-link">Otwórz →</span></a>
+          <article class="card" data-city-card data-region-name="Opolskie" data-region-slug="opolskie"><div><div class="icon">🗺</div><h3>Opolskie</h3><p>Miasta w bazie: 1. Strona województwa będzie dodana w kolejnym etapie.</p></div><span class="card-link">W przygotowaniu</span></article>
+          <article class="card" data-city-card data-region-name="Podkarpackie" data-region-slug="podkarpackie"><div><div class="icon">🗺</div><h3>Podkarpackie</h3><p>Miasta w bazie: 1. Strona województwa będzie dodana w kolejnym etapie.</p></div><span class="card-link">W przygotowaniu</span></article>
+          <article class="card" data-city-card data-region-name="Podlaskie" data-region-slug="podlaskie"><div><div class="icon">🗺</div><h3>Podlaskie</h3><p>Miasta w bazie: 1. Strona województwa będzie dodana w kolejnym etapie.</p></div><span class="card-link">W przygotowaniu</span></article>
+          <article class="card" data-city-card data-region-name="Pomorskie" data-region-slug="pomorskie"><div><div class="icon">🗺</div><h3>Pomorskie</h3><p>Miasta w bazie: 2. Strona województwa będzie dodana w kolejnym etapie.</p></div><span class="card-link">W przygotowaniu</span></article>
+          <article class="card" data-city-card data-region-name="Śląskie" data-region-slug="slaskie"><div><div class="icon">🗺</div><h3>Śląskie</h3><p>Miasta w bazie: 5. Strona województwa będzie dodana w kolejnym etapie.</p></div><span class="card-link">W przygotowaniu</span></article>
+          <article class="card" data-city-card data-region-name="Świętokrzyskie" data-region-slug="swietokrzyskie"><div><div class="icon">🗺</div><h3>Świętokrzyskie</h3><p>Miasta w bazie: 1. Strona województwa będzie dodana w kolejnym etapie.</p></div><span class="card-link">W przygotowaniu</span></article>
+          <article class="card" data-city-card data-region-name="Warmińsko-mazurskie" data-region-slug="warminsko-mazurskie"><div><div class="icon">🗺</div><h3>Warmińsko-mazurskie</h3><p>Miasta w bazie: 2. Strona województwa będzie dodana w kolejnym etapie.</p></div><span class="card-link">W przygotowaniu</span></article>
+          <article class="card" data-city-card data-region-name="Wielkopolskie" data-region-slug="wielkopolskie"><div><div class="icon">🗺</div><h3>Wielkopolskie</h3><p>Miasta w bazie: 2. Strona województwa będzie dodana w kolejnym etapie.</p></div><span class="card-link">W przygotowaniu</span></article>
+          <article class="card" data-city-card data-region-name="Zachodniopomorskie" data-region-slug="zachodniopomorskie"><div><div class="icon">🗺</div><h3>Zachodniopomorskie</h3><p>Miasta w bazie: 2. Strona województwa będzie dodana w kolejnym etapie.</p></div><span class="card-link">W przygotowaniu</span></article>
         </div>
       </div>
     </section>
 
     <section class="section">
       <div class="container two-col">
-        <article class="content-card"><h2>Jak korzystać ze stron miast?</h2><p>Najpierw wybierz swoje miasto, a potem sprawdź prognozę, radar opadów, burze, wiatr i temperaturę. Przy dynamicznej pogodzie najlepiej porównywać kilka map, zamiast opierać się na jednym widoku.</p></article>
-        <article class="content-card"><h2>Jak działa lokalizacja?</h2><p>Po kliknięciu przycisku przeglądarka poprosi o zgodę na lokalizację. MeteoLive obliczy najbliższe dostępne miasto z listy i przeniesie Cię na jego stronę. Lokalizacja nie jest zapisywana na serwerze MeteoLive.</p></article>
+        <article class="content-card"><h2>Jak będzie rozwijana baza miast?</h2><p>Docelowo miasta będą dodawane z jednej bazy danych: nazwa, slug, województwo, powiat, szerokość i długość geograficzna. Dzięki temu łatwiej będzie tworzyć kolejne strony bez ręcznego chaosu.</p></article>
+        <article class="content-card"><h2>O prognozach i ostrzeżeniach</h2><p>Prognozy na stronach miast pochodzą z MET Norway / api.met.no. MeteoLive nie jest oficjalnym serwisem ostrzeżeń pogodowych. Przy groźnej pogodzie sprawdzaj komunikaty IMGW-PIB.</p></article>
       </div>
     </section>
   </main>
 
   <footer class="footer"><div class="container footer-grid"><span>© <span data-year></span> MeteoLive</span><span><a href="/o-nas/">O nas</a> · <a href="/kontakt/">Kontakt</a> · <a href="/polityka-prywatnosci/">Polityka prywatności</a> · <a href="/regulamin/">Regulamin</a></span></div></footer>
-  <script src="/script.js?v=city-search-20260613"></script>
+  <script src="/script.js?v=regions-20260613"></script>
 </body>
 </html>
