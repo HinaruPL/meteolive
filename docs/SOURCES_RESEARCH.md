@@ -4,7 +4,7 @@ This file tracks external map/data sources considered for MeteoLive.
 
 ## Current production approach
 
-MeteoLive is now live on `https://meteolive.pl/`. The current production version uses official public embeds or clearly attributed external map previews where possible.
+MeteoLive is now live on `https://meteolive.pl/`. The current production version uses official public embeds or clearly attributed external map previews where possible. Local city forecast blocks use MET Norway / api.met.no with browser-side caching and visible attribution.
 
 ## Source decisions
 
@@ -44,6 +44,29 @@ Decision:
 - OK for current production as an attributed external map preview.
 - Keep visible credit for burze.dzis.net and Blitzortung.org.
 - Do not build a custom lightning map from raw Blitzortung data without explicit permission or a clear commercial license.
+
+### MET Norway API / api.met.no
+
+Current use:
+
+- Local city forecast blocks on `/pogoda/[city]/` pages.
+- The browser fetches `locationforecast/2.0/compact` for configured city coordinates.
+- Forecast results are cached in `localStorage` for about 60 minutes per city.
+
+Notes:
+
+- MET Norway / api.met.no does not require an API key for this endpoint.
+- Visible attribution is required and is included in the forecast widget.
+- The integration must stay lightweight and responsible; avoid high-frequency repeated calls.
+- If traffic grows significantly, add a Cloudflare Worker cache/proxy to reduce direct calls from visitors.
+- MeteoLive does not present MET Norway forecasts as official Polish warnings.
+
+Decision:
+
+- Approved as the current city forecast source.
+- Keep attribution visible on every forecast widget.
+- Keep fallback text if the API is unavailable.
+- Consider backend caching later if usage grows.
 
 ### RainViewer Weather Radar API
 
@@ -90,7 +113,7 @@ Decision:
 
 Potential use:
 
-- Future city forecasts
+- Paid future city forecasts
 - Weather data API
 
 Notes:
@@ -102,22 +125,6 @@ Decision:
 
 - Do not use the free API for MeteoLive with ads/commercial traffic.
 - Consider paid usage later.
-
-### MET Norway API
-
-Potential use:
-
-- Future city forecasts through a cached/proxied backend.
-
-Notes:
-
-- Requires proper attribution and responsible API usage.
-- Should not be called directly at scale from a static frontend.
-
-Decision:
-
-- Possible later with Cloudflare Worker cache/proxy.
-- Not used in current static MVP.
 
 ### OpenWeatherMap
 
@@ -133,7 +140,7 @@ Notes:
 Decision:
 
 - Possible later for city pages.
-- Not used in current static MVP.
+- Not used in current production.
 
 ## Production rule
 
