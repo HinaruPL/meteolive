@@ -141,46 +141,32 @@ const weatherCities = {
 };
 
 const weatherCodeLabels = {
-  clearsky: 'bezchmurnie',
-  fair: 'pogodnie',
-  partlycloudy: 'częściowe zachmurzenie',
-  cloudy: 'pochmurno',
-  lightrain: 'słaby deszcz',
-  rain: 'deszcz',
-  heavyrain: 'silny deszcz',
-  lightsnow: 'słaby śnieg',
-  snow: 'śnieg',
-  heavysnow: 'silny śnieg',
-  sleet: 'deszcz ze śniegiem',
-  fog: 'mgła',
-  lightrainshowers: 'przelotny słaby deszcz',
-  rainshowers: 'przelotny deszcz',
-  heavyrainshowers: 'silne przelotne opady',
-  thunderstorm: 'burza',
-  rainandthunder: 'deszcz i burza',
-  heavyrainandthunder: 'silny deszcz i burza'
+  clearsky: 'bezchmurnie', fair: 'pogodnie', partlycloudy: 'częściowe zachmurzenie', cloudy: 'pochmurno',
+  lightrain: 'słaby deszcz', rain: 'deszcz', heavyrain: 'silny deszcz', lightsnow: 'słaby śnieg', snow: 'śnieg', heavysnow: 'silny śnieg',
+  sleet: 'deszcz ze śniegiem', fog: 'mgła', lightrainshowers: 'przelotny słaby deszcz', rainshowers: 'przelotny deszcz', heavyrainshowers: 'silne przelotne opady',
+  thunderstorm: 'burza', rainandthunder: 'deszcz i burza', heavyrainandthunder: 'silny deszcz i burza'
 };
 
 function injectForecastStyles() {
-  if (document.getElementById('meteolive-forecast-styles')) {
-    return;
-  }
+  if (document.getElementById('meteolive-forecast-styles')) return;
   const style = document.createElement('style');
   style.id = 'meteolive-forecast-styles';
   style.textContent = `
     .forecast-widget { margin-top: 0; }
     .forecast-header { display: flex; justify-content: space-between; gap: 1rem; align-items: flex-start; margin-bottom: 1.25rem; }
     .forecast-current { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin-top: 1rem; }
-    .forecast-metric, .forecast-hour { border: 1px solid rgba(148, 163, 184, .18); border-radius: 18px; padding: 1rem; background: rgba(15, 23, 42, .42); }
+    .forecast-metric, .forecast-hour, .forecast-day { border: 1px solid rgba(148, 163, 184, .18); border-radius: 18px; padding: 1rem; background: rgba(15, 23, 42, .42); }
     .forecast-metric strong { display: block; font-size: 1.45rem; margin-top: .25rem; color: #f8fafc; }
-    .forecast-metric span, .forecast-hour span { color: #94a3b8; font-size: .9rem; }
+    .forecast-metric span, .forecast-hour span, .forecast-day span { color: #94a3b8; font-size: .9rem; }
     .forecast-hours { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin-top: 1rem; }
-    .forecast-hour strong { display: block; margin: .35rem 0; color: #f8fafc; }
+    .forecast-days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .forecast-hour strong, .forecast-day strong { display: block; margin: .35rem 0; color: #f8fafc; }
     .forecast-source { color: #94a3b8; font-size: .9rem; margin-top: 1rem; }
     .forecast-source a { color: inherit; }
     .forecast-error { border: 1px solid rgba(248, 113, 113, .35); background: rgba(127, 29, 29, .22); padding: 1rem; border-radius: 18px; }
+    @media (max-width: 1050px) { .forecast-days { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
     @media (max-width: 800px) { .forecast-current, .forecast-hours { grid-template-columns: 1fr 1fr; } .forecast-header { display: block; } }
-    @media (max-width: 520px) { .forecast-current, .forecast-hours { grid-template-columns: 1fr; } }
+    @media (max-width: 520px) { .forecast-current, .forecast-hours, .forecast-days { grid-template-columns: 1fr; } }
   `;
   document.head.appendChild(style);
 }
@@ -196,17 +182,52 @@ function describeWeather(symbol) {
 }
 
 function getPrecipitation(block) {
-  return block?.data?.next_1_hours?.details?.precipitation_amount
-    ?? block?.data?.next_6_hours?.details?.precipitation_amount
-    ?? 0;
+  return block?.data?.next_1_hours?.details?.precipitation_amount ?? block?.data?.next_6_hours?.details?.precipitation_amount ?? 0;
 }
 
 function formatForecastTime(time) {
-  return new Intl.DateTimeFormat('pl-PL', {
-    weekday: 'short',
-    hour: '2-digit',
-    minute: '2-digit'
-  }).format(new Date(time));
+  return new Intl.DateTimeFormat('pl-PL', { weekday: 'short', hour: '2-digit', minute: '2-digit' }).format(new Date(time));
+}
+
+function formatForecastDay(dateKey) {
+  return new Intl.DateTimeFormat('pl-PL', { weekday: 'short', day: '2-digit', month: '2-digit' }).format(new Date(`${dateKey}T12:00:00`));
+}
+
+function buildDailyForecast(timeseries) {
+  const daily = {};
+
+  timeseries.forEach((block) => {
+    const date = new Date(block.time);
+    const dateKey = date.toISOString().slice(0, 10);
+    const hour = date.getUTCHours();
+    const details = block.data.instant.details || {};
+    const temp = details.air_temperature;
+    const symbol = cleanSymbolCode(block.data.next_6_hours?.summary?.symbol_code || block.data.next_1_hours?.summary?.symbol_code || '');
+
+    if (!daily[dateKey]) {
+      daily[dateKey] = { min: temp, max: temp, precipitation: 0, symbols: {}, samples: 0 };
+    }
+
+    daily[dateKey].min = Math.min(daily[dateKey].min, temp);
+    daily[dateKey].max = Math.max(daily[dateKey].max, temp);
+    daily[dateKey].symbols[symbol] = (daily[dateKey].symbols[symbol] || 0) + 1;
+    daily[dateKey].samples += 1;
+
+    if (hour % 6 === 0) {
+      daily[dateKey].precipitation += block.data.next_6_hours?.details?.precipitation_amount ?? getPrecipitation(block);
+    }
+  });
+
+  return Object.entries(daily).slice(0, 7).map(([dateKey, value]) => {
+    const dominantSymbol = Object.entries(value.symbols).sort((a, b) => b[1] - a[1])[0]?.[0] || '';
+    return {
+      dateKey,
+      min: Math.round(value.min),
+      max: Math.round(value.max),
+      precipitation: value.precipitation,
+      description: describeWeather(dominantSymbol)
+    };
+  });
 }
 
 function createForecastSection(cityName) {
@@ -218,7 +239,7 @@ function createForecastSection(cityName) {
       <div class="forecast-header">
         <div>
           <span class="eyebrow"><span class="pulse"></span> Prognoza zewnętrzna</span>
-          <h2>Pogoda ${cityName} — prognoza na najbliższe godziny</h2>
+          <h2>Pogoda ${cityName} — prognoza</h2>
           <p class="section-intro">Prognoza jest pobierana z MET Norway na podstawie współrzędnych miasta i zapisywana lokalnie w przeglądarce na około 60 minut.</p>
         </div>
       </div>
@@ -227,35 +248,26 @@ function createForecastSection(cityName) {
   `;
 
   const hero = document.querySelector('.hero');
-  if (hero?.parentNode) {
-    hero.parentNode.insertBefore(section, hero.nextSibling);
-  }
+  if (hero?.parentNode) hero.parentNode.insertBefore(section, hero.nextSibling);
   return section.querySelector('[data-forecast-widget]');
 }
 
 function renderForecast(container, cityName, data) {
   const timeseries = data?.properties?.timeseries || [];
-  if (!timeseries.length) {
-    throw new Error('Brak danych prognozy');
-  }
+  if (!timeseries.length) throw new Error('Brak danych prognozy');
 
   const nowBlock = timeseries[0];
   const details = nowBlock.data.instant.details || {};
   const symbol = nowBlock.data.next_1_hours?.summary?.symbol_code || nowBlock.data.next_6_hours?.summary?.symbol_code || '';
   const nextBlocks = timeseries.slice(0, 4);
-  const updatedAt = new Intl.DateTimeFormat('pl-PL', {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit'
-  }).format(new Date());
+  const dailyForecast = buildDailyForecast(timeseries);
+  const updatedAt = new Intl.DateTimeFormat('pl-PL', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }).format(new Date());
 
   container.innerHTML = `
     <div class="forecast-header">
       <div>
         <span class="eyebrow"><span class="pulse"></span> Prognoza zewnętrzna</span>
-        <h2>Pogoda ${cityName} — najbliższe godziny</h2>
+        <h2>Pogoda ${cityName} — teraz i kolejne dni</h2>
         <p class="section-intro">Dane orientacyjne dla współrzędnych miasta. Przy groźnej pogodzie sprawdzaj też oficjalne ostrzeżenia IMGW-PIB.</p>
       </div>
       <p class="notice">Aktualizacja widoku: ${updatedAt}</p>
@@ -274,7 +286,11 @@ function renderForecast(container, cityName, data) {
         return `<div class="forecast-hour"><span>${formatForecastTime(block.time)}</span><strong>${Math.round(itemDetails.air_temperature)}°C</strong><p>${describeWeather(itemSymbol)}</p><span>Wiatr: ${Math.round(itemDetails.wind_speed || 0)} m/s · Opad: ${getPrecipitation(block).toFixed(1)} mm</span></div>`;
       }).join('')}
     </div>
-    <p class="forecast-source">Źródło prognozy: <a href="https://api.met.no/" rel="nofollow noopener">MET Norway / api.met.no</a>. MeteoLive nie jest oficjalnym serwisem ostrzeżeń — komunikaty bezpieczeństwa sprawdzaj w IMGW-PIB.</p>
+    <h3>Prognoza na kolejne dni</h3>
+    <div class="forecast-days">
+      ${dailyForecast.map((day) => `<div class="forecast-day"><span>${formatForecastDay(day.dateKey)}</span><strong>${day.min}°C / ${day.max}°C</strong><p>${day.description}</p><span>Opad: ${day.precipitation.toFixed(1)} mm</span></div>`).join('')}
+    </div>
+    <p class="forecast-source">Dalsza prognoza jest orientacyjna i może się zmieniać. Źródło prognozy: <a href="https://api.met.no/" rel="nofollow noopener">MET Norway / api.met.no</a>. MeteoLive nie jest oficjalnym serwisem ostrzeżeń — komunikaty bezpieczeństwa sprawdzaj w IMGW-PIB.</p>
   `;
 }
 
@@ -288,7 +304,7 @@ async function loadCityForecast() {
 
   const [cityName, lat, lon] = city;
   const container = createForecastSection(cityName);
-  const cacheKey = `meteolive_forecast_${slug}_v1`;
+  const cacheKey = `meteolive_forecast_${slug}_v2`;
   const maxAgeMs = 60 * 60 * 1000;
 
   try {
@@ -300,9 +316,7 @@ async function loadCityForecast() {
 
     const url = `https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${lat.toFixed(4)}&lon=${lon.toFixed(4)}`;
     const response = await fetch(url, { headers: { 'Accept': 'application/json' } });
-    if (!response.ok) {
-      throw new Error(`MET Norway API error: ${response.status}`);
-    }
+    if (!response.ok) throw new Error(`MET Norway API error: ${response.status}`);
     const data = await response.json();
     localStorage.setItem(cacheKey, JSON.stringify({ savedAt: Date.now(), data }));
     renderForecast(container, cityName, data);
@@ -321,32 +335,21 @@ const cookieConsentKey = 'meteolive_cookie_consent_v1';
 const gaMeasurementId = 'G-MQ1X7GSLXX';
 
 function loadGoogleAnalytics() {
-  if (window.meteoliveGaLoaded) {
-    return;
-  }
-
+  if (window.meteoliveGaLoaded) return;
   window.meteoliveGaLoaded = true;
-
   const gaScript = document.createElement('script');
   gaScript.async = true;
   gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`;
   document.head.appendChild(gaScript);
-
   window.dataLayer = window.dataLayer || [];
   function gtag(){ window.dataLayer.push(arguments); }
   window.gtag = gtag;
-
   gtag('js', new Date());
-  gtag('config', gaMeasurementId, {
-    anonymize_ip: true
-  });
+  gtag('config', gaMeasurementId, { anonymize_ip: true });
 }
 
 function createCookieConsentBanner() {
-  if (localStorage.getItem(cookieConsentKey)) {
-    return;
-  }
-
+  if (localStorage.getItem(cookieConsentKey)) return;
   const banner = document.createElement('section');
   banner.className = 'cookie-banner';
   banner.setAttribute('aria-label', 'Informacja o cookies');
@@ -361,20 +364,14 @@ function createCookieConsentBanner() {
       <button type="button" class="btn primary" data-cookie-choice="accepted">Akceptuję</button>
     </div>
   `;
-
   banner.querySelectorAll('[data-cookie-choice]').forEach((button) => {
     button.addEventListener('click', () => {
       const choice = button.dataset.cookieChoice || 'closed';
       localStorage.setItem(cookieConsentKey, choice);
-
-      if (choice === 'accepted') {
-        loadGoogleAnalytics();
-      }
-
+      if (choice === 'accepted') loadGoogleAnalytics();
       banner.remove();
     });
   });
-
   document.body.appendChild(banner);
 }
 
