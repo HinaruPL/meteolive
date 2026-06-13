@@ -2,7 +2,7 @@
 
 ## Current status
 
-MeteoLive is live on Cloudflare Pages and the production domain is connected. The core site is now in a stronger pre-publication state: homepage copy is production-ready, core radar/map pages are expanded, trust/legal pages are in place, the city index is expanded, 31 local city pages are available, the editorial/weather guide section contains 14 practical poradniki, structured data has been added for all current guide pages, an HTML sitemap page is available, the contact page uses a temporary working Gmail address, privacy/cookies pages are prepared, a simple cookie banner is active, and Google Analytics 4 is configured to load only after the user clicks `Akceptuję`.
+MeteoLive is live on Cloudflare Pages and the production domain is connected. The core site is now in a stronger pre-publication state: homepage copy is production-ready, core radar/map pages are expanded, trust/legal pages are in place, the city index is expanded, 31 local city pages are available, local city pages automatically show a MET Norway forecast block, the editorial/weather guide section contains 14 practical poradniki, structured data has been added for all current guide pages, an HTML sitemap page is available, the contact page uses a temporary working Gmail address, privacy/cookies pages are prepared, a simple cookie banner is active, and Google Analytics 4 is configured to load only after the user clicks `Akceptuję`.
 
 Production URLs:
 
@@ -19,6 +19,13 @@ Production URLs:
   - `/poradniki/` as `CollectionPage` + `ItemList`,
   - all current guide pages as `Article` + `FAQPage`.
 - Added static `BreadcrumbList` JSON-LD directly in guide HTML pages.
+- Added automatic MET Norway forecast widget for city pages through `script.js`:
+  - works on `/pogoda/[city]/` pages,
+  - uses configured city coordinates,
+  - fetches `locationforecast/2.0/compact`,
+  - caches results in `localStorage` for about 60 minutes,
+  - shows visible attribution to MET Norway / api.met.no,
+  - shows fallback text if the forecast API is unavailable.
 - Added production homepage copy.
 - Added radar pages:
   - `/radar-burz/`
@@ -96,9 +103,9 @@ Production URLs:
   - `/regulamin/`
 - Updated `/kontakt/` with temporary working email address:
   - `kontakt.meteolive@gmail.com`
-- Expanded `/polityka-prywatnosci/` with information about technical data, cookies, external maps, Google Analytics, future ads and contact.
+- Expanded `/polityka-prywatnosci/` with information about technical data, cookies, external maps, MET Norway forecasts, Google Analytics, future ads and contact.
 - Added `/cookies/` as a dedicated cookie information page.
-- Updated `/cookies/` after GA4 setup with measurement ID `G-MQ1X7GSLXX` and consent behavior.
+- Updated `/cookies/` with MET Norway forecast notes, measurement ID `G-MQ1X7GSLXX` and consent behavior.
 - Updated `/regulamin/` with cookies, analytics and future ads notes.
 - Added a simple global cookie consent banner through `script.js`.
 - Added cookie banner styles in `style.css`.
@@ -122,7 +129,7 @@ Production URLs:
   - wind map on `/radar-wiatru/` through attributed Windy.com embed,
   - temperature map on `/mapa-temperatury/` through attributed Windy.com embed.
 - Added official alert source links on `/ostrzezenia-pogodowe/`.
-- Updated source decision documentation after production launch.
+- Updated source decision documentation after production launch and MET Norway integration.
 
 ## Technical assumptions
 
@@ -141,6 +148,8 @@ python -m http.server 8000
 ## Important notes
 
 - Windy embeds are used for radar/weather, rain, wind and temperature map previews.
+- MET Norway / api.met.no is used for local city forecast blocks.
+- City forecast requests are cached in `localStorage` for about 60 minutes per city.
 - The storm page uses Windy as the main radar weather view and an externally hosted lightning preview from burze.dzis.net with attribution to burze.dzis.net and Blitzortung.org.
 - MeteoLive does not scrape third-party weather or lightning data.
 - MeteoLive is not an official warning service and must not present itself as one.
@@ -161,13 +170,13 @@ python -m http.server 8000
 ## Next steps
 
 1. Verify the latest Cloudflare Pages deployment after GitHub changes are built.
-2. Test `/mapa-strony/` after deployment.
+2. Test forecast widgets on a few city pages, e.g. `/pogoda/warszawa/`, `/pogoda/gdynia/`, `/pogoda/krakow/`.
 3. Test `/poradniki/` in Rich Results Test or Schema Markup Validator.
 4. Test GA4 Realtime after clicking `Akceptuję` in a fresh/incognito session.
 5. Check whether Google discovers the expanded `/pogoda/` city URLs and `/poradniki/` URLs.
 6. Ensure `www.meteolive.pl` redirects to `meteolive.pl` with 301 redirect.
 7. Add more weather guides in small batches.
 8. Add more city pages in small batches.
-9. Consider future structured weather data provider for city forecasts.
+9. Consider Cloudflare Worker cache/proxy for MET Norway if traffic grows significantly.
 10. Configure Email Routing or SMTP for `kontakt@meteolive.pl` later.
 11. Add AdSense only after the site has enough finished content and privacy/cookie notes are updated.
