@@ -12,38 +12,67 @@ const siteBaseUrl = 'https://meteolive.pl';
 const currentPath = window.location.pathname;
 
 const weatherCities = {
-  'warszawa': ['Warszawa', 52.2297, 21.0122],
-  'krakow': ['Kraków', 50.0647, 19.9450],
-  'wroclaw': ['Wrocław', 51.1079, 17.0385],
-  'poznan': ['Poznań', 52.4064, 16.9252],
-  'gdansk': ['Gdańsk', 54.3520, 18.6466],
-  'gdynia': ['Gdynia', 54.5189, 18.5305],
-  'lodz': ['Łódź', 51.7592, 19.4560],
-  'katowice': ['Katowice', 50.2649, 19.0238],
-  'lublin': ['Lublin', 51.2465, 22.5684],
-  'szczecin': ['Szczecin', 53.4285, 14.5528],
-  'rzeszow': ['Rzeszów', 50.0413, 21.9990],
-  'bialystok': ['Białystok', 53.1325, 23.1688],
-  'bydgoszcz': ['Bydgoszcz', 53.1235, 18.0084],
-  'torun': ['Toruń', 53.0138, 18.5984],
-  'olsztyn': ['Olsztyn', 53.7784, 20.4801],
-  'kielce': ['Kielce', 50.8661, 20.6286],
-  'opole': ['Opole', 50.6751, 17.9213],
-  'radom': ['Radom', 51.4027, 21.1471],
-  'sosnowiec': ['Sosnowiec', 50.2863, 19.1041],
-  'tarnow': ['Tarnów', 50.0121, 20.9858],
-  'plock': ['Płock', 52.5468, 19.7064],
-  'elblag': ['Elbląg', 54.1561, 19.4045],
-  'walbrzych': ['Wałbrzych', 50.7714, 16.2843],
-  'koszalin': ['Koszalin', 54.1944, 16.1722],
-  'kalisz': ['Kalisz', 51.7611, 18.0910],
-  'legnica': ['Legnica', 51.2070, 16.1553],
-  'zielona-gora': ['Zielona Góra', 51.9355, 15.5062],
-  'gorzow-wielkopolski': ['Gorzów Wielkopolski', 52.7368, 15.2288],
-  'bielsko-biala': ['Bielsko-Biała', 49.8224, 19.0469],
-  'gliwice': ['Gliwice', 50.2945, 18.6714],
-  'czestochowa': ['Częstochowa', 50.8118, 19.1203]
+  'warszawa': { name: 'Warszawa', lat: 52.2297, lon: 21.0122, voivodeship: 'mazowieckie', county: 'Warszawa' },
+  'krakow': { name: 'Kraków', lat: 50.0647, lon: 19.9450, voivodeship: 'małopolskie', county: 'Kraków' },
+  'wroclaw': { name: 'Wrocław', lat: 51.1079, lon: 17.0385, voivodeship: 'dolnośląskie', county: 'Wrocław' },
+  'poznan': { name: 'Poznań', lat: 52.4064, lon: 16.9252, voivodeship: 'wielkopolskie', county: 'Poznań' },
+  'gdansk': { name: 'Gdańsk', lat: 54.3520, lon: 18.6466, voivodeship: 'pomorskie', county: 'Gdańsk' },
+  'gdynia': { name: 'Gdynia', lat: 54.5189, lon: 18.5305, voivodeship: 'pomorskie', county: 'Gdynia' },
+  'lodz': { name: 'Łódź', lat: 51.7592, lon: 19.4560, voivodeship: 'łódzkie', county: 'Łódź' },
+  'katowice': { name: 'Katowice', lat: 50.2649, lon: 19.0238, voivodeship: 'śląskie', county: 'Katowice' },
+  'lublin': { name: 'Lublin', lat: 51.2465, lon: 22.5684, voivodeship: 'lubelskie', county: 'Lublin' },
+  'szczecin': { name: 'Szczecin', lat: 53.4285, lon: 14.5528, voivodeship: 'zachodniopomorskie', county: 'Szczecin' },
+  'rzeszow': { name: 'Rzeszów', lat: 50.0413, lon: 21.9990, voivodeship: 'podkarpackie', county: 'Rzeszów' },
+  'bialystok': { name: 'Białystok', lat: 53.1325, lon: 23.1688, voivodeship: 'podlaskie', county: 'Białystok' },
+  'bydgoszcz': { name: 'Bydgoszcz', lat: 53.1235, lon: 18.0084, voivodeship: 'kujawsko-pomorskie', county: 'Bydgoszcz' },
+  'torun': { name: 'Toruń', lat: 53.0138, lon: 18.5984, voivodeship: 'kujawsko-pomorskie', county: 'Toruń' },
+  'olsztyn': { name: 'Olsztyn', lat: 53.7784, lon: 20.4801, voivodeship: 'warmińsko-mazurskie', county: 'Olsztyn' },
+  'kielce': { name: 'Kielce', lat: 50.8661, lon: 20.6286, voivodeship: 'świętokrzyskie', county: 'Kielce' },
+  'opole': { name: 'Opole', lat: 50.6751, lon: 17.9213, voivodeship: 'opolskie', county: 'Opole' },
+  'radom': { name: 'Radom', lat: 51.4027, lon: 21.1471, voivodeship: 'mazowieckie', county: 'Radom' },
+  'sosnowiec': { name: 'Sosnowiec', lat: 50.2863, lon: 19.1041, voivodeship: 'śląskie', county: 'Sosnowiec' },
+  'tarnow': { name: 'Tarnów', lat: 50.0121, lon: 20.9858, voivodeship: 'małopolskie', county: 'Tarnów' },
+  'plock': { name: 'Płock', lat: 52.5468, lon: 19.7064, voivodeship: 'mazowieckie', county: 'Płock' },
+  'elblag': { name: 'Elbląg', lat: 54.1561, lon: 19.4045, voivodeship: 'warmińsko-mazurskie', county: 'Elbląg' },
+  'walbrzych': { name: 'Wałbrzych', lat: 50.7714, lon: 16.2843, voivodeship: 'dolnośląskie', county: 'Wałbrzych' },
+  'koszalin': { name: 'Koszalin', lat: 54.1944, lon: 16.1722, voivodeship: 'zachodniopomorskie', county: 'Koszalin' },
+  'kalisz': { name: 'Kalisz', lat: 51.7611, lon: 18.0910, voivodeship: 'wielkopolskie', county: 'Kalisz' },
+  'legnica': { name: 'Legnica', lat: 51.2070, lon: 16.1553, voivodeship: 'dolnośląskie', county: 'Legnica' },
+  'zielona-gora': { name: 'Zielona Góra', lat: 51.9355, lon: 15.5062, voivodeship: 'lubuskie', county: 'Zielona Góra' },
+  'gorzow-wielkopolski': { name: 'Gorzów Wielkopolski', lat: 52.7368, lon: 15.2288, voivodeship: 'lubuskie', county: 'Gorzów Wielkopolski' },
+  'bielsko-biala': { name: 'Bielsko-Biała', lat: 49.8224, lon: 19.0469, voivodeship: 'śląskie', county: 'Bielsko-Biała' },
+  'gliwice': { name: 'Gliwice', lat: 50.2945, lon: 18.6714, voivodeship: 'śląskie', county: 'Gliwice' },
+  'czestochowa': { name: 'Częstochowa', lat: 50.8118, lon: 19.1203, voivodeship: 'śląskie', county: 'Częstochowa' }
 };
+
+function getCityInfo(slug) {
+  const city = weatherCities[slug];
+  if (!city) return null;
+  if (Array.isArray(city)) {
+    const [name, lat, lon] = city;
+    return { name, lat, lon, voivodeship: '', county: '' };
+  }
+  return city;
+}
+
+const weatherRegions = [
+  { name: 'Dolnośląskie', slug: 'dolnoslaskie', cityCount: 3 },
+  { name: 'Kujawsko-pomorskie', slug: 'kujawsko-pomorskie', cityCount: 2 },
+  { name: 'Lubelskie', slug: 'lubelskie', cityCount: 1 },
+  { name: 'Lubuskie', slug: 'lubuskie', cityCount: 2 },
+  { name: 'Łódzkie', slug: 'lodzkie', cityCount: 1 },
+  { name: 'Małopolskie', slug: 'malopolskie', cityCount: 2 },
+  { name: 'Mazowieckie', slug: 'mazowieckie', cityCount: 3 },
+  { name: 'Opolskie', slug: 'opolskie', cityCount: 1 },
+  { name: 'Podkarpackie', slug: 'podkarpackie', cityCount: 1 },
+  { name: 'Podlaskie', slug: 'podlaskie', cityCount: 1 },
+  { name: 'Pomorskie', slug: 'pomorskie', cityCount: 2 },
+  { name: 'Śląskie', slug: 'slaskie', cityCount: 5 },
+  { name: 'Świętokrzyskie', slug: 'swietokrzyskie', cityCount: 1 },
+  { name: 'Warmińsko-mazurskie', slug: 'warminsko-mazurskie', cityCount: 2 },
+  { name: 'Wielkopolskie', slug: 'wielkopolskie', cityCount: 2 },
+  { name: 'Zachodniopomorskie', slug: 'zachodniopomorskie', cityCount: 2 }
+];
 
 const guideSchemas = {
   '/poradniki/jak-czytac-radar-opadow/': 'Jak czytać radar opadów?',
@@ -88,6 +117,32 @@ if (currentPath === '/poradniki/') {
   });
 }
 
+if (currentPath === '/pogoda/') {
+  addJsonLd({
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Pogoda w Polsce według województw',
+    description: 'Indeks pogody MeteoLive: województwa, wyszukiwarka miast i lokalne prognozy pogody.',
+    url: `${siteBaseUrl}/pogoda/`,
+    publisher: buildSitePublisher(),
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: weatherRegions.map((region, index) => ({ '@type': 'ListItem', position: index + 1, name: region.name, url: `${siteBaseUrl}/pogoda/${region.slug}/` }))
+    }
+  });
+}
+
+if (currentPath === '/pogoda/mazowieckie/') {
+  addJsonLd({
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Pogoda mazowieckie',
+    description: 'Miasta i powiaty w województwie mazowieckim dostępne w MeteoLive.',
+    url: `${siteBaseUrl}/pogoda/mazowieckie/`,
+    publisher: buildSitePublisher()
+  });
+}
+
 if (guideSchemas[currentPath]) {
   const title = guideSchemas[currentPath];
   addJsonLd({
@@ -118,12 +173,12 @@ function injectForecastStyles() {
     .forecast-widget { margin-top: 0; }
     .forecast-header, .city-search-actions { display: flex; justify-content: space-between; gap: 1rem; align-items: flex-start; }
     .forecast-current { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin-top: 1rem; }
-    .forecast-metric, .forecast-hour, .forecast-day { border: 1px solid rgba(148, 163, 184, .18); border-radius: 18px; padding: 1rem; background: rgba(15, 23, 42, .42); }
+    .forecast-metric, .forecast-hour, .forecast-day, .search-result-card { border: 1px solid rgba(148, 163, 184, .18); border-radius: 18px; padding: 1rem; background: rgba(15, 23, 42, .42); }
     .forecast-metric strong { display: block; font-size: 1.45rem; margin-top: .25rem; color: #f8fafc; }
-    .forecast-metric span, .forecast-hour span, .forecast-day span, .forecast-source, .city-search-help { color: #94a3b8; font-size: .9rem; }
+    .forecast-metric span, .forecast-hour span, .forecast-day span, .forecast-source, .city-search-help, .search-result-card span { color: #94a3b8; font-size: .9rem; }
     .forecast-hours { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin-top: 1rem; }
     .forecast-days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 1rem; margin-top: 1rem; }
-    .forecast-hour strong, .forecast-day strong { display: block; margin: .35rem 0; color: #f8fafc; }
+    .forecast-hour strong, .forecast-day strong, .search-result-card strong { display: block; margin: .35rem 0; color: #f8fafc; }
     .forecast-source { margin-top: 1rem; }
     .forecast-error { border: 1px solid rgba(248, 113, 113, .35); background: rgba(127, 29, 29, .22); padding: 1rem; border-radius: 18px; }
     .city-search-box { margin-top: 1.5rem; }
@@ -132,9 +187,12 @@ function injectForecastStyles() {
     .city-search-form input::placeholder { color: #94a3b8; }
     .city-search-status { margin-top: .85rem; color: #cbd5e1; }
     .city-card-hidden { display: none !important; }
-    @media (max-width: 1050px) { .forecast-days { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-    @media (max-width: 800px) { .forecast-current, .forecast-hours { grid-template-columns: 1fr 1fr; } .forecast-header, .city-search-actions { display: block; } .city-search-form { grid-template-columns: 1fr; } }
-    @media (max-width: 520px) { .forecast-current, .forecast-hours, .forecast-days { grid-template-columns: 1fr; } }
+    .city-search-results { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .85rem; margin-top: 1rem; }
+    .search-result-card { text-decoration: none; color: inherit; }
+    .search-result-card:hover { transform: translateY(-2px); }
+    @media (max-width: 1050px) { .forecast-days, .city-search-results { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    @media (max-width: 800px) { .forecast-current, .forecast-hours, .city-search-results { grid-template-columns: 1fr 1fr; } .forecast-header, .city-search-actions { display: block; } .city-search-form { grid-template-columns: 1fr; } }
+    @media (max-width: 520px) { .forecast-current, .forecast-hours, .forecast-days, .city-search-results { grid-template-columns: 1fr; } }
   `;
   document.head.appendChild(style);
 }
@@ -213,9 +271,9 @@ async function loadCityForecast() {
   const match = currentPath.match(/^\/pogoda\/([^/]+)\/$/);
   if (!match) return;
   const slug = match[1];
-  const city = weatherCities[slug];
+  const city = getCityInfo(slug);
   if (!city) return;
-  const [cityName, lat, lon] = city;
+  const { name: cityName, lat, lon } = city;
   const container = createForecastSection(cityName);
   const cacheKey = `meteolive_forecast_${slug}_v2`;
   const maxAgeMs = 60 * 60 * 1000;
@@ -248,28 +306,56 @@ function initCitySearch() {
   const countEl = document.querySelector('[data-city-search-count]');
   const status = document.querySelector('[data-city-location-status]');
   const locateButton = document.querySelector('[data-city-locate-button]');
-  if (!input || !cards.length) return;
+  const results = document.querySelector('[data-city-search-results]');
+  if (!input) return;
   injectForecastStyles();
 
-  const updateCount = (visible) => {
-    if (countEl) countEl.textContent = visible === 1 ? 'Znaleziono 1 miasto.' : `Znaleziono ${visible} miast.`;
+  const cityEntries = Object.entries(weatherCities).map(([slug, city]) => ({ slug, ...getCityInfo(slug) }));
+
+  const updateCount = (visible, label = 'miast') => {
+    if (!countEl) return;
+    if (visible === 1) countEl.textContent = `Znaleziono 1 ${label === 'województw' ? 'województwo' : 'miasto'}.`;
+    else countEl.textContent = `Znaleziono ${visible} ${label}.`;
+  };
+
+  const renderSearchResults = (items) => {
+    if (!results) return;
+    results.innerHTML = items.slice(0, 8).map((city) => `<a class="search-result-card" href="/pogoda/${city.slug}/"><span>${city.voivodeship || 'Miasto'}</span><strong>${city.name}</strong><span>Powiat: ${city.county || '—'} · Otwórz prognozę →</span></a>`).join('');
   };
 
   const filterCities = () => {
     const query = normalizeText(input.value.trim());
-    let visible = 0;
-    cards.forEach((card) => {
-      const name = normalizeText(card.dataset.cityName || card.textContent);
-      const slug = normalizeText(card.dataset.citySlug || '');
-      const matches = !query || name.includes(query) || slug.includes(query);
-      card.classList.toggle('city-card-hidden', !matches);
-      if (matches) visible += 1;
-    });
-    updateCount(visible);
+
+    if (cards.length) {
+      let visibleCards = 0;
+      cards.forEach((card) => {
+        const name = normalizeText(card.dataset.cityName || card.dataset.regionName || card.textContent);
+        const slug = normalizeText(card.dataset.citySlug || card.dataset.regionSlug || '');
+        const matches = !query || name.includes(query) || slug.includes(query);
+        card.classList.toggle('city-card-hidden', !matches);
+        if (matches) visibleCards += 1;
+      });
+      updateCount(visibleCards, document.querySelector('[data-region-grid]') ? 'województw' : 'miast');
+    }
+
+    if (results) {
+      if (!query) {
+        results.innerHTML = '';
+        if (!cards.length) updateCount(cityEntries.length, 'miast');
+        return;
+      }
+      const matchedCities = cityEntries.filter((city) => {
+        const haystack = normalizeText(`${city.name} ${city.slug} ${city.voivodeship} ${city.county}`);
+        return haystack.includes(query);
+      });
+      renderSearchResults(matchedCities);
+      updateCount(matchedCities.length, 'miast');
+    }
   };
 
   input.addEventListener('input', filterCities);
-  updateCount(cards.length);
+  if (cards.length) updateCount(cards.length, document.querySelector('[data-region-grid]') ? 'województw' : 'miast');
+  if (results) renderSearchResults([]);
 
   if (locateButton) {
     locateButton.addEventListener('click', () => {
@@ -280,7 +366,7 @@ function initCitySearch() {
       if (status) status.textContent = 'Sprawdzam najbliższe miasto...';
       navigator.geolocation.getCurrentPosition((position) => {
         const { latitude, longitude } = position.coords;
-        const nearest = Object.entries(weatherCities).map(([slug, [name, lat, lon]]) => ({ slug, name, distance: distanceKm(latitude, longitude, lat, lon) })).sort((a, b) => a.distance - b.distance)[0];
+        const nearest = cityEntries.map((city) => ({ ...city, distance: distanceKm(latitude, longitude, city.lat, city.lon) })).sort((a, b) => a.distance - b.distance)[0];
         if (!nearest) return;
         if (status) status.textContent = `Najbliższe dostępne miasto: ${nearest.name} (${Math.round(nearest.distance)} km). Przekierowuję...`;
         window.location.href = `/pogoda/${nearest.slug}/`;
