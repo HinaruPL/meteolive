@@ -10,69 +10,76 @@ if (statusEl) {
 
 const siteBaseUrl = 'https://meteolive.pl';
 const currentPath = window.location.pathname;
+const weatherCitiesDataUrl = '/data/weather-cities.json?v=20260613-structured-data';
 
-const weatherCities = {
-  'warszawa': { name: 'Warszawa', lat: 52.2297, lon: 21.0122, voivodeship: 'mazowieckie', county: 'Warszawa' },
-  'krakow': { name: 'Kraków', lat: 50.0647, lon: 19.9450, voivodeship: 'małopolskie', county: 'Kraków' },
-  'wroclaw': { name: 'Wrocław', lat: 51.1079, lon: 17.0385, voivodeship: 'dolnośląskie', county: 'Wrocław' },
-  'poznan': { name: 'Poznań', lat: 52.4064, lon: 16.9252, voivodeship: 'wielkopolskie', county: 'Poznań' },
-  'gdansk': { name: 'Gdańsk', lat: 54.3520, lon: 18.6466, voivodeship: 'pomorskie', county: 'Gdańsk' },
-  'gdynia': { name: 'Gdynia', lat: 54.5189, lon: 18.5305, voivodeship: 'pomorskie', county: 'Gdynia' },
-  'lodz': { name: 'Łódź', lat: 51.7592, lon: 19.4560, voivodeship: 'łódzkie', county: 'Łódź' },
-  'katowice': { name: 'Katowice', lat: 50.2649, lon: 19.0238, voivodeship: 'śląskie', county: 'Katowice' },
-  'lublin': { name: 'Lublin', lat: 51.2465, lon: 22.5684, voivodeship: 'lubelskie', county: 'Lublin' },
-  'szczecin': { name: 'Szczecin', lat: 53.4285, lon: 14.5528, voivodeship: 'zachodniopomorskie', county: 'Szczecin' },
-  'rzeszow': { name: 'Rzeszów', lat: 50.0413, lon: 21.9990, voivodeship: 'podkarpackie', county: 'Rzeszów' },
-  'bialystok': { name: 'Białystok', lat: 53.1325, lon: 23.1688, voivodeship: 'podlaskie', county: 'Białystok' },
-  'bydgoszcz': { name: 'Bydgoszcz', lat: 53.1235, lon: 18.0084, voivodeship: 'kujawsko-pomorskie', county: 'Bydgoszcz' },
-  'torun': { name: 'Toruń', lat: 53.0138, lon: 18.5984, voivodeship: 'kujawsko-pomorskie', county: 'Toruń' },
-  'olsztyn': { name: 'Olsztyn', lat: 53.7784, lon: 20.4801, voivodeship: 'warmińsko-mazurskie', county: 'Olsztyn' },
-  'kielce': { name: 'Kielce', lat: 50.8661, lon: 20.6286, voivodeship: 'świętokrzyskie', county: 'Kielce' },
-  'opole': { name: 'Opole', lat: 50.6751, lon: 17.9213, voivodeship: 'opolskie', county: 'Opole' },
-  'radom': { name: 'Radom', lat: 51.4027, lon: 21.1471, voivodeship: 'mazowieckie', county: 'Radom' },
-  'sosnowiec': { name: 'Sosnowiec', lat: 50.2863, lon: 19.1041, voivodeship: 'śląskie', county: 'Sosnowiec' },
-  'tarnow': { name: 'Tarnów', lat: 50.0121, lon: 20.9858, voivodeship: 'małopolskie', county: 'Tarnów' },
-  'plock': { name: 'Płock', lat: 52.5468, lon: 19.7064, voivodeship: 'mazowieckie', county: 'Płock' },
-  'elblag': { name: 'Elbląg', lat: 54.1561, lon: 19.4045, voivodeship: 'warmińsko-mazurskie', county: 'Elbląg' },
-  'walbrzych': { name: 'Wałbrzych', lat: 50.7714, lon: 16.2843, voivodeship: 'dolnośląskie', county: 'Wałbrzych' },
-  'koszalin': { name: 'Koszalin', lat: 54.1944, lon: 16.1722, voivodeship: 'zachodniopomorskie', county: 'Koszalin' },
-  'kalisz': { name: 'Kalisz', lat: 51.7611, lon: 18.0910, voivodeship: 'wielkopolskie', county: 'Kalisz' },
-  'legnica': { name: 'Legnica', lat: 51.2070, lon: 16.1553, voivodeship: 'dolnośląskie', county: 'Legnica' },
-  'zielona-gora': { name: 'Zielona Góra', lat: 51.9355, lon: 15.5062, voivodeship: 'lubuskie', county: 'Zielona Góra' },
-  'gorzow-wielkopolski': { name: 'Gorzów Wielkopolski', lat: 52.7368, lon: 15.2288, voivodeship: 'lubuskie', county: 'Gorzów Wielkopolski' },
-  'bielsko-biala': { name: 'Bielsko-Biała', lat: 49.8224, lon: 19.0469, voivodeship: 'śląskie', county: 'Bielsko-Biała' },
-  'gliwice': { name: 'Gliwice', lat: 50.2945, lon: 18.6714, voivodeship: 'śląskie', county: 'Gliwice' },
-  'czestochowa': { name: 'Częstochowa', lat: 50.8118, lon: 19.1203, voivodeship: 'śląskie', county: 'Częstochowa' }
-};
-
-function getCityInfo(slug) {
-  const city = weatherCities[slug];
-  if (!city) return null;
-  if (Array.isArray(city)) {
-    const [name, lat, lon] = city;
-    return { name, lat, lon, voivodeship: '', county: '' };
-  }
-  return city;
-}
+let weatherCities = [];
+let weatherCitiesBySlug = {};
+let weatherCitiesLoadPromise = null;
 
 const weatherRegions = [
-  { name: 'Dolnośląskie', slug: 'dolnoslaskie', cityCount: 3 },
-  { name: 'Kujawsko-pomorskie', slug: 'kujawsko-pomorskie', cityCount: 2 },
-  { name: 'Lubelskie', slug: 'lubelskie', cityCount: 1 },
-  { name: 'Lubuskie', slug: 'lubuskie', cityCount: 2 },
-  { name: 'Łódzkie', slug: 'lodzkie', cityCount: 1 },
-  { name: 'Małopolskie', slug: 'malopolskie', cityCount: 2 },
-  { name: 'Mazowieckie', slug: 'mazowieckie', cityCount: 3 },
-  { name: 'Opolskie', slug: 'opolskie', cityCount: 1 },
-  { name: 'Podkarpackie', slug: 'podkarpackie', cityCount: 1 },
-  { name: 'Podlaskie', slug: 'podlaskie', cityCount: 1 },
-  { name: 'Pomorskie', slug: 'pomorskie', cityCount: 2 },
-  { name: 'Śląskie', slug: 'slaskie', cityCount: 5 },
-  { name: 'Świętokrzyskie', slug: 'swietokrzyskie', cityCount: 1 },
-  { name: 'Warmińsko-mazurskie', slug: 'warminsko-mazurskie', cityCount: 2 },
-  { name: 'Wielkopolskie', slug: 'wielkopolskie', cityCount: 2 },
-  { name: 'Zachodniopomorskie', slug: 'zachodniopomorskie', cityCount: 2 }
+  { name: 'Dolnośląskie', slug: 'dolnoslaskie' },
+  { name: 'Kujawsko-pomorskie', slug: 'kujawsko-pomorskie' },
+  { name: 'Lubelskie', slug: 'lubelskie' },
+  { name: 'Lubuskie', slug: 'lubuskie' },
+  { name: 'Łódzkie', slug: 'lodzkie' },
+  { name: 'Małopolskie', slug: 'malopolskie' },
+  { name: 'Mazowieckie', slug: 'mazowieckie' },
+  { name: 'Opolskie', slug: 'opolskie' },
+  { name: 'Podkarpackie', slug: 'podkarpackie' },
+  { name: 'Podlaskie', slug: 'podlaskie' },
+  { name: 'Pomorskie', slug: 'pomorskie' },
+  { name: 'Śląskie', slug: 'slaskie' },
+  { name: 'Świętokrzyskie', slug: 'swietokrzyskie' },
+  { name: 'Warmińsko-mazurskie', slug: 'warminsko-mazurskie' },
+  { name: 'Wielkopolskie', slug: 'wielkopolskie' },
+  { name: 'Zachodniopomorskie', slug: 'zachodniopomorskie' }
 ];
+
+function validateCityRecord(city) {
+  return Boolean(
+    city &&
+    typeof city.name === 'string' &&
+    typeof city.slug === 'string' &&
+    typeof city.voivodeship === 'string' &&
+    typeof city.voivodeshipSlug === 'string' &&
+    typeof city.county === 'string' &&
+    Number.isFinite(city.lat) &&
+    Number.isFinite(city.lon)
+  );
+}
+
+async function loadWeatherCities() {
+  if (weatherCitiesLoadPromise) return weatherCitiesLoadPromise;
+
+  weatherCitiesLoadPromise = fetch(weatherCitiesDataUrl, { headers: { 'Accept': 'application/json' } })
+    .then((response) => {
+      if (!response.ok) throw new Error(`Nie udało się pobrać bazy miast: ${response.status}`);
+      return response.json();
+    })
+    .then((cities) => {
+      if (!Array.isArray(cities)) throw new Error('Baza miast ma nieprawidłowy format.');
+      const validCities = cities.filter(validateCityRecord);
+      weatherCities = validCities;
+      weatherCitiesBySlug = Object.fromEntries(validCities.map((city) => [city.slug, city]));
+      return validCities;
+    })
+    .catch((error) => {
+      console.error(error);
+      weatherCities = [];
+      weatherCitiesBySlug = {};
+      return [];
+    });
+
+  return weatherCitiesLoadPromise;
+}
+
+function getCityInfo(slug) {
+  return weatherCitiesBySlug[slug] || null;
+}
+
+function getRegionCityCount(regionSlug) {
+  return weatherCities.filter((city) => city.voivodeshipSlug === regionSlug).length;
+}
 
 const guideSchemas = {
   '/poradniki/jak-czytac-radar-opadow/': 'Jak czytać radar opadów?',
@@ -114,32 +121,6 @@ if (currentPath === '/poradniki/') {
       '@type': 'ItemList',
       itemListElement: Object.entries(guideSchemas).map(([path, name], index) => ({ '@type': 'ListItem', position: index + 1, name, url: `${siteBaseUrl}${path}` }))
     }
-  });
-}
-
-if (currentPath === '/pogoda/') {
-  addJsonLd({
-    '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
-    name: 'Pogoda w Polsce według województw',
-    description: 'Indeks pogody MeteoLive: województwa, wyszukiwarka miast i lokalne prognozy pogody.',
-    url: `${siteBaseUrl}/pogoda/`,
-    publisher: buildSitePublisher(),
-    mainEntity: {
-      '@type': 'ItemList',
-      itemListElement: weatherRegions.map((region, index) => ({ '@type': 'ListItem', position: index + 1, name: region.name, url: `${siteBaseUrl}/pogoda/${region.slug}/` }))
-    }
-  });
-}
-
-if (currentPath === '/pogoda/mazowieckie/') {
-  addJsonLd({
-    '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
-    name: 'Pogoda mazowieckie',
-    description: 'Miasta i powiaty w województwie mazowieckim dostępne w MeteoLive.',
-    url: `${siteBaseUrl}/pogoda/mazowieckie/`,
-    publisher: buildSitePublisher()
   });
 }
 
@@ -310,8 +291,6 @@ function initCitySearch() {
   if (!input) return;
   injectForecastStyles();
 
-  const cityEntries = Object.entries(weatherCities).map(([slug, city]) => ({ slug, ...getCityInfo(slug) }));
-
   const updateCount = (visible, label = 'miast') => {
     if (!countEl) return;
     if (visible === 1) countEl.textContent = `Znaleziono 1 ${label === 'województw' ? 'województwo' : 'miasto'}.`;
@@ -341,11 +320,11 @@ function initCitySearch() {
     if (results) {
       if (!query) {
         results.innerHTML = '';
-        if (!cards.length) updateCount(cityEntries.length, 'miast');
+        if (!cards.length) updateCount(weatherCities.length, 'miast');
         return;
       }
-      const matchedCities = cityEntries.filter((city) => {
-        const haystack = normalizeText(`${city.name} ${city.slug} ${city.voivodeship} ${city.county}`);
+      const matchedCities = weatherCities.filter((city) => {
+        const haystack = normalizeText(`${city.name} ${city.slug} ${city.voivodeship} ${city.voivodeshipSlug} ${city.county}`);
         return haystack.includes(query);
       });
       renderSearchResults(matchedCities);
@@ -366,7 +345,7 @@ function initCitySearch() {
       if (status) status.textContent = 'Sprawdzam najbliższe miasto...';
       navigator.geolocation.getCurrentPosition((position) => {
         const { latitude, longitude } = position.coords;
-        const nearest = cityEntries.map((city) => ({ ...city, distance: distanceKm(latitude, longitude, city.lat, city.lon) })).sort((a, b) => a.distance - b.distance)[0];
+        const nearest = weatherCities.map((city) => ({ ...city, distance: distanceKm(latitude, longitude, city.lat, city.lon) })).sort((a, b) => a.distance - b.distance)[0];
         if (!nearest) return;
         if (status) status.textContent = `Najbliższe dostępne miasto: ${nearest.name} (${Math.round(nearest.distance)} km). Przekierowuję...`;
         window.location.href = `/pogoda/${nearest.slug}/`;
@@ -377,8 +356,55 @@ function initCitySearch() {
   }
 }
 
-loadCityForecast();
-initCitySearch();
+async function addWeatherCollectionSchemas() {
+  await loadWeatherCities();
+
+  if (currentPath === '/pogoda/') {
+    addJsonLd({
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'Pogoda w Polsce według województw',
+      description: 'Indeks pogody MeteoLive: województwa, wyszukiwarka miast i lokalne prognozy pogody.',
+      url: `${siteBaseUrl}/pogoda/`,
+      publisher: buildSitePublisher(),
+      mainEntity: {
+        '@type': 'ItemList',
+        itemListElement: weatherRegions.map((region, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: region.name,
+          url: `${siteBaseUrl}/pogoda/${region.slug}/`,
+          description: `Miasta w bazie MeteoLive: ${getRegionCityCount(region.slug)}`
+        }))
+      }
+    });
+  }
+
+  if (currentPath === '/pogoda/mazowieckie/') {
+    const mazowieckieCities = weatherCities.filter((city) => city.voivodeshipSlug === 'mazowieckie');
+    addJsonLd({
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'Pogoda mazowieckie',
+      description: 'Miasta i powiaty w województwie mazowieckim dostępne w MeteoLive.',
+      url: `${siteBaseUrl}/pogoda/mazowieckie/`,
+      publisher: buildSitePublisher(),
+      mainEntity: {
+        '@type': 'ItemList',
+        itemListElement: mazowieckieCities.map((city, index) => ({ '@type': 'ListItem', position: index + 1, name: city.name, url: `${siteBaseUrl}/pogoda/${city.slug}/` }))
+      }
+    });
+  }
+}
+
+async function initWeatherFeatures() {
+  await loadWeatherCities();
+  await loadCityForecast();
+  initCitySearch();
+  addWeatherCollectionSchemas();
+}
+
+initWeatherFeatures();
 
 const cookieConsentKey = 'meteolive_cookie_consent_v1';
 const gaMeasurementId = 'G-MQ1X7GSLXX';
