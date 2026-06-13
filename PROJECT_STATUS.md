@@ -2,7 +2,7 @@
 
 ## Current status
 
-MeteoLive is live on Cloudflare Pages and the production domain is connected. The core site is now in a stronger pre-publication state: homepage copy is production-ready, core radar/map pages are expanded, trust/legal pages are in place, the city index is expanded, 31 local city pages are available, the editorial/weather guide section contains 14 practical poradniki, structured data has been added for the guides section, the contact page uses a temporary working Gmail address, privacy/cookies pages are prepared, a simple cookie banner is active, and Google Analytics 4 is configured to load only after the user clicks `Akceptuję`.
+MeteoLive is live on Cloudflare Pages and the production domain is connected. The core site is now in a stronger pre-publication state: homepage copy is production-ready, core radar/map pages are expanded, trust/legal pages are in place, the city index is expanded, 31 local city pages are available, the editorial/weather guide section contains 14 practical poradniki, structured data has been added for all current guide pages, the contact page uses a temporary working Gmail address, privacy/cookies pages are prepared, a simple cookie banner is active, and Google Analytics 4 is configured to load only after the user clicks `Akceptuję`.
 
 Production URLs:
 
@@ -17,7 +17,7 @@ Production URLs:
 - Added basic JavaScript helpers for current year and local refresh text.
 - Added structured data helpers in `script.js` for:
   - `/poradniki/` as `CollectionPage` + `ItemList`,
-  - guide pages as `Article` + `FAQPage`.
+  - all current guide pages as `Article` + `FAQPage`.
 - Added static `BreadcrumbList` JSON-LD directly in guide HTML pages.
 - Added production homepage copy.
 - Added radar pages:
@@ -159,12 +159,13 @@ python -m http.server 8000
 ## Next steps
 
 1. Verify the latest Cloudflare Pages deployment after GitHub changes are built.
-2. Test a few new guide URLs after deployment.
-3. Test GA4 Realtime after clicking `Akceptuję` in a fresh/incognito session.
-4. Check whether Google discovers the expanded `/pogoda/` city URLs and `/poradniki/` URLs.
-5. Ensure `www.meteolive.pl` redirects to `meteolive.pl` with 301 redirect.
-6. Add more weather guides in small batches.
-7. Add more city pages in small batches.
-8. Consider future structured weather data provider for city forecasts.
-9. Configure Email Routing or SMTP for `kontakt@meteolive.pl` later.
-10. Add AdSense only after the site has enough finished content and privacy/cookie notes are updated.
+2. Test `/poradniki/` in Rich Results Test or Schema Markup Validator.
+3. Test a few new guide URLs after deployment.
+4. Test GA4 Realtime after clicking `Akceptuję` in a fresh/incognito session.
+5. Check whether Google discovers the expanded `/pogoda/` city URLs and `/poradniki/` URLs.
+6. Ensure `www.meteolive.pl` redirects to `meteolive.pl` with 301 redirect.
+7. Add more weather guides in small batches.
+8. Add more city pages in small batches.
+9. Consider future structured weather data provider for city forecasts.
+10. Configure Email Routing or SMTP for `kontakt@meteolive.pl` later.
+11. Add AdSense only after the site has enough finished content and privacy/cookie notes are updated.
