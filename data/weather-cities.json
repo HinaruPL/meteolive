@@ -29,5 +29,21 @@
   { "name": "Gorzów Wielkopolski", "slug": "gorzow-wielkopolski", "voivodeship": "lubuskie", "voivodeshipSlug": "lubuskie", "county": "Gorzów Wielkopolski", "lat": 52.7368, "lon": 15.2288 },
   { "name": "Bielsko-Biała", "slug": "bielsko-biala", "voivodeship": "śląskie", "voivodeshipSlug": "slaskie", "county": "Bielsko-Biała", "lat": 49.8224, "lon": 19.0469 },
   { "name": "Gliwice", "slug": "gliwice", "voivodeship": "śląskie", "voivodeshipSlug": "slaskie", "county": "Gliwice", "lat": 50.2945, "lon": 18.6714 },
-  { "name": "Częstochowa", "slug": "czestochowa", "voivodeship": "śląskie", "voivodeshipSlug": "slaskie", "county": "Częstochowa", "lat": 50.8118, "lon": 19.1203 }
+  { "name": "Częstochowa", "slug": "czestochowa", "voivodeship": "śląskie", "voivodeshipSlug": "slaskie", "county": "Częstochowa", "lat": 50.8118, "lon": 19.1203 },
+  { "name": "Jelenia Góra", "slug": "jelenia-gora", "voivodeship": "dolnośląskie", "voivodeshipSlug": "dolnoslaskie", "county": "Jelenia Góra", "lat": 50.9044, "lon": 15.7194 },
+  { "name": "Włocławek", "slug": "wloclawek", "voivodeship": "kujawsko-pomorskie", "voivodeshipSlug": "kujawsko-pomorskie", "county": "Włocławek", "lat": 52.6483, "lon": 19.0677 },
+  { "name": "Zamość", "slug": "zamosc", "voivodeship": "lubelskie", "voivodeshipSlug": "lubelskie", "county": "Zamość", "lat": 50.7231, "lon": 23.2519 },
+  { "name": "Żary", "slug": "zary", "voivodeship": "lubuskie", "voivodeshipSlug": "lubuskie", "county": "żarski", "lat": 51.6421, "lon": 15.1373 },
+  { "name": "Piotrków Trybunalski", "slug": "piotrkow-trybunalski", "voivodeship": "łódzkie", "voivodeshipSlug": "lodzkie", "county": "Piotrków Trybunalski", "lat": 51.4052, "lon": 19.7030 },
+  { "name": "Nowy Sącz", "slug": "nowy-sacz", "voivodeship": "małopolskie", "voivodeshipSlug": "malopolskie", "county": "Nowy Sącz", "lat": 49.6218, "lon": 20.6970 },
+  { "name": "Siedlce", "slug": "siedlce", "voivodeship": "mazowieckie", "voivodeshipSlug": "mazowieckie", "county": "Siedlce", "lat": 52.1677, "lon": 22.2901 },
+  { "name": "Kędzierzyn-Koźle", "slug": "kedzierzyn-kozle", "voivodeship": "opolskie", "voivodeshipSlug": "opolskie", "county": "kędzierzyńsko-kozielski", "lat": 50.3498, "lon": 18.2261 },
+  { "name": "Przemyśl", "slug": "przemysl", "voivodeship": "podkarpackie", "voivodeshipSlug": "podkarpackie", "county": "Przemyśl", "lat": 49.7839, "lon": 22.7678 },
+  { "name": "Suwałki", "slug": "suwalki", "voivodeship": "podlaskie", "voivodeshipSlug": "podlaskie", "county": "Suwałki", "lat": 54.1115, "lon": 22.9308 },
+  { "name": "Słupsk", "slug": "slupsk", "voivodeship": "pomorskie", "voivodeshipSlug": "pomorskie", "county": "Słupsk", "lat": 54.4641, "lon": 17.0287 },
+  { "name": "Rybnik", "slug": "rybnik", "voivodeship": "śląskie", "voivodeshipSlug": "slaskie", "county": "Rybnik", "lat": 50.1022, "lon": 18.5463 },
+  { "name": "Ostrowiec Świętokrzyski", "slug": "ostrowiec-swietokrzyski", "voivodeship": "świętokrzyskie", "voivodeshipSlug": "swietokrzyskie", "county": "ostrowiecki", "lat": 50.9294, "lon": 21.3852 },
+  { "name": "Ełk", "slug": "elk", "voivodeship": "warmińsko-mazurskie", "voivodeshipSlug": "warminsko-mazurskie", "county": "ełcki", "lat": 53.8282, "lon": 22.3647 },
+  { "name": "Gniezno", "slug": "gniezno", "voivodeship": "wielkopolskie", "voivodeshipSlug": "wielkopolskie", "county": "gnieźnieński", "lat": 52.5349, "lon": 17.5827 },
+  { "name": "Świnoujście", "slug": "swinoujscie", "voivodeship": "zachodniopomorskie", "voivodeshipSlug": "zachodniopomorskie", "county": "Świnoujście", "lat": 53.9105, "lon": 14.2471 }
 ]
