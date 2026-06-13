@@ -2,7 +2,7 @@
 
 ## Current status
 
-MeteoLive is live on Cloudflare Pages and the production domain is connected. The core site is now in a stronger pre-publication state: homepage copy is production-ready, core radar/map pages are expanded, trust/legal pages are in place, the city index is expanded, 31 local city pages are available, the editorial/weather guide section contains 14 practical poradniki, structured data has been added for all current guide pages, the contact page uses a temporary working Gmail address, privacy/cookies pages are prepared, a simple cookie banner is active, and Google Analytics 4 is configured to load only after the user clicks `Akceptuję`.
+MeteoLive is live on Cloudflare Pages and the production domain is connected. The core site is now in a stronger pre-publication state: homepage copy is production-ready, core radar/map pages are expanded, trust/legal pages are in place, the city index is expanded, 31 local city pages are available, the editorial/weather guide section contains 14 practical poradniki, structured data has been added for all current guide pages, an HTML sitemap page is available, the contact page uses a temporary working Gmail address, privacy/cookies pages are prepared, a simple cookie banner is active, and Google Analytics 4 is configured to load only after the user clicks `Akceptuję`.
 
 Production URLs:
 
@@ -86,6 +86,8 @@ Production URLs:
 - Replaced short ASCII-only city pages with fuller Polish versions where needed.
 - Unified city page navigation with links to radar pages, warnings, guides and city index.
 - Unified city page footers with trust/legal links.
+- Added HTML sitemap page:
+  - `/mapa-strony/`
 - Added trust/legal pages:
   - `/o-nas/`
   - `/kontakt/`
@@ -104,7 +106,7 @@ Production URLs:
 - Temporarily changed GA4 to load immediately through `script.js` so the Google Analytics setup wizard could detect the tag.
 - Restored GA4 to consent-based loading after Analytics setup was completed.
 - Added `robots.txt`.
-- Added and updated `sitemap.xml` with radar pages, city pages, trust/legal pages, cookies page and all current weather guides.
+- Added and updated `sitemap.xml` with radar pages, city pages, trust/legal pages, cookies page, HTML sitemap page and all current weather guides.
 - Added improved `404.html` with `noindex,follow` and footer links.
 - Added `assets/favicon.svg`.
 - Added source research notes:
@@ -159,8 +161,8 @@ python -m http.server 8000
 ## Next steps
 
 1. Verify the latest Cloudflare Pages deployment after GitHub changes are built.
-2. Test `/poradniki/` in Rich Results Test or Schema Markup Validator.
-3. Test a few new guide URLs after deployment.
+2. Test `/mapa-strony/` after deployment.
+3. Test `/poradniki/` in Rich Results Test or Schema Markup Validator.
 4. Test GA4 Realtime after clicking `Akceptuję` in a fresh/incognito session.
 5. Check whether Google discovers the expanded `/pogoda/` city URLs and `/poradniki/` URLs.
 6. Ensure `www.meteolive.pl` redirects to `meteolive.pl` with 301 redirect.
