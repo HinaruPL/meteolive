@@ -4,89 +4,43 @@
 
 MeteoLive is live on Cloudflare Pages with the production domain `meteolive.pl`.
 
-The `/pogoda/` section is being rebuilt from a flat city list into a structured weather directory:
+The `/pogoda/` section has been rebuilt from a flat city list into a structured weather directory:
 
-- `/pogoda/` — list of voivodeships + city search + geolocation.
+- `/pogoda/` — list of 16 voivodeships + city search + geolocation.
 - `/pogoda/[wojewodztwo]/` — cities from a voivodeship.
 - `/pogoda/[miasto]/` — existing city forecast page.
 
 Existing city URLs stay flat under `/pogoda/[miasto]/`, for example `/pogoda/warszawa/`, `/pogoda/krakow/`, `/pogoda/gdynia/`.
 
-The city database is now stored in one structured source-of-truth file:
+The city database is stored in one structured source-of-truth file:
 
 - `data/weather-cities.json`
 
-`script.js` loads this file and uses it for:
-
-- city forecasts,
-- city search,
-- search by voivodeship,
-- search by county,
-- JSON-LD collection data,
-- geolocation nearest-city lookup.
+`script.js` loads this file and uses it for city forecasts, city search, search by voivodeship/county, JSON-LD collection data and geolocation nearest-city lookup.
 
 A generator for region pages has been added:
 
 - `tools/generate-weather-region-pages.mjs`
 
-## Production URLs
-
-- `https://meteolive.pl/`
-- `https://www.meteolive.pl/`
-- `https://meteolive.pages.dev/`
-
 ## Completed
 
 ### Core site
 
-- Created production-ready homepage and global dark weather dashboard layout.
-- Added main radar/map pages:
+- Production-ready homepage and global dark weather dashboard layout.
+- Main radar/map pages:
   - `/radar-burz/`
   - `/radar-opadow/`
   - `/radar-wiatru/`
   - `/mapa-temperatury/`
   - `/ostrzezenia-pogodowe/`
-- Added official alert source links on `/ostrzezenia-pogodowe/`.
-- Added HTML sitemap page:
+- HTML sitemap page:
   - `/mapa-strony/`
-- Added improved `404.html` with `noindex,follow`.
-- Added `robots.txt`, `sitemap.xml` and `assets/favicon.svg`.
+- `404.html`, `robots.txt`, `sitemap.xml`, `assets/favicon.svg`.
 
 ### Pogoda / city pages
 
-- Added and standardized 31 local city pages:
-  - `/pogoda/warszawa/`
-  - `/pogoda/krakow/`
-  - `/pogoda/wroclaw/`
-  - `/pogoda/poznan/`
-  - `/pogoda/gdansk/`
-  - `/pogoda/gdynia/`
-  - `/pogoda/lodz/`
-  - `/pogoda/katowice/`
-  - `/pogoda/lublin/`
-  - `/pogoda/szczecin/`
-  - `/pogoda/rzeszow/`
-  - `/pogoda/bialystok/`
-  - `/pogoda/bydgoszcz/`
-  - `/pogoda/torun/`
-  - `/pogoda/olsztyn/`
-  - `/pogoda/kielce/`
-  - `/pogoda/opole/`
-  - `/pogoda/radom/`
-  - `/pogoda/sosnowiec/`
-  - `/pogoda/tarnow/`
-  - `/pogoda/plock/`
-  - `/pogoda/elblag/`
-  - `/pogoda/walbrzych/`
-  - `/pogoda/koszalin/`
-  - `/pogoda/kalisz/`
-  - `/pogoda/legnica/`
-  - `/pogoda/zielona-gora/`
-  - `/pogoda/gorzow-wielkopolski/`
-  - `/pogoda/bielsko-biala/`
-  - `/pogoda/gliwice/`
-  - `/pogoda/czestochowa/`
-- City pages automatically show MET Norway forecast blocks through `script.js`:
+- Added and standardized 31 local city pages.
+- City pages show MET Norway forecast blocks through `script.js`:
   - current conditions,
   - hourly forecast,
   - multi-day forecast,
@@ -107,35 +61,32 @@ A generator for region pages has been added:
   - `lat`,
   - `lon`.
 - `script.js` now loads city data from `data/weather-cities.json`.
-- City search works by:
-  - city name,
-  - slug,
-  - voivodeship,
-  - `voivodeshipSlug`,
-  - county.
+- City search works by city name, slug, voivodeship, `voivodeshipSlug` and county.
 - Geolocation chooses the nearest available city from `data/weather-cities.json`.
 - Forecast widgets use coordinates from `data/weather-cities.json`.
 
 ### Pogoda / voivodeship pages
 
-- `/pogoda/` now links to existing voivodeship pages and keeps non-existing ones unlinked to avoid 404 pages.
-- Added or kept available region pages:
-  - `/pogoda/dolnoslaskie/`
-  - `/pogoda/kujawsko-pomorskie/`
-  - `/pogoda/lubelskie/`
-  - `/pogoda/lubuskie/`
-  - `/pogoda/lodzkie/`
-  - `/pogoda/malopolskie/`
-  - `/pogoda/mazowieckie/`
-  - `/pogoda/opolskie/`
-  - `/pogoda/podkarpackie/`
-  - `/pogoda/pomorskie/`
-  - `/pogoda/slaskie/`
-  - `/pogoda/swietokrzyskie/`
-  - `/pogoda/wielkopolskie/`
-  - `/pogoda/zachodniopomorskie/`
-- These pages list only cities that already exist as city forecast pages.
-- `sitemap.xml` has been updated with the existing voivodeship pages only.
+All 16 voivodeship pages now exist and are linked from `/pogoda/`:
+
+- `/pogoda/dolnoslaskie/`
+- `/pogoda/kujawsko-pomorskie/`
+- `/pogoda/lubelskie/`
+- `/pogoda/lubuskie/`
+- `/pogoda/lodzkie/`
+- `/pogoda/malopolskie/`
+- `/pogoda/mazowieckie/`
+- `/pogoda/opolskie/`
+- `/pogoda/podkarpackie/`
+- `/pogoda/podlaskie/`
+- `/pogoda/pomorskie/`
+- `/pogoda/slaskie/`
+- `/pogoda/swietokrzyskie/`
+- `/pogoda/warminsko-mazurskie/`
+- `/pogoda/wielkopolskie/`
+- `/pogoda/zachodniopomorskie/`
+
+`sitemap.xml` has been updated with all 16 voivodeship pages.
 
 ### Region generator
 
@@ -167,7 +118,7 @@ node tools/generate-weather-region-pages.mjs
 - Temporary contact email:
   - `kontakt.meteolive@gmail.com`
 - Added cookie banner through `script.js`.
-- Added GA4 measurement ID:
+- GA4 measurement ID:
   - `G-MQ1X7GSLXX`
 - GA4 loads only after the user clicks `Akceptuję` in the cookie banner.
 - Google AdSense is not added yet.
@@ -183,35 +134,21 @@ node tools/generate-weather-region-pages.mjs
 - Existing city URLs stay flat under `/pogoda/[miasto]/`.
 - Google AdSense should be added only after the site has enough finished content and privacy/cookie notes are updated.
 
-## Known issue / to finish
-
-Two voivodeship pages still need to be created manually or through a later generator run:
-
-- `/pogoda/podlaskie/`
-- `/pogoda/warminsko-mazurskie/`
-
-The assistant tool blocked direct creation attempts for these two files during the rollout, so `/pogoda/` currently keeps them unlinked to avoid 404 pages, and `sitemap.xml` does not include them yet.
-
 ## Next steps
 
 1. Verify Cloudflare Pages deployment after the latest GitHub commits.
 2. Test `/pogoda/`:
-   - active voivodeship links,
+   - all 16 voivodeship links,
    - city search,
    - search by voivodeship,
    - search by county,
    - geolocation button.
-3. Test several region pages, for example:
-   - `/pogoda/dolnoslaskie/`
-   - `/pogoda/slaskie/`
-   - `/pogoda/pomorskie/`
-4. Finish the two remaining region pages:
+3. Test the two newly finished region pages:
    - `/pogoda/podlaskie/`
    - `/pogoda/warminsko-mazurskie/`
-5. After those pages exist, update `/pogoda/` and `sitemap.xml` again.
-6. Then start adding new city records to `data/weather-cities.json` in verified batches.
-7. Add new city pages only after the data records are verified.
-8. Keep `sitemap.xml` updated only with pages that actually exist.
-9. Consider Cloudflare Worker cache/proxy for MET Norway if traffic grows significantly.
-10. Configure Email Routing or SMTP for `kontakt@meteolive.pl` later.
-11. Add AdSense only after the site has enough finished content and privacy/cookie notes are updated.
+4. Then start adding new city records to `data/weather-cities.json` in verified batches.
+5. Add new city pages only after the data records are verified.
+6. Keep `sitemap.xml` updated only with pages that actually exist.
+7. Consider Cloudflare Worker cache/proxy for MET Norway if traffic grows significantly.
+8. Configure Email Routing or SMTP for `kontakt@meteolive.pl` later.
+9. Add AdSense only after the site has enough finished content and privacy/cookie notes are updated.
