@@ -29,6 +29,51 @@ const guideSchemas = {
       ['Czy wystarczy patrzeć tylko na radar opadów?', 'Nie. Przy burzach, wichurach i groźnej pogodzie warto sprawdzić też mapę wiatru, radar burz i oficjalne ostrzeżenia IMGW-PIB.']
     ]
   },
+  '/poradniki/jak-sprawdzic-czy-bedzie-padac/': {
+    headline: 'Jak sprawdzić, czy będzie padać?',
+    description: 'Prosty poradnik o sprawdzaniu ryzyka deszczu przy pomocy radaru opadów, animacji mapy i prognozy.',
+    questions: [
+      ['Czy radar zawsze pokazuje deszcz idealnie?', 'Nie. Radar może mieć opóźnienie, ograniczenia techniczne albo pokazywać opad, który nie dochodzi do ziemi.'],
+      ['Czy słaby opad na radarze oznacza lekki deszcz?', 'Zwykle tak, ale lokalnie opad może się nasilić. Warto patrzeć na animację, a nie tylko jeden obraz.'],
+      ['Co sprawdzić przed dłuższą trasą?', 'Radar opadów, prognozę godzinową, mapę wiatru i ostrzeżenia pogodowe. Pogoda na trasie może różnić się od pogody w miejscu startu.']
+    ]
+  },
+  '/poradniki/jak-sprawdzic-pogode-przed-podroza/': {
+    headline: 'Jak sprawdzić pogodę przed podróżą?',
+    description: 'Praktyczny poradnik MeteoLive o sprawdzaniu pogody przed trasą: opady, burze, wiatr, temperatura i ostrzeżenia.',
+    questions: [
+      ['Czy wystarczy sprawdzić pogodę w miejscu startu?', 'Nie. Przed podróżą warto sprawdzić całą trasę, bo warunki po drodze mogą być zupełnie inne.'],
+      ['Co jest najważniejsze przed jazdą w burzowy dzień?', 'Radar burz, radar opadów, mapa wiatru i oficjalne ostrzeżenia dla regionów po drodze.'],
+      ['Kiedy ponownie sprawdzić pogodę w trasie?', 'Przy dłuższej podróży najlepiej wrócić do map podczas postoju, szczególnie gdy pogoda jest dynamiczna.']
+    ]
+  },
+  '/poradniki/jak-sprawdzic-pogode-na-weekend/': {
+    headline: 'Jak sprawdzić pogodę na weekend?',
+    description: 'Poradnik MeteoLive o planowaniu weekendu z pomocą prognozy, radaru opadów, burz, mapy temperatury i ostrzeżeń.',
+    questions: [
+      ['Kiedy najlepiej sprawdzać pogodę na weekend?', 'Kilka dni wcześniej warto sprawdzić ogólny trend, a w dniu wyjścia radar opadów, burze i ostrzeżenia.'],
+      ['Czy prognoza na weekend zawsze się sprawdza?', 'Nie zawsze. Im dalej do weekendu, tym większa niepewność, szczególnie przy burzach i przelotnych opadach.'],
+      ['Co sprawdzić w dniu wyjazdu?', 'Radar opadów, radar burz, mapę temperatury, wiatr oraz oficjalne ostrzeżenia pogodowe.']
+    ]
+  },
+  '/poradniki/kiedy-burza-jest-blisko/': {
+    headline: 'Kiedy burza jest blisko?',
+    description: 'Poradnik MeteoLive o objawach bliskiej burzy, radarze burz, wyładowaniach, wietrze i zasadach bezpieczeństwa.',
+    questions: [
+      ['Czy grzmot oznacza, że burza jest blisko?', 'Tak. Jeżeli słyszysz grzmot, burza jest już na tyle blisko, że trzeba zachować ostrożność.'],
+      ['Czy mapa wyładowań wystarczy do oceny bezpieczeństwa?', 'Nie. Mapa pomaga, ale decyzję trzeba opierać też na tym, co widzisz i słyszysz oraz na ostrzeżeniach.'],
+      ['Gdzie się schować, gdy burza jest blisko?', 'Najlepiej w budynku lub samochodzie. Unikaj otwartej przestrzeni, wody i samotnych wysokich drzew.']
+    ]
+  },
+  '/poradniki/jak-zabezpieczyc-balkon-przed-wichura/': {
+    headline: 'Jak zabezpieczyć balkon przed wichurą?',
+    description: 'Praktyczna checklista MeteoLive przed silnym wiatrem: balkon, donice, meble, suszarki, porywy i ostrzeżenia.',
+    questions: [
+      ['Co najpierw schować z balkonu przed wichurą?', 'Najpierw lekkie rzeczy: poduszki, krzesła, dekoracje, suszarki, konewki i przedmioty z balustrady.'],
+      ['Czy donice na balustradzie są bezpieczne?', 'Przy silnym wietrze nie. Lepiej zdjąć je z barierki albo przenieść na podłogę balkonu pod ścianę.'],
+      ['Kiedy zabezpieczyć balkon?', 'Najlepiej zanim wiatr się nasili, szczególnie gdy pojawia się ostrzeżenie IMGW-PIB przed silnym wiatrem.']
+    ]
+  },
   '/poradniki/co-oznaczaja-kolory-na-radarze-pogodowym/': {
     headline: 'Co oznaczają kolory na radarze pogodowym?',
     description: 'Prosty poradnik MeteoLive o kolorach na radarze pogodowym, intensywności opadów, burzach i ograniczeniach odczytu.',
@@ -65,6 +110,24 @@ const guideSchemas = {
       ['Czy silny wiatr zawsze oznacza ostrzeżenie?', 'Nie zawsze, ale przy silnych porywach warto sprawdzić oficjalne ostrzeżenia IMGW-PIB.']
     ]
   },
+  '/poradniki/jak-sprawdzic-silny-wiatr/': {
+    headline: 'Jak sprawdzić silny wiatr?',
+    description: 'Prosty poradnik MeteoLive o sprawdzaniu silnego wiatru, porywów, mapy wiatru i ostrzeżeń.',
+    questions: [
+      ['Czym różni się wiatr od porywów?', 'Wiatr to ogólna prędkość przepływu powietrza, a poryw to krótkotrwały, silniejszy podmuch.'],
+      ['Czy mapa wiatru wystarczy?', 'Nie zawsze. Przy groźnej pogodzie sprawdź też oficjalne ostrzeżenia IMGW-PIB i lokalne komunikaty.'],
+      ['Kiedy wiatr może być groźny?', 'Gdy pojawiają się silne porywy, łamią się gałęzie, trudno utrzymać kierunek jazdy albo wydano ostrzeżenie pogodowe.']
+    ]
+  },
+  '/poradniki/jak-przetrwac-upal/': {
+    headline: 'Jak przetrwać upał?',
+    description: 'Praktyczny poradnik MeteoLive o upale, mapie temperatury, ostrzeżeniach, nawodnieniu i bezpieczeństwie.',
+    questions: [
+      ['Czy sam cień wystarczy podczas upału?', 'Cień pomaga, ale przy wysokiej temperaturze nadal trzeba pić wodę, ograniczać wysiłek i obserwować samopoczucie.'],
+      ['Kiedy upał jest szczególnie groźny?', 'Gdy trwa kilka dni, noce są ciepłe, a organizm nie ma kiedy odpocząć. Groźny jest też wysiłek fizyczny w pełnym słońcu.'],
+      ['Czy warto sprawdzać ostrzeżenia IMGW?', 'Tak. Oficjalne ostrzeżenia pomagają ocenić, czy upał może być niebezpieczny w Twoim regionie.']
+    ]
+  },
   '/poradniki/czym-rozni-sie-prognoza-od-radaru/': {
     headline: 'Czym różni się prognoza od radaru?',
     description: 'Prosty poradnik MeteoLive wyjaśniający różnicę między prognozą pogody a radarem opadów oraz kiedy korzystać z każdego źródła.',
@@ -87,10 +150,17 @@ const guideSchemas = {
 
 const guidesItemList = [
   ['Jak czytać radar opadów?', '/poradniki/jak-czytac-radar-opadow/'],
+  ['Jak sprawdzić, czy będzie padać?', '/poradniki/jak-sprawdzic-czy-bedzie-padac/'],
+  ['Jak sprawdzić pogodę przed podróżą?', '/poradniki/jak-sprawdzic-pogode-przed-podroza/'],
+  ['Jak sprawdzić pogodę na weekend?', '/poradniki/jak-sprawdzic-pogode-na-weekend/'],
+  ['Kiedy burza jest blisko?', '/poradniki/kiedy-burza-jest-blisko/'],
+  ['Jak zabezpieczyć balkon przed wichurą?', '/poradniki/jak-zabezpieczyc-balkon-przed-wichura/'],
   ['Co oznaczają kolory na radarze pogodowym?', '/poradniki/co-oznaczaja-kolory-na-radarze-pogodowym/'],
   ['Jak sprawdzić, czy będzie burza?', '/poradniki/jak-sprawdzic-czy-bedzie-burza/'],
   ['Jak przygotować się na burzę?', '/poradniki/jak-przygotowac-sie-na-burze/'],
   ['Jak sprawdzić kierunek wiatru?', '/poradniki/jak-sprawdzic-kierunek-wiatru/'],
+  ['Jak sprawdzić silny wiatr?', '/poradniki/jak-sprawdzic-silny-wiatr/'],
+  ['Jak przetrwać upał?', '/poradniki/jak-przetrwac-upal/'],
   ['Czym różni się prognoza od radaru?', '/poradniki/czym-rozni-sie-prognoza-od-radaru/'],
   ['Co oznaczają ostrzeżenia IMGW?', '/poradniki/co-oznaczaja-ostrzezenia-imgw/']
 ];
@@ -116,7 +186,7 @@ if (currentPath === '/poradniki/') {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: 'Poradniki pogodowe',
-    description: 'Proste poradniki pogodowe MeteoLive o radarach, opadach, burzach, wietrze i ostrzeżeniach.',
+    description: 'Proste poradniki pogodowe MeteoLive o radarach, opadach, burzach, wietrze, upale, podróży i ostrzeżeniach.',
     url: `${siteBaseUrl}/poradniki/`,
     publisher: buildSitePublisher(),
     mainEntity: {
