@@ -6,6 +6,8 @@ MeteoLive is live on Cloudflare Pages with the production domain `meteolive.pl`.
 
 The `/pogoda/` section has now started the planned rebuild from a flat city list into a structured weather directory by voivodeship. Existing city URLs remain unchanged, for example `/pogoda/warszawa/`, `/pogoda/krakow/` and `/pogoda/gdynia/`.
 
+The city database has been moved out of inline JavaScript into one structured source-of-truth file: `data/weather-cities.json`. `script.js` now loads this file and uses it for city forecasts, city search, voivodeship/county search, JSON-LD collection data and geolocation.
+
 ## Production URLs
 
 - `https://meteolive.pl/`
@@ -82,20 +84,27 @@ The `/pogoda/` section has now started the planned rebuild from a flat city list
   - Warszawa,
   - Radom,
   - Płock.
-- Extended the JavaScript city database in `script.js` from simple arrays to city objects with:
-  - name,
-  - slug,
-  - voivodeship,
-  - county,
-  - latitude,
-  - longitude.
+- Added dedicated city data file:
+  - `data/weather-cities.json`
+- `data/weather-cities.json` currently stores 31 city records with:
+  - `name`,
+  - `slug`,
+  - `voivodeship`,
+  - `voivodeshipSlug`,
+  - `county`,
+  - `lat`,
+  - `lon`.
+- Updated `script.js` so it loads city data from `data/weather-cities.json` instead of keeping the city list inline.
+- Added basic validation for city records in `script.js` before using them.
 - Updated city search logic:
   - searches by city name,
   - searches by slug,
   - searches by voivodeship,
+  - searches by `voivodeshipSlug`,
   - searches by county,
   - can render city result cards even when the main `/pogoda/` page shows voivodeships instead of all cities.
-- Geolocation still chooses the nearest available city from the configured city database.
+- Geolocation now chooses the nearest available city from `data/weather-cities.json`.
+- Forecast widgets now use city coordinates from `data/weather-cities.json`.
 
 ### Poradniki
 
@@ -139,6 +148,7 @@ The `/pogoda/` section has now started the planned rebuild from a flat city list
 - Added Codex working brief:
   - `docs/CODEX_BRIEF.md`
 - Updated `sitemap.xml` after adding `/pogoda/mazowieckie/`.
+- Updated `PROJECT_STATUS.md` after moving city data to `data/weather-cities.json`.
 
 ## Technical assumptions
 
@@ -159,6 +169,7 @@ python -m http.server 8000
 - Windy embeds are used for radar/weather, rain, wind and temperature map previews.
 - MET Norway / api.met.no is used for local city forecast blocks.
 - City forecast requests are cached in `localStorage` for about 60 minutes per city.
+- City forecast coordinates now come from `data/weather-cities.json`.
 - The multi-day outlook is orientational and may change; user-facing text says so.
 - City geolocation search runs in the browser after user permission and is used only to find the nearest configured city.
 - MeteoLive does not scrape third-party weather or lightning data.
@@ -180,10 +191,10 @@ python -m http.server 8000
 Target structure:
 
 - `/pogoda/` — voivodeships + search by city/location/voivodeship.
-- `/pogoda/[wojewodztwo]/` — counties and cities in that voivodeship.
+- `/pogoda/[wojewodztwo]/` — cities from that voivodeship, optionally grouped by county headings.
 - `/pogoda/[miasto]/` — existing city forecast page.
 
-Recommended source-of-truth city data fields:
+Current source-of-truth city data fields in `data/weather-cities.json`:
 
 - `name`
 - `slug`
@@ -193,27 +204,28 @@ Recommended source-of-truth city data fields:
 - `lat`
 - `lon`
 
-Important: existing city URLs should stay flat under `/pogoda/[miasto]/`, not nested under voivodeships, to preserve current URLs and avoid redirects.
+Important: existing city URLs should stay flat under `/pogoda/[miasto]/`, not nested under voivodeships, to preserve current URLs and avoid redirects. Counties should remain data/grouping fields for now, not separate URL pages.
 
 ## Next steps
 
 1. Verify the latest Cloudflare Pages deployment after GitHub changes are built.
-2. Test `/pogoda/`:
+2. Test whether `/data/weather-cities.json` loads in the browser.
+3. Test `/pogoda/`:
    - voivodeship cards,
    - search by city name,
    - search by voivodeship,
    - geolocation button.
-3. Test `/pogoda/mazowieckie/`:
+4. Test `/pogoda/mazowieckie/`:
    - city links to Warszawa, Radom and Płock,
    - search box,
    - mobile layout.
-4. Test forecast widgets on a few city pages, e.g. `/pogoda/warszawa/`, `/pogoda/gdynia/`, `/pogoda/krakow/`.
-5. Add the remaining 15 voivodeship pages in small batches, using `/pogoda/mazowieckie/` as the template.
-6. Move city data into a dedicated data file or generator workflow before scaling beyond the current 31 cities.
-7. Add new city pages in batches from one verified city database: name, slug, voivodeship, county, lat, lon.
-8. Keep `sitemap.xml` updated only with pages that actually exist.
-9. Ensure `www.meteolive.pl` redirects to `meteolive.pl` with 301 redirect.
-10. Add more weather guides in small batches.
-11. Consider Cloudflare Worker cache/proxy for MET Norway if traffic grows significantly.
-12. Configure Email Routing or SMTP for `kontakt@meteolive.pl` later.
-13. Add AdSense only after the site has enough finished content and privacy/cookie notes are updated.
+5. Test forecast widgets on a few city pages, e.g. `/pogoda/warszawa/`, `/pogoda/gdynia/`, `/pogoda/krakow/`.
+6. Add the remaining 15 voivodeship pages in small batches, using `/pogoda/mazowieckie/` as the template.
+7. Add new city records to `data/weather-cities.json` in batches from one verified city source: name, slug, voivodeship, voivodeshipSlug, county, lat, lon.
+8. Add new city pages in batches after the data records are verified.
+9. Keep `sitemap.xml` updated only with pages that actually exist.
+10. Ensure `www.meteolive.pl` redirects to `meteolive.pl` with 301 redirect.
+11. Add more weather guides in small batches.
+12. Consider Cloudflare Worker cache/proxy for MET Norway if traffic grows significantly.
+13. Configure Email Routing or SMTP for `kontakt@meteolive.pl` later.
+14. Add AdSense only after the site has enough finished content and privacy/cookie notes are updated.
