@@ -1,0 +1,8 @@
+/script.js
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/*.html
+  Cache-Control: no-cache
+
+/pogoda/*
+  Cache-Control: no-cache
