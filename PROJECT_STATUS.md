@@ -2,7 +2,7 @@
 
 ## Current status
 
-MeteoLive is live on Cloudflare Pages and the production domain is connected. The core site is now in a stronger pre-publication state: homepage copy is production-ready, core radar/map pages are expanded, trust/legal pages are in place, the city index is expanded, 31 local city pages are available, local city pages automatically show a MET Norway forecast block, the editorial/weather guide section contains 14 practical poradniki, structured data has been added for all current guide pages, an HTML sitemap page is available, the contact page uses a temporary working Gmail address, privacy/cookies pages are prepared, a simple cookie banner is active, and Google Analytics 4 is configured to load only after the user clicks `Akceptuję`.
+MeteoLive is live on Cloudflare Pages and the production domain is connected. The core site is now in a stronger pre-publication state: homepage copy is production-ready, core radar/map pages are expanded, trust/legal pages are in place, the city index is expanded, 31 local city pages are available, local city pages automatically show a MET Norway forecast block with current, hourly and multi-day outlook, the editorial/weather guide section contains 14 practical poradniki, structured data has been added for all current guide pages, an HTML sitemap page is available, the contact page uses a temporary working Gmail address, privacy/cookies pages are prepared, a simple cookie banner is active, and Google Analytics 4 is configured to load only after the user clicks `Akceptuję`.
 
 Production URLs:
 
@@ -24,6 +24,7 @@ Production URLs:
   - uses configured city coordinates,
   - fetches `locationforecast/2.0/compact`,
   - caches results in `localStorage` for about 60 minutes,
+  - shows current conditions, short hourly forecast and multi-day outlook,
   - shows visible attribution to MET Norway / api.met.no,
   - shows fallback text if the forecast API is unavailable.
 - Added production homepage copy.
@@ -150,6 +151,7 @@ python -m http.server 8000
 - Windy embeds are used for radar/weather, rain, wind and temperature map previews.
 - MET Norway / api.met.no is used for local city forecast blocks.
 - City forecast requests are cached in `localStorage` for about 60 minutes per city.
+- The multi-day outlook is orientational and may change; user-facing text says so.
 - The storm page uses Windy as the main radar weather view and an externally hosted lightning preview from burze.dzis.net with attribution to burze.dzis.net and Blitzortung.org.
 - MeteoLive does not scrape third-party weather or lightning data.
 - MeteoLive is not an official warning service and must not present itself as one.
@@ -171,12 +173,13 @@ python -m http.server 8000
 
 1. Verify the latest Cloudflare Pages deployment after GitHub changes are built.
 2. Test forecast widgets on a few city pages, e.g. `/pogoda/warszawa/`, `/pogoda/gdynia/`, `/pogoda/krakow/`.
-3. Test `/poradniki/` in Rich Results Test or Schema Markup Validator.
-4. Test GA4 Realtime after clicking `Akceptuję` in a fresh/incognito session.
-5. Check whether Google discovers the expanded `/pogoda/` city URLs and `/poradniki/` URLs.
-6. Ensure `www.meteolive.pl` redirects to `meteolive.pl` with 301 redirect.
-7. Add more weather guides in small batches.
-8. Add more city pages in small batches.
-9. Consider Cloudflare Worker cache/proxy for MET Norway if traffic grows significantly.
-10. Configure Email Routing or SMTP for `kontakt@meteolive.pl` later.
-11. Add AdSense only after the site has enough finished content and privacy/cookie notes are updated.
+3. Test multi-day forecast layout on mobile.
+4. Test `/poradniki/` in Rich Results Test or Schema Markup Validator.
+5. Test GA4 Realtime after clicking `Akceptuję` in a fresh/incognito session.
+6. Check whether Google discovers the expanded `/pogoda/` city URLs and `/poradniki/` URLs.
+7. Ensure `www.meteolive.pl` redirects to `meteolive.pl` with 301 redirect.
+8. Add more weather guides in small batches.
+9. Add more city pages in small batches.
+10. Consider Cloudflare Worker cache/proxy for MET Norway if traffic grows significantly.
+11. Configure Email Routing or SMTP for `kontakt@meteolive.pl` later.
+12. Add AdSense only after the site has enough finished content and privacy/cookie notes are updated.
