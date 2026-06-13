@@ -2,9 +2,11 @@
 
 ## Current status
 
-MeteoLive is live on Cloudflare Pages and the production domain is connected. The core site is now in a stronger pre-publication state: homepage copy is production-ready, core radar/map pages are expanded, trust/legal pages are in place, the city index is expanded and now includes search by city name plus browser geolocation for finding the nearest available city, 31 local city pages are available, local city pages automatically show a MET Norway forecast block with current, hourly and multi-day outlook, the editorial/weather guide section contains 14 practical poradniki, structured data has been added for all current guide pages, an HTML sitemap page is available, the contact page uses a temporary working Gmail address, privacy/cookies pages are prepared, a simple cookie banner is active, and Google Analytics 4 is configured to load only after the user clicks `Akceptuję`.
+MeteoLive is live on Cloudflare Pages with the production domain `meteolive.pl`. The site has radar/map pages, legal/trust pages, a poradniki section, a city weather section and consent-based GA4.
 
-Production URLs:
+The `/pogoda/` section has now started the planned rebuild from a flat city list into a structured weather directory by voivodeship. Existing city URLs remain unchanged, for example `/pogoda/warszawa/`, `/pogoda/krakow/` and `/pogoda/gdynia/`.
+
+## Production URLs
 
 - `https://meteolive.pl/`
 - `https://www.meteolive.pl/`
@@ -12,60 +14,24 @@ Production URLs:
 
 ## Completed
 
-- Created/updated README with project goal and local preview instructions.
-- Added global CSS for modern dark weather dashboard layout.
-- Added basic JavaScript helpers for current year and local refresh text.
-- Added structured data helpers in `script.js` for:
-  - `/poradniki/` as `CollectionPage` + `ItemList`,
-  - all current guide pages as `Article`.
-- Added static `BreadcrumbList` JSON-LD directly in guide HTML pages.
-- Added automatic MET Norway forecast widget for city pages through `script.js`:
-  - works on `/pogoda/[city]/` pages,
-  - uses configured city coordinates,
-  - fetches `locationforecast/2.0/compact`,
-  - caches results in `localStorage` for about 60 minutes,
-  - shows current conditions, short hourly forecast and multi-day outlook,
-  - shows visible attribution to MET Norway / api.met.no,
-  - shows fallback text if the forecast API is unavailable.
-- Added city search on `/pogoda/`:
-  - search by city name,
-  - accent-insensitive search,
-  - browser geolocation button,
-  - nearest available city calculation from the configured city coordinate list,
-  - no server-side storage of location.
-- Added production homepage copy.
-- Added radar pages:
+### Core site
+
+- Created production-ready homepage and global dark weather dashboard layout.
+- Added main radar/map pages:
   - `/radar-burz/`
   - `/radar-opadow/`
   - `/radar-wiatru/`
   - `/mapa-temperatury/`
   - `/ostrzezenia-pogodowe/`
-- Expanded SEO content on:
-  - `/radar-burz/`
-  - `/radar-opadow/`
-  - `/radar-wiatru/`
-  - `/mapa-temperatury/`
-  - `/ostrzezenia-pogodowe/`
-- Added weather guide section:
-  - `/poradniki/`
-  - `/poradniki/jak-czytac-radar-opadow/`
-  - `/poradniki/jak-sprawdzic-czy-bedzie-padac/`
-  - `/poradniki/jak-sprawdzic-pogode-przed-podroza/`
-  - `/poradniki/jak-sprawdzic-pogode-na-weekend/`
-  - `/poradniki/kiedy-burza-jest-blisko/`
-  - `/poradniki/jak-zabezpieczyc-balkon-przed-wichura/`
-  - `/poradniki/co-oznaczaja-kolory-na-radarze-pogodowym/`
-  - `/poradniki/jak-sprawdzic-czy-bedzie-burza/`
-  - `/poradniki/jak-przygotowac-sie-na-burze/`
-  - `/poradniki/jak-sprawdzic-kierunek-wiatru/`
-  - `/poradniki/jak-sprawdzic-silny-wiatr/`
-  - `/poradniki/jak-przetrwac-upal/`
-  - `/poradniki/czym-rozni-sie-prognoza-od-radaru/`
-  - `/poradniki/co-oznaczaja-ostrzezenia-imgw/`
-- Linked weather guides from the homepage and expanded the guides index.
-- Added and expanded city index:
-  - `/pogoda/`
-- Added and standardized local city pages:
+- Added official alert source links on `/ostrzezenia-pogodowe/`.
+- Added HTML sitemap page:
+  - `/mapa-strony/`
+- Added improved `404.html` with `noindex,follow`.
+- Added `robots.txt`, `sitemap.xml` and `assets/favicon.svg`.
+
+### Pogoda / city pages
+
+- Added and standardized 31 local city pages:
   - `/pogoda/warszawa/`
   - `/pogoda/krakow/`
   - `/pogoda/wroclaw/`
@@ -97,46 +63,82 @@ Production URLs:
   - `/pogoda/bielsko-biala/`
   - `/pogoda/gliwice/`
   - `/pogoda/czestochowa/`
-- Replaced short ASCII-only city pages with fuller Polish versions where needed.
-- Unified city page navigation with links to radar pages, warnings, guides and city index.
-- Unified city page footers with trust/legal links.
-- Added HTML sitemap page:
-  - `/mapa-strony/`
+- Added automatic MET Norway forecast widget for city pages through `script.js`:
+  - works on `/pogoda/[city]/` pages,
+  - uses configured city coordinates,
+  - fetches `locationforecast/2.0/compact`,
+  - caches results in `localStorage` for about 60 minutes,
+  - shows current conditions, short hourly forecast and multi-day outlook,
+  - shows visible attribution to MET Norway / api.met.no,
+  - shows fallback text if the forecast API is unavailable.
+- Rebuilt `/pogoda/` from a flat city list into a voivodeship-first directory:
+  - shows 16 voivodeships,
+  - keeps the city search box,
+  - keeps the geolocation button,
+  - avoids linking inactive voivodeships to 404 pages.
+- Added first region page as a template:
+  - `/pogoda/mazowieckie/`
+- `/pogoda/mazowieckie/` currently links to existing city pages:
+  - Warszawa,
+  - Radom,
+  - Płock.
+- Extended the JavaScript city database in `script.js` from simple arrays to city objects with:
+  - name,
+  - slug,
+  - voivodeship,
+  - county,
+  - latitude,
+  - longitude.
+- Updated city search logic:
+  - searches by city name,
+  - searches by slug,
+  - searches by voivodeship,
+  - searches by county,
+  - can render city result cards even when the main `/pogoda/` page shows voivodeships instead of all cities.
+- Geolocation still chooses the nearest available city from the configured city database.
+
+### Poradniki
+
+- Added weather guide section:
+  - `/poradniki/`
+  - `/poradniki/jak-czytac-radar-opadow/`
+  - `/poradniki/jak-sprawdzic-czy-bedzie-padac/`
+  - `/poradniki/jak-sprawdzic-pogode-przed-podroza/`
+  - `/poradniki/jak-sprawdzic-pogode-na-weekend/`
+  - `/poradniki/kiedy-burza-jest-blisko/`
+  - `/poradniki/jak-zabezpieczyc-balkon-przed-wichura/`
+  - `/poradniki/co-oznaczaja-kolory-na-radarze-pogodowym/`
+  - `/poradniki/jak-sprawdzic-czy-bedzie-burza/`
+  - `/poradniki/jak-przygotowac-sie-na-burze/`
+  - `/poradniki/jak-sprawdzic-kierunek-wiatru/`
+  - `/poradniki/jak-sprawdzic-silny-wiatr/`
+  - `/poradniki/jak-przetrwac-upal/`
+  - `/poradniki/czym-rozni-sie-prognoza-od-radaru/`
+  - `/poradniki/co-oznaczaja-ostrzezenia-imgw/`
+- Added structured data helpers in `script.js` for poradniki and current collection pages.
+
+### Legal, analytics and contact
+
 - Added trust/legal pages:
   - `/o-nas/`
   - `/kontakt/`
   - `/polityka-prywatnosci/`
   - `/cookies/`
   - `/regulamin/`
-- Updated `/kontakt/` with temporary working email address:
+- Temporary contact email:
   - `kontakt.meteolive@gmail.com`
-- Expanded `/polityka-prywatnosci/` with information about technical data, cookies, external maps, MET Norway forecasts, browser geolocation for nearest city search, Google Analytics, future ads and contact.
-- Added `/cookies/` as a dedicated cookie information page.
-- Updated `/cookies/` with MET Norway forecast notes, measurement ID `G-MQ1X7GSLXX` and consent behavior.
-- Updated `/regulamin/` with cookies, analytics and future ads notes.
-- Added a simple global cookie consent banner through `script.js`.
-- Added cookie banner styles in `style.css`.
-- Added Google Analytics 4 through `script.js` with measurement ID `G-MQ1X7GSLXX`.
-- Temporarily changed GA4 to load immediately through `script.js` so the Google Analytics setup wizard could detect the tag.
-- Restored GA4 to consent-based loading after Analytics setup was completed.
-- Added `robots.txt`.
-- Added and updated `sitemap.xml` with radar pages, city pages, trust/legal pages, cookies page, HTML sitemap page and all current weather guides.
-- Added improved `404.html` with `noindex,follow` and footer links.
-- Added `assets/favicon.svg`.
+- Added cookie banner through `script.js`.
+- Added Google Analytics 4 with measurement ID `G-MQ1X7GSLXX`.
+- GA4 loads only after the user clicks `Akceptuję` in the cookie banner.
+- Google AdSense is not added yet.
+
+### Documentation
+
 - Added source research notes:
   - `docs/SOURCES_RESEARCH.md`
 - Added Codex working brief:
   - `docs/CODEX_BRIEF.md`
-- Deployed the static site to Cloudflare Pages.
-- Connected production domain `meteolive.pl`.
-- Added live/embedded map sources:
-  - storm radar on `/radar-burz/` through Windy.com radar embed,
-  - lightning preview on `/radar-burz/` through attributed burze.dzis.net / Blitzortung.org map preview,
-  - rain map on `/radar-opadow/` through attributed Windy.com embed,
-  - wind map on `/radar-wiatru/` through attributed Windy.com embed,
-  - temperature map on `/mapa-temperatury/` through attributed Windy.com embed.
-- Added official alert source links on `/ostrzezenia-pogodowe/`.
-- Updated source decision documentation after production launch and MET Norway integration.
+- Updated `sitemap.xml` after adding `/pogoda/mazowieckie/`.
 
 ## Technical assumptions
 
@@ -159,7 +161,6 @@ python -m http.server 8000
 - City forecast requests are cached in `localStorage` for about 60 minutes per city.
 - The multi-day outlook is orientational and may change; user-facing text says so.
 - City geolocation search runs in the browser after user permission and is used only to find the nearest configured city.
-- The storm page uses Windy as the main radar weather view and an externally hosted lightning preview from burze.dzis.net with attribution to burze.dzis.net and Blitzortung.org.
 - MeteoLive does not scrape third-party weather or lightning data.
 - MeteoLive is not an official warning service and must not present itself as one.
 - City pages and guides should keep clear links to official IMGW-PIB warnings instead of presenting MeteoLive as an official alert source.
@@ -172,22 +173,47 @@ python -m http.server 8000
 - Temporary contact email is `kontakt.meteolive@gmail.com`.
 - Domain contact email `kontakt@meteolive.pl` is planned later, after Email Routing or SMTP is configured.
 - Google Search Console property is verified and sitemap has been submitted.
-- Main pages have been manually submitted for indexing in Google Search Console.
 - AdSense should be added only after the site has enough finished content and privacy/cookie notes are updated for ads.
+
+## Recommended data / URL structure going forward
+
+Target structure:
+
+- `/pogoda/` — voivodeships + search by city/location/voivodeship.
+- `/pogoda/[wojewodztwo]/` — counties and cities in that voivodeship.
+- `/pogoda/[miasto]/` — existing city forecast page.
+
+Recommended source-of-truth city data fields:
+
+- `name`
+- `slug`
+- `voivodeship`
+- `voivodeshipSlug`
+- `county`
+- `lat`
+- `lon`
+
+Important: existing city URLs should stay flat under `/pogoda/[miasto]/`, not nested under voivodeships, to preserve current URLs and avoid redirects.
 
 ## Next steps
 
 1. Verify the latest Cloudflare Pages deployment after GitHub changes are built.
-2. Test `/pogoda/` city search by name.
-3. Test `/pogoda/` geolocation button in a browser with location permission.
+2. Test `/pogoda/`:
+   - voivodeship cards,
+   - search by city name,
+   - search by voivodeship,
+   - geolocation button.
+3. Test `/pogoda/mazowieckie/`:
+   - city links to Warszawa, Radom and Płock,
+   - search box,
+   - mobile layout.
 4. Test forecast widgets on a few city pages, e.g. `/pogoda/warszawa/`, `/pogoda/gdynia/`, `/pogoda/krakow/`.
-5. Test multi-day forecast layout on mobile.
-6. Test `/poradniki/` in Rich Results Test or Schema Markup Validator.
-7. Test GA4 Realtime after clicking `Akceptuję` in a fresh/incognito session.
-8. Check whether Google discovers the expanded `/pogoda/` city URLs and `/poradniki/` URLs.
+5. Add the remaining 15 voivodeship pages in small batches, using `/pogoda/mazowieckie/` as the template.
+6. Move city data into a dedicated data file or generator workflow before scaling beyond the current 31 cities.
+7. Add new city pages in batches from one verified city database: name, slug, voivodeship, county, lat, lon.
+8. Keep `sitemap.xml` updated only with pages that actually exist.
 9. Ensure `www.meteolive.pl` redirects to `meteolive.pl` with 301 redirect.
 10. Add more weather guides in small batches.
-11. Add more city pages in small batches.
-12. Consider Cloudflare Worker cache/proxy for MET Norway if traffic grows significantly.
-13. Configure Email Routing or SMTP for `kontakt@meteolive.pl` later.
-14. Add AdSense only after the site has enough finished content and privacy/cookie notes are updated.
+11. Consider Cloudflare Worker cache/proxy for MET Norway if traffic grows significantly.
+12. Configure Email Routing or SMTP for `kontakt@meteolive.pl` later.
+13. Add AdSense only after the site has enough finished content and privacy/cookie notes are updated.
