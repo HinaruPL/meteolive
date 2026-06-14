@@ -56,6 +56,14 @@ Important:
 - the Google AdSense script has not been added yet,
 - `ads.txt` has not been added yet.
 
+Added three SEO hub pages:
+
+- `/pogoda-na-weekend/`
+- `/pogoda-nad-morzem/`
+- `/pogoda-w-gorach/`
+
+The site is still being prepared for a calm future ad rollout after quality control. Google AdSense is not added yet.
+
 ## Completed
 
 ### Core site
