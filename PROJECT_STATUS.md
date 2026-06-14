@@ -71,6 +71,14 @@ Recent audit before AdSense:
 - confirmed the site is ready for a controlled future AdSense rollout from the content and SEO side,
 - AdSense is still not added yet.
 
+IMGW warnings integration:
+
+- added a Cloudflare Pages Function proxy at `/api/imgw-warnings`,
+- the endpoint uses only official IMGW public JSON endpoints,
+- cache is enabled at the edge for 15 minutes to reduce repeated requests,
+- the warnings page now shows clear attribution, processing notice, and official-map link,
+- MeteoLive still does not present itself as an official warning service.
+
 ## Completed
 
 ### Core site

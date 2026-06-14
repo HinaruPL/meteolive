@@ -12,6 +12,7 @@ const siteBaseUrl = 'https://meteolive.pl';
 const currentPath = window.location.pathname;
 const weatherCitiesDataUrl = '/data/weather-cities.json?v=20260613-structured-data';
 const citySearchResultLimit = 16;
+const imgwWarningsApiUrl = '/api/imgw-warnings';
 
 let weatherCities = [];
 let weatherCitiesBySlug = {};
@@ -108,6 +109,90 @@ function addJsonLd(schema) {
 
 function buildSitePublisher() {
   return { '@type': 'Organization', name: 'MeteoLive', url: siteBaseUrl, logo: `${siteBaseUrl}/assets/favicon.svg` };
+}
+
+function injectImgwWarningsStyles() {
+  if (document.getElementById('meteolive-imgw-warnings-styles')) return;
+  const style = document.createElement('style');
+  style.id = 'meteolive-imgw-warnings-styles';
+  style.textContent = `
+    .imgw-warnings-shell { display: grid; gap: 1rem; }
+    .imgw-warnings-grid { display: grid; gap: 1rem; margin-top: 1rem; }
+    .imgw-warning-card { border: 1px solid rgba(148, 163, 184, .18); border-radius: 18px; padding: 1rem; background: rgba(15, 23, 42, .42); }
+    .imgw-warning-card h3 { margin: 0 0 .35rem; font-size: 1.1rem; }
+    .imgw-warning-meta { display: flex; flex-wrap: wrap; gap: .5rem .75rem; align-items: center; color: #cbd5e1; font-size: .92rem; }
+    .imgw-warning-badge { display: inline-flex; align-items: center; border-radius: 999px; background: rgba(14, 165, 233, .18); color: #e0f2fe; padding: .2rem .65rem; font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+    .imgw-warning-card p { margin: .75rem 0 0; color: #e2e8f0; }
+    .imgw-warning-details { margin-top: .85rem; display: grid; gap: .5rem; color: #cbd5e1; }
+    .imgw-warning-details strong { color: #f8fafc; }
+    .imgw-warning-list { margin: .65rem 0 0; padding-left: 1.1rem; color: #cbd5e1; }
+    .imgw-warning-empty, .imgw-warning-error { border: 1px solid rgba(148, 163, 184, .18); border-radius: 18px; padding: 1rem; background: rgba(15, 23, 42, .36); color: #e2e8f0; }
+    .imgw-warning-note { margin-top: 1rem; color: #cbd5e1; }
+    .imgw-warning-source { margin-top: 1rem; color: #94a3b8; font-size: .95rem; }
+    .imgw-warning-source a { color: #e2e8f0; }
+    .imgw-warning-error { border-color: rgba(248, 113, 113, .35); background: rgba(127, 29, 29, .22); }
+    .imgw-warning-footer { margin-top: 1rem; display: grid; gap: .35rem; color: #94a3b8; font-size: .9rem; }
+    .imgw-warning-footer a { color: #e2e8f0; }
+  `;
+  document.head.appendChild(style);
+}
+
+function parseImgwDate(value) {
+  if (!value) return null;
+  const parsed = new Date(String(value).replace(' ', 'T'));
+  return Number.isNaN(parsed.getTime()) ? null : parsed;
+}
+
+function formatImgwDateTime(value) {
+  const parsed = parseImgwDate(value);
+  if (!parsed) return 'brak danych';
+  return new Intl.DateTimeFormat('pl-PL', { dateStyle: 'medium', timeStyle: 'short' }).format(parsed);
+}
+
+function getWarningDegreeLabel(warning) {
+  if (warning.category === 'hydrological' && Number(warning.degree) === -1) return 'Susza hydrologiczna';
+  if (warning.degree === null || warning.degree === undefined) return 'Brak stopnia';
+  return `Stopień ${warning.degree}`;
+}
+
+function renderImgwWarningCard(warning) {
+  const details = Array.isArray(warning.areaDetails) ? warning.areaDetails : [];
+  const detailsMarkup = warning.category === 'hydrological'
+    ? details.map((area) => `<li><strong>${area.voivodeship || 'Obszar'}</strong>${area.description ? `<br>${area.description}` : ''}${area.basinCodes?.length ? `<br>Kod zlewni: ${area.basinCodes.join(', ')}` : ''}</li>`).join('')
+    : (warning.areaDetails?.length ? `<li><strong>Zakres TERYT</strong>: ${warning.areaDetails.join(', ')}</li>` : '');
+
+  return `<article class="imgw-warning-card"><div class="imgw-warning-meta"><span class="imgw-warning-badge">${warning.category === 'hydrological' ? 'Hydrologiczne' : 'Meteorologiczne'}</span><strong>${warning.eventName}</strong><span>${getWarningDegreeLabel(warning)}</span><span>Prawdopodobieństwo: ${warning.probability ?? 'brak danych'}%</span></div><p>${warning.description || 'Brak opisu dla tego ostrzeżenia.'}</p><div class="imgw-warning-details"><div><strong>Obszar:</strong> ${warning.areaSummary || 'brak danych'}</div><div><strong>Obowiązuje od:</strong> ${formatImgwDateTime(warning.validFrom)}</div><div><strong>Obowiązuje do:</strong> ${formatImgwDateTime(warning.validTo)}</div>${warning.bureau ? `<div><strong>Biuro:</strong> ${warning.bureau}</div>` : ''}${warning.note ? `<div><strong>Uwagi:</strong> ${warning.note}</div>` : ''}${detailsMarkup ? `<ul class="imgw-warning-list">${detailsMarkup}</ul>` : ''}</div></article>`;
+}
+
+function renderImgwWarnings(container, data) {
+  const meteorological = Array.isArray(data?.meteorological) ? data.meteorological : [];
+  const hydrological = Array.isArray(data?.hydrological) ? data.hydrological : [];
+  const fetchedAt = data?.fetchedAt ? new Intl.DateTimeFormat('pl-PL', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(data.fetchedAt)) : null;
+  const officialMapUrl = data?.sourceUrl || 'https://meteo.imgw.pl/dyn/';
+  const sourceName = data?.sourceName || 'Instytut Meteorologii i Gospodarki Wodnej – Państwowy Instytut Badawczy';
+
+  if (!meteorological.length && !hydrological.length) {
+    container.innerHTML = `<div class="imgw-warning-empty"><h3>Brak aktywnych ostrzeżeń</h3><p>Nie ma teraz aktywnych ostrzeżeń IMGW-PIB albo dane nie zawierają jeszcze nowych komunikatów.</p></div><div class="imgw-warning-footer"><div>Źródło danych: ${sourceName}.</div><div>Dane IMGW-PIB zostały przetworzone przez MeteoLive w celu czytelnej prezentacji.</div><div>MeteoLive nie jest oficjalnym serwisem ostrzegawczym. W sytuacjach zagrożenia zawsze sprawdzaj oficjalne komunikaty IMGW-PIB oraz lokalnych służb.</div><div><a href="${officialMapUrl}" rel="nofollow noopener" target="_blank">Sprawdź oficjalną mapę IMGW-PIB</a></div>${fetchedAt ? `<div>Ostatnie pobranie: ${fetchedAt}</div>` : ''}</div>`;
+    return;
+  }
+
+  container.innerHTML = `<div class="imgw-warnings-shell"><div class="imgw-warning-footer"><div>Źródło danych: ${sourceName}.</div><div>Dane IMGW-PIB zostały przetworzone przez MeteoLive w celu czytelnej prezentacji.</div><div>MeteoLive nie jest oficjalnym serwisem ostrzegawczym. W sytuacjach zagrożenia zawsze sprawdzaj oficjalne komunikaty IMGW-PIB oraz lokalnych służb.</div><div><a href="${officialMapUrl}" rel="nofollow noopener" target="_blank">Sprawdź oficjalną mapę IMGW-PIB</a></div>${fetchedAt ? `<div>Ostatnie pobranie: ${fetchedAt}</div>` : ''}</div><div class="imgw-warnings-grid">${meteorological.length ? `<section class="imgw-warning-group"><h3>Ostrzeżenia meteorologiczne</h3>${meteorological.map(renderImgwWarningCard).join('')}</section>` : ''}${hydrological.length ? `<section class="imgw-warning-group"><h3>Ostrzeżenia hydrologiczne</h3>${hydrological.map(renderImgwWarningCard).join('')}</section>` : ''}</div></div>`;
+}
+
+async function loadImgwWarnings() {
+  const container = document.querySelector('[data-imgw-warnings]');
+  if (!container) return;
+  injectImgwWarningsStyles();
+  container.innerHTML = '<div class="imgw-warning-empty">Ładuję aktualne ostrzeżenia IMGW-PIB...</div>';
+
+  try {
+    const response = await fetch(imgwWarningsApiUrl, { headers: { Accept: 'application/json' } });
+    const data = await response.json().catch(() => null);
+    if (!response.ok || !data) throw new Error(`IMGW warnings API error: ${response.status}`);
+    renderImgwWarnings(container, data);
+  } catch (error) {
+    container.innerHTML = `<div class="imgw-warning-error"><h3>Nie udało się chwilowo pobrać danych ostrzeżeń.</h3><p>Sprawdź oficjalną mapę IMGW-PIB.</p></div><div class="imgw-warning-footer"><div>Źródło danych: Instytut Meteorologii i Gospodarki Wodnej – Państwowy Instytut Badawczy.</div><div><a href="https://meteo.imgw.pl/dyn/" rel="nofollow noopener" target="_blank">Sprawdź oficjalną mapę IMGW-PIB</a></div></div>`;
+  }
 }
 
 if (currentPath === '/poradniki/') {
@@ -433,6 +518,7 @@ async function initWeatherFeatures() {
 }
 
 initWeatherFeatures();
+loadImgwWarnings();
 
 const cookieConsentKey = 'meteolive_cookie_consent_v1';
 const gaMeasurementId = 'G-MQ1X7GSLXX';
