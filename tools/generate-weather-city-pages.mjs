@@ -68,7 +68,12 @@ function cityPage(city) {
 
     <section class="section"><div class="container two-col"><article class="content-card"><h2>Jak sprawdzać pogodę dla miasta ${name}?</h2><p>Najpierw zobacz prognozę na górze strony, potem porównaj ją z radarem opadów i mapą wiatru. Przy burzowej pogodzie sprawdź też radar burz oraz oficjalne ostrzeżenia.</p></article><article class="content-card"><h2>Mapa wiatru dla okolicy</h2><div class="embed-box"><iframe title="Mapa wiatru Windy dla ${name}" src="${windyWind}" loading="lazy"></iframe></div></article></div></section>
   </main>
-  <footer class="footer"><div class="container footer-grid"><span>© <span data-year></span> MeteoLive</span><span><a href="/o-nas/">O nas</a> · <a href="/kontakt/">Kontakt</a> · <a href="/polityka-prywatnosci/">Polityka prywatności</a> · <a href="/regulamin/">Regulamin</a></span></div></footer>
+  <footer class="footer">
+    <div class="container footer-grid">
+      <span>© <span data-year></span> MeteoLive</span>
+      <span><a href="/o-nas/">O nas</a> · <a href="/kontakt/">Kontakt</a> · <a href="/skad-bierzemy-dane-pogodowe/">Źródła danych</a> · <a href="/polityka-prywatnosci/">Polityka prywatności</a> · <a href="/cookies/">Cookies</a> · <a href="/regulamin/">Regulamin</a></span>
+    </div>
+  </footer>
   <script src="/script.js?v=city-search-ranking-20260614"></script>
 </body>
 </html>

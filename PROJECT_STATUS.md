@@ -25,6 +25,10 @@ Two generators have been added and tested:
 - `tools/generate-weather-region-pages.mjs`
 - `tools/generate-weather-city-pages.mjs`
 
+Added an information page about weather data sources:
+
+- `/skad-bierzemy-dane-pogodowe/`
+
 The audited staging snapshot was committed in:
 
 - `1a51c46` - `Add audited Polish weather cities staging dataset`
@@ -39,6 +43,8 @@ Full Polish city database preparation has started. Added:
 - `tools/validate-weather-cities.mjs`
 - `tools/merge-weather-cities.mjs`
 - `docs/POLISH_CITIES_DATABASE.md`
+
+This data-sources page is part of the preparation for AdSense and for building user trust through clearer source disclosure.
 
 ## Completed
 
