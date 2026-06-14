@@ -18,7 +18,7 @@ The city database is stored in one structured source-of-truth file:
 
 `script.js` loads this file and uses it for city forecasts, city search, search by voivodeship/county, JSON-LD collection data and geolocation nearest-city lookup.
 
-Two generators have been added:
+Two generators have been added and tested:
 
 - `tools/generate-weather-region-pages.mjs`
 - `tools/generate-weather-city-pages.mjs`
@@ -42,7 +42,9 @@ Two generators have been added:
 
 - Added and standardized the first 31 local city pages.
 - Added 16 test city records, one from each voivodeship, to `data/weather-cities.json`.
-- Created test pages for the 16 new cities and added them to `sitemap.xml`.
+- Created and regenerated 47 city pages from `data/weather-cities.json`.
+- Regeneration commit:
+  - `23be7b3b886947807771e1f701816ca8589cdd4d` — `Regenerate full SEO weather city pages`.
 - Added full SEO city page generator:
   - `tools/generate-weather-city-pages.mjs`
 - The generator creates full city pages with:
@@ -106,7 +108,7 @@ All 16 voivodeship pages now exist and are linked from `/pogoda/`:
 - `/pogoda/wielkopolskie/`
 - `/pogoda/zachodniopomorskie/`
 
-`sitemap.xml` has been updated with all 16 voivodeship pages.
+`sitemap.xml` has been updated with all 16 voivodeship pages and all 47 current city pages.
 
 ### Region generator
 
@@ -157,24 +159,17 @@ node tools/generate-weather-region-pages.mjs
 
 ## Next steps
 
-1. Run locally:
-
-```bash
-node tools/generate-weather-city-pages.mjs
-node tools/generate-weather-region-pages.mjs
-```
-
-2. Commit regenerated city and region pages.
-3. Verify several city URLs after Cloudflare deployment:
+1. Verify Cloudflare Pages deployment after commit `23be7b3b886947807771e1f701816ca8589cdd4d`.
+2. Test several city URLs after deployment:
    - `/pogoda/zamosc/`
    - `/pogoda/rybnik/`
    - `/pogoda/swinoujscie/`
    - `/pogoda/warszawa/`
-4. Test whether Windy iframe centers correctly on city coordinates.
-5. If test batch is OK, prepare verified full Polish city database with duplicate-name handling.
-6. Add all Polish cities to `data/weather-cities.json` with unique slugs. If two cities have the same name, use disambiguated slugs such as `nazwa-wojewodztwo` or `nazwa-powiat`.
-7. Regenerate city pages and voivodeship pages from the data file.
-8. Regenerate/update `sitemap.xml` only with pages that actually exist.
-9. Consider Cloudflare Worker cache/proxy for MET Norway if traffic grows significantly.
-10. Configure Email Routing or SMTP for `kontakt@meteolive.pl` later.
-11. Add AdSense only after the site has enough finished content and privacy/cookie notes are updated.
+3. Confirm that Windy rain and wind iframes center correctly on city coordinates.
+4. If the 47-city test batch is OK, prepare verified full Polish city database with duplicate-name handling.
+5. Add all Polish cities to `data/weather-cities.json` with unique slugs. If two cities have the same name, use disambiguated slugs such as `nazwa-wojewodztwo` or `nazwa-powiat`.
+6. Regenerate city pages and voivodeship pages from the data file.
+7. Regenerate/update `sitemap.xml` only with pages that actually exist.
+8. Consider Cloudflare Worker cache/proxy for MET Norway if traffic grows significantly.
+9. Configure Email Routing or SMTP for `kontakt@meteolive.pl` later.
+10. Add AdSense only after the site has enough finished content and privacy/cookie notes are updated.
