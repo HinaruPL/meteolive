@@ -4,21 +4,70 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Pogoda dolnośląskie — miasta i prognozy | MeteoLive</title>
-  <meta name="description" content="Pogoda w województwie dolnośląskim. Sprawdź dostępne miasta, prognozę MET Norway, radary pogodowe i linki do ostrzeżeń IMGW-PIB.">
+  <meta name="description" content="Pogoda w województwie dolnośląskie. Sprawdź dostępne miasta, prognozę MET Norway, radary pogodowe i linki do oficjalnych ostrzeżeń IMGW-PIB.">
   <link rel="canonical" href="https://meteolive.pl/pogoda/dolnoslaskie/">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Pogoda dolnośląskie — miasta | MeteoLive">
+  <meta property="og:description" content="Dostępne miasta w województwie dolnośląskie: Jelenia Góra, Legnica, Wałbrzych, Wrocław.">
+  <meta property="og:url" content="https://meteolive.pl/pogoda/dolnoslaskie/">
+  <meta name="twitter:card" content="summary">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <header class="site-header"><div class="container nav"><a class="logo" href="/"><span class="logo-mark">☁</span><span>MeteoLive</span></a><nav class="nav-links"><a href="/radar-burz/">Burze</a><a href="/radar-opadow/">Opady</a><a href="/radar-wiatru/">Wiatr</a><a href="/mapa-temperatury/">Temperatura</a><a href="/ostrzezenia-pogodowe/">Ostrzeżenia</a><a href="/pogoda/">Pogoda</a><a href="/poradniki/">Poradniki</a></nav></div></header>
+  <header class="site-header"><div class="container nav"><a class="logo" href="/" aria-label="MeteoLive — strona główna"><span class="logo-mark">☁</span><span>MeteoLive</span></a><nav class="nav-links" aria-label="Główna nawigacja"><a href="/radar-burz/">Burze</a><a href="/radar-opadow/">Opady</a><a href="/radar-wiatru/">Wiatr</a><a href="/mapa-temperatury/">Temperatura</a><a href="/ostrzezenia-pogodowe/">Ostrzeżenia</a><a href="/pogoda/">Pogoda</a><a href="/poradniki/">Poradniki</a></nav></div></header>
+
   <main>
-    <section class="hero"><div class="container"><nav class="breadcrumbs"><a href="/">Strona główna</a><span>›</span><a href="/pogoda/">Pogoda</a><span>›</span><span>Dolnośląskie</span></nav><span class="eyebrow"><span class="pulse"></span> Województwo dolnośląskie</span><h1>Pogoda dolnośląskie.</h1><p class="lead">Miasta z województwa dolnośląskiego dostępne w MeteoLive. Każda strona miasta pokazuje prognozę MET Norway, radary i linki do oficjalnych ostrzeżeń IMGW-PIB.</p><div class="content-card city-search-box"><div class="city-search-actions"><div><h2>Znajdź miasto</h2><p class="city-search-help">Szukaj po nazwie miasta, województwie albo powiecie.</p></div><button class="btn primary" type="button" data-city-locate-button>Użyj mojej lokalizacji</button></div><div class="city-search-form"><input type="search" data-city-search-input placeholder="Wpisz miasto lub województwo..." aria-label="Wpisz nazwę miasta"><a class="btn" href="/pogoda/">Wszystkie województwa</a></div><p class="city-search-status" data-city-search-count>Znaleziono 3 miasta.</p><p class="city-search-status" data-city-location-status></p><div class="city-search-results" data-city-search-results aria-live="polite"></div></div></div></section>
-    <section class="section"><div class="container"><h2>Miasta w bazie</h2><div class="grid"><a class="card" data-city-card data-city-name="Legnica" data-city-slug="legnica" href="/pogoda/legnica/"><div><div class="icon">🏙</div><h3>Legnica</h3><p>Powiat: Legnica.</p></div><span class="card-link">Otwórz prognozę →</span></a><a class="card" data-city-card data-city-name="Wałbrzych" data-city-slug="walbrzych" href="/pogoda/walbrzych/"><div><div class="icon">🏙</div><h3>Wałbrzych</h3><p>Powiat: Wałbrzych.</p></div><span class="card-link">Otwórz prognozę →</span></a><a class="card" data-city-card data-city-name="Wrocław" data-city-slug="wroclaw" href="/pogoda/wroclaw/"><div><div class="icon">🏙</div><h3>Wrocław</h3><p>Powiat: Wrocław.</p></div><span class="card-link">Otwórz prognozę →</span></a></div></div></section>
-    <section class="section"><div class="container two-col"><article class="content-card"><h2>O prognozie</h2><p>Prognozy na stronach miast pochodzą z MET Norway / api.met.no.</p></article><article class="content-card"><h2>Ostrzeżenia</h2><p>MeteoLive nie jest oficjalnym serwisem ostrzeżeń. Przy groźnej pogodzie sprawdzaj IMGW-PIB.</p></article></div></section>
+    <section class="hero">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Okruszki"><a href="/">Strona główna</a><span>›</span><a href="/pogoda/">Pogoda</a><span>›</span><span>Dolnośląskie</span></nav>
+        <span class="eyebrow"><span class="pulse"></span> Województwo dolnośląskie</span>
+        <h1>Pogoda dolnośląskie.</h1>
+        <p class="lead">Poniżej znajdziesz miasta z województwa dolnośląskie, które są już dostępne w MeteoLive. Każda strona miasta prowadzi do prognozy MET Norway, radarów pogodowych i linków do oficjalnych ostrzeżeń IMGW-PIB.</p>
+
+        <div class="content-card city-search-box" aria-label="Wyszukiwarka miast">
+          <div class="city-search-actions">
+            <div>
+              <h2>Znajdź miasto</h2>
+              <p class="city-search-help">Szukaj po nazwie miasta, województwie albo powiecie. Wyszukiwarka korzysta z pliku data/weather-cities.json.</p>
+            </div>
+            <button class="btn primary" type="button" data-city-locate-button>Użyj mojej lokalizacji</button>
+          </div>
+          <div class="city-search-form">
+            <input type="search" data-city-search-input placeholder="Wpisz miasto lub województwo..." aria-label="Wpisz nazwę miasta">
+            <a class="btn" href="/pogoda/">Wszystkie województwa</a>
+          </div>
+          <p class="city-search-status" data-city-search-count>Znaleziono 4 miasta.</p>
+          <p class="city-search-status" data-city-location-status></p>
+          <div class="city-search-results" data-city-search-results aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Miasta w bazie</h2>
+        <p class="section-intro">Na razie pokazujemy miasta, które już mają działające strony w MeteoLive. Kolejne miasta z tego województwa będą dodawane z jednej bazy danych.</p>
+        <div class="grid">
+          <a class="card" data-city-card data-city-name="Jelenia Góra" data-city-slug="jelenia-gora" href="/pogoda/jelenia-gora/"><div><div class="icon">🏙</div><h3>Jelenia Góra</h3><p>Powiat: Jelenia Góra. Prognoza, radary i mapy dla miasta Jelenia Góra.</p></div><span class="card-link">Otwórz prognozę →</span></a>
+          <a class="card" data-city-card data-city-name="Legnica" data-city-slug="legnica" href="/pogoda/legnica/"><div><div class="icon">🏙</div><h3>Legnica</h3><p>Powiat: Legnica. Prognoza, radary i mapy dla miasta Legnica.</p></div><span class="card-link">Otwórz prognozę →</span></a>
+          <a class="card" data-city-card data-city-name="Wałbrzych" data-city-slug="walbrzych" href="/pogoda/walbrzych/"><div><div class="icon">🏙</div><h3>Wałbrzych</h3><p>Powiat: Wałbrzych. Prognoza, radary i mapy dla miasta Wałbrzych.</p></div><span class="card-link">Otwórz prognozę →</span></a>
+          <a class="card" data-city-card data-city-name="Wrocław" data-city-slug="wroclaw" href="/pogoda/wroclaw/"><div><div class="icon">🏙</div><h3>Wrocław</h3><p>Powiat: Wrocław. Prognoza, radary i mapy dla miasta Wrocław.</p></div><span class="card-link">Otwórz prognozę →</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container two-col">
+        <article class="content-card"><h2>Jak korzystać z tej strony?</h2><p>Wybierz miasto z listy albo użyj wyszukiwarki. Strona miasta pokaże prognozę z MET Norway, prognozę godzinową i kilkudniową oraz szybkie linki do map pogodowych.</p></article>
+        <article class="content-card"><h2>Ważne przy ostrzeżeniach</h2><p>MeteoLive nie jest oficjalnym serwisem ostrzeżeń. Przy burzach, wichurach, ulewach, upałach i innych groźnych zjawiskach sprawdzaj komunikaty IMGW-PIB.</p></article>
+      </div>
+    </section>
   </main>
+
   <footer class="footer"><div class="container footer-grid"><span>© <span data-year></span> MeteoLive</span><span><a href="/o-nas/">O nas</a> · <a href="/kontakt/">Kontakt</a> · <a href="/polityka-prywatnosci/">Polityka prywatności</a> · <a href="/regulamin/">Regulamin</a></span></div></footer>
   <script src="/script.js?v=regions-data-20260613"></script>
 </body>

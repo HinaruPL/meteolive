@@ -1,2 +1,73 @@
 <!doctype html>
-<html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pogoda lubuskie — miasta | MeteoLive</title><meta name="description" content="Pogoda w województwie lubuskim. Sprawdź miasta i lokalne prognozy pogody."><link rel="canonical" href="https://meteolive.pl/pogoda/lubuskie/"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/style.css"></head><body><header class="site-header"><div class="container nav"><a class="logo" href="/"><span class="logo-mark">☁</span><span>MeteoLive</span></a><nav class="nav-links"><a href="/pogoda/">Pogoda</a><a href="/poradniki/">Poradniki</a></nav></div></header><main><section class="hero"><div class="container"><nav class="breadcrumbs"><a href="/">Strona główna</a><span>›</span><a href="/pogoda/">Pogoda</a><span>›</span><span>Lubuskie</span></nav><h1>Pogoda lubuskie.</h1><p class="lead">Miasta z województwa lubuskiego dostępne w MeteoLive.</p><div class="content-card city-search-box"><div class="city-search-actions"><div><h2>Znajdź miasto</h2><p class="city-search-help">Szukaj po mieście, województwie albo powiecie.</p></div><button class="btn primary" type="button" data-city-locate-button>Użyj mojej lokalizacji</button></div><div class="city-search-form"><input type="search" data-city-search-input placeholder="Wpisz miasto lub województwo..."><a class="btn" href="/pogoda/">Wszystkie województwa</a></div><p class="city-search-status" data-city-search-count>Znaleziono 2 miasta.</p><p class="city-search-status" data-city-location-status></p><div class="city-search-results" data-city-search-results aria-live="polite"></div></div></div></section><section class="section"><div class="container"><h2>Miasta w bazie</h2><div class="grid"><a class="card" data-city-card data-city-name="Gorzów Wielkopolski" data-city-slug="gorzow-wielkopolski" href="/pogoda/gorzow-wielkopolski/"><div><div class="icon">🏙</div><h3>Gorzów Wielkopolski</h3><p>Powiat: Gorzów Wielkopolski.</p></div><span class="card-link">Otwórz prognozę →</span></a><a class="card" data-city-card data-city-name="Zielona Góra" data-city-slug="zielona-gora" href="/pogoda/zielona-gora/"><div><div class="icon">🏙</div><h3>Zielona Góra</h3><p>Powiat: Zielona Góra.</p></div><span class="card-link">Otwórz prognozę →</span></a></div></div></section></main><footer class="footer"><div class="container footer-grid"><span>© <span data-year></span> MeteoLive</span><span><a href="/kontakt/">Kontakt</a></span></div></footer><script src="/script.js?v=regions-data-20260613"></script></body></html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pogoda lubuskie — miasta i prognozy | MeteoLive</title>
+  <meta name="description" content="Pogoda w województwie lubuskie. Sprawdź dostępne miasta, prognozę MET Norway, radary pogodowe i linki do oficjalnych ostrzeżeń IMGW-PIB.">
+  <link rel="canonical" href="https://meteolive.pl/pogoda/lubuskie/">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Pogoda lubuskie — miasta | MeteoLive">
+  <meta property="og:description" content="Dostępne miasta w województwie lubuskie: Gorzów Wielkopolski, Zielona Góra, Żary.">
+  <meta property="og:url" content="https://meteolive.pl/pogoda/lubuskie/">
+  <meta name="twitter:card" content="summary">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="site-header"><div class="container nav"><a class="logo" href="/" aria-label="MeteoLive — strona główna"><span class="logo-mark">☁</span><span>MeteoLive</span></a><nav class="nav-links" aria-label="Główna nawigacja"><a href="/radar-burz/">Burze</a><a href="/radar-opadow/">Opady</a><a href="/radar-wiatru/">Wiatr</a><a href="/mapa-temperatury/">Temperatura</a><a href="/ostrzezenia-pogodowe/">Ostrzeżenia</a><a href="/pogoda/">Pogoda</a><a href="/poradniki/">Poradniki</a></nav></div></header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Okruszki"><a href="/">Strona główna</a><span>›</span><a href="/pogoda/">Pogoda</a><span>›</span><span>Lubuskie</span></nav>
+        <span class="eyebrow"><span class="pulse"></span> Województwo lubuskie</span>
+        <h1>Pogoda lubuskie.</h1>
+        <p class="lead">Poniżej znajdziesz miasta z województwa lubuskie, które są już dostępne w MeteoLive. Każda strona miasta prowadzi do prognozy MET Norway, radarów pogodowych i linków do oficjalnych ostrzeżeń IMGW-PIB.</p>
+
+        <div class="content-card city-search-box" aria-label="Wyszukiwarka miast">
+          <div class="city-search-actions">
+            <div>
+              <h2>Znajdź miasto</h2>
+              <p class="city-search-help">Szukaj po nazwie miasta, województwie albo powiecie. Wyszukiwarka korzysta z pliku data/weather-cities.json.</p>
+            </div>
+            <button class="btn primary" type="button" data-city-locate-button>Użyj mojej lokalizacji</button>
+          </div>
+          <div class="city-search-form">
+            <input type="search" data-city-search-input placeholder="Wpisz miasto lub województwo..." aria-label="Wpisz nazwę miasta">
+            <a class="btn" href="/pogoda/">Wszystkie województwa</a>
+          </div>
+          <p class="city-search-status" data-city-search-count>Znaleziono 3 miasta.</p>
+          <p class="city-search-status" data-city-location-status></p>
+          <div class="city-search-results" data-city-search-results aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Miasta w bazie</h2>
+        <p class="section-intro">Na razie pokazujemy miasta, które już mają działające strony w MeteoLive. Kolejne miasta z tego województwa będą dodawane z jednej bazy danych.</p>
+        <div class="grid">
+          <a class="card" data-city-card data-city-name="Gorzów Wielkopolski" data-city-slug="gorzow-wielkopolski" href="/pogoda/gorzow-wielkopolski/"><div><div class="icon">🏙</div><h3>Gorzów Wielkopolski</h3><p>Powiat: Gorzów Wielkopolski. Prognoza, radary i mapy dla miasta Gorzów Wielkopolski.</p></div><span class="card-link">Otwórz prognozę →</span></a>
+          <a class="card" data-city-card data-city-name="Zielona Góra" data-city-slug="zielona-gora" href="/pogoda/zielona-gora/"><div><div class="icon">🏙</div><h3>Zielona Góra</h3><p>Powiat: Zielona Góra. Prognoza, radary i mapy dla miasta Zielona Góra.</p></div><span class="card-link">Otwórz prognozę →</span></a>
+          <a class="card" data-city-card data-city-name="Żary" data-city-slug="zary" href="/pogoda/zary/"><div><div class="icon">🏙</div><h3>Żary</h3><p>Powiat: żarski. Prognoza, radary i mapy dla miasta Żary.</p></div><span class="card-link">Otwórz prognozę →</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container two-col">
+        <article class="content-card"><h2>Jak korzystać z tej strony?</h2><p>Wybierz miasto z listy albo użyj wyszukiwarki. Strona miasta pokaże prognozę z MET Norway, prognozę godzinową i kilkudniową oraz szybkie linki do map pogodowych.</p></article>
+        <article class="content-card"><h2>Ważne przy ostrzeżeniach</h2><p>MeteoLive nie jest oficjalnym serwisem ostrzeżeń. Przy burzach, wichurach, ulewach, upałach i innych groźnych zjawiskach sprawdzaj komunikaty IMGW-PIB.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container footer-grid"><span>© <span data-year></span> MeteoLive</span><span><a href="/o-nas/">O nas</a> · <a href="/kontakt/">Kontakt</a> · <a href="/polityka-prywatnosci/">Polityka prywatności</a> · <a href="/regulamin/">Regulamin</a></span></div></footer>
+  <script src="/script.js?v=regions-data-20260613"></script>
+</body>
+</html>

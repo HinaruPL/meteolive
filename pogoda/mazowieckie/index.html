@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pogoda mazowieckie — powiaty i miasta | MeteoLive</title>
-  <meta name="description" content="Pogoda w województwie mazowieckim. Sprawdź dostępne miasta, powiaty, prognozę MET Norway, radary pogodowe i linki do oficjalnych ostrzeżeń IMGW-PIB.">
+  <title>Pogoda mazowieckie — miasta i prognozy | MeteoLive</title>
+  <meta name="description" content="Pogoda w województwie mazowieckie. Sprawdź dostępne miasta, prognozę MET Norway, radary pogodowe i linki do oficjalnych ostrzeżeń IMGW-PIB.">
   <link rel="canonical" href="https://meteolive.pl/pogoda/mazowieckie/">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Pogoda mazowieckie — miasta i powiaty | MeteoLive">
-  <meta property="og:description" content="Dostępne miasta w województwie mazowieckim: Warszawa, Radom i Płock.">
+  <meta property="og:title" content="Pogoda mazowieckie — miasta | MeteoLive">
+  <meta property="og:description" content="Dostępne miasta w województwie mazowieckie: Płock, Radom, Siedlce, Warszawa.">
   <meta property="og:url" content="https://meteolive.pl/pogoda/mazowieckie/">
   <meta name="twitter:card" content="summary">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,21 +26,21 @@
         <nav class="breadcrumbs" aria-label="Okruszki"><a href="/">Strona główna</a><span>›</span><a href="/pogoda/">Pogoda</a><span>›</span><span>Mazowieckie</span></nav>
         <span class="eyebrow"><span class="pulse"></span> Województwo mazowieckie</span>
         <h1>Pogoda mazowieckie.</h1>
-        <p class="lead">Na tej stronie zbieramy dostępne miasta z województwa mazowieckiego. Każde miasto prowadzi do osobnej prognozy, radarów pogodowych i linków do oficjalnych ostrzeżeń IMGW-PIB.</p>
+        <p class="lead">Poniżej znajdziesz miasta z województwa mazowieckie, które są już dostępne w MeteoLive. Każda strona miasta prowadzi do prognozy MET Norway, radarów pogodowych i linków do oficjalnych ostrzeżeń IMGW-PIB.</p>
 
         <div class="content-card city-search-box" aria-label="Wyszukiwarka miast">
           <div class="city-search-actions">
             <div>
               <h2>Znajdź miasto</h2>
-              <p class="city-search-help">Szukaj po nazwie miasta, województwie albo powiecie. Wyszukiwarka korzysta z tej samej bazy miast co prognozy i geolokalizacja.</p>
+              <p class="city-search-help">Szukaj po nazwie miasta, województwie albo powiecie. Wyszukiwarka korzysta z pliku data/weather-cities.json.</p>
             </div>
             <button class="btn primary" type="button" data-city-locate-button>Użyj mojej lokalizacji</button>
           </div>
           <div class="city-search-form">
-            <input type="search" data-city-search-input placeholder="Wpisz miasto, np. Warszawa..." aria-label="Wpisz nazwę miasta">
+            <input type="search" data-city-search-input placeholder="Wpisz miasto lub województwo..." aria-label="Wpisz nazwę miasta">
             <a class="btn" href="/pogoda/">Wszystkie województwa</a>
           </div>
-          <p class="city-search-status" data-city-search-count>Znaleziono 3 miasta.</p>
+          <p class="city-search-status" data-city-search-count>Znaleziono 4 miasta.</p>
           <p class="city-search-status" data-city-location-status></p>
           <div class="city-search-results" data-city-search-results aria-live="polite"></div>
         </div>
@@ -49,12 +49,13 @@
 
     <section class="section">
       <div class="container">
-        <h2>Powiaty i miasta w bazie</h2>
-        <p class="section-intro">Na razie pokazujemy miasta, które już mają działające strony w MeteoLive. Kolejne miasta z województwa mazowieckiego można będzie dodawać z jednej bazy danych.</p>
+        <h2>Miasta w bazie</h2>
+        <p class="section-intro">Na razie pokazujemy miasta, które już mają działające strony w MeteoLive. Kolejne miasta z tego województwa będą dodawane z jednej bazy danych.</p>
         <div class="grid">
-          <a class="card" data-city-card data-city-name="Warszawa" data-city-slug="warszawa" href="/pogoda/warszawa/"><div><div class="icon">🏙</div><h3>Warszawa</h3><p>Powiat: Warszawa. Prognoza, radary i mapy dla Warszawy.</p></div><span class="card-link">Otwórz prognozę →</span></a>
-          <a class="card" data-city-card data-city-name="Radom" data-city-slug="radom" href="/pogoda/radom/"><div><div class="icon">🏙</div><h3>Radom</h3><p>Powiat: Radom. Prognoza, radary i mapy dla Radomia.</p></div><span class="card-link">Otwórz prognozę →</span></a>
-          <a class="card" data-city-card data-city-name="Płock" data-city-slug="plock" href="/pogoda/plock/"><div><div class="icon">🏙</div><h3>Płock</h3><p>Powiat: Płock. Prognoza, radary i mapy dla Płocka.</p></div><span class="card-link">Otwórz prognozę →</span></a>
+          <a class="card" data-city-card data-city-name="Płock" data-city-slug="plock" href="/pogoda/plock/"><div><div class="icon">🏙</div><h3>Płock</h3><p>Powiat: Płock. Prognoza, radary i mapy dla miasta Płock.</p></div><span class="card-link">Otwórz prognozę →</span></a>
+          <a class="card" data-city-card data-city-name="Radom" data-city-slug="radom" href="/pogoda/radom/"><div><div class="icon">🏙</div><h3>Radom</h3><p>Powiat: Radom. Prognoza, radary i mapy dla miasta Radom.</p></div><span class="card-link">Otwórz prognozę →</span></a>
+          <a class="card" data-city-card data-city-name="Siedlce" data-city-slug="siedlce" href="/pogoda/siedlce/"><div><div class="icon">🏙</div><h3>Siedlce</h3><p>Powiat: Siedlce. Prognoza, radary i mapy dla miasta Siedlce.</p></div><span class="card-link">Otwórz prognozę →</span></a>
+          <a class="card" data-city-card data-city-name="Warszawa" data-city-slug="warszawa" href="/pogoda/warszawa/"><div><div class="icon">🏙</div><h3>Warszawa</h3><p>Powiat: Warszawa. Prognoza, radary i mapy dla miasta Warszawa.</p></div><span class="card-link">Otwórz prognozę →</span></a>
         </div>
       </div>
     </section>
@@ -68,6 +69,6 @@
   </main>
 
   <footer class="footer"><div class="container footer-grid"><span>© <span data-year></span> MeteoLive</span><span><a href="/o-nas/">O nas</a> · <a href="/kontakt/">Kontakt</a> · <a href="/polityka-prywatnosci/">Polityka prywatności</a> · <a href="/regulamin/">Regulamin</a></span></div></footer>
-  <script src="/script.js?v=regions-20260613"></script>
+  <script src="/script.js?v=regions-data-20260613"></script>
 </body>
 </html>
