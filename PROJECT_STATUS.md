@@ -46,6 +46,16 @@ Full Polish city database preparation has started. Added:
 
 This data-sources page is part of the preparation for AdSense and for building user trust through clearer source disclosure.
 
+Prepared the privacy and cookies pages for a future AdSense rollout:
+
+- `polityka-prywatnosci/index.html`
+- `cookies/index.html`
+
+Important:
+
+- the Google AdSense script has not been added yet,
+- `ads.txt` has not been added yet.
+
 ## Completed
 
 ### Core site
