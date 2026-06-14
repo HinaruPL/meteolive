@@ -64,6 +64,13 @@ Added three SEO hub pages:
 
 The site is still being prepared for a calm future ad rollout after quality control. Google AdSense is not added yet.
 
+Recent audit before AdSense:
+
+- verified the main site structure, `sitemap.xml`, `robots.txt`, city search, hub pages, and formal pages,
+- fixed missing `twitter:*` tags on a few existing pages,
+- confirmed the site is ready for a controlled future AdSense rollout from the content and SEO side,
+- AdSense is still not added yet.
+
 ## Completed
 
 ### Core site
