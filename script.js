@@ -11,6 +11,7 @@ if (statusEl) {
 const siteBaseUrl = 'https://meteolive.pl';
 const currentPath = window.location.pathname;
 const weatherCitiesDataUrl = '/data/weather-cities.json?v=20260613-structured-data';
+const citySearchResultLimit = 16;
 
 let weatherCities = [];
 let weatherCitiesBySlug = {};
@@ -182,6 +183,32 @@ function normalizeText(value) {
   return String(value || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ł/g, 'l');
 }
 
+function scoreCitySearchMatch(city, query) {
+  const normalizedQuery = normalizeText(query);
+  if (!normalizedQuery) return null;
+
+  const name = normalizeText(city.name);
+  const slug = normalizeText(city.slug);
+  const county = normalizeText(city.county);
+  const voivodeship = normalizeText(city.voivodeship);
+  const voivodeshipSlug = normalizeText(city.voivodeshipSlug);
+
+  if (name === normalizedQuery || slug === normalizedQuery) return 0;
+  if (name.startsWith(normalizedQuery)) return 10;
+  if (slug.startsWith(normalizedQuery)) return 15;
+  if (name.includes(normalizedQuery)) return 25;
+  if (slug.includes(normalizedQuery)) return 35;
+  if (county.includes(normalizedQuery)) return 60;
+  if (voivodeship.includes(normalizedQuery)) return 70;
+  if (voivodeshipSlug.includes(normalizedQuery)) return 80;
+  return null;
+}
+
+function compareCitySearchResults(a, b) {
+  if (a.score !== b.score) return a.score - b.score;
+  return a.city.name.localeCompare(b.city.name, 'pl');
+}
+
 function cleanSymbolCode(symbol) {
   if (!symbol) return 'prognoza';
   return symbol.replace(/_(day|night|polartwilight)$/g, '');
@@ -299,7 +326,7 @@ function initCitySearch() {
 
   const renderSearchResults = (items) => {
     if (!results) return;
-    results.innerHTML = items.slice(0, 8).map((city) => `<a class="search-result-card" href="/pogoda/${city.slug}/"><span>${city.voivodeship || 'Miasto'}</span><strong>${city.name}</strong><span>Powiat: ${city.county || '—'} · Otwórz prognozę →</span></a>`).join('');
+    results.innerHTML = items.slice(0, citySearchResultLimit).map((city) => `<a class="search-result-card" href="/pogoda/${city.slug}/"><span>${city.voivodeship || 'Miasto'}</span><strong>${city.name}</strong><span>Powiat: ${city.county || '—'} · Otwórz prognozę →</span></a>`).join('');
   };
 
   const filterCities = () => {
@@ -323,10 +350,11 @@ function initCitySearch() {
         if (!cards.length) updateCount(weatherCities.length, 'miast');
         return;
       }
-      const matchedCities = weatherCities.filter((city) => {
-        const haystack = normalizeText(`${city.name} ${city.slug} ${city.voivodeship} ${city.voivodeshipSlug} ${city.county}`);
-        return haystack.includes(query);
-      });
+      const matchedCities = weatherCities
+        .map((city) => ({ city, score: scoreCitySearchMatch(city, query) }))
+        .filter((item) => item.score !== null)
+        .sort(compareCitySearchResults)
+        .map((item) => item.city);
       renderSearchResults(matchedCities);
       updateCount(matchedCities.length, 'miast');
     }
