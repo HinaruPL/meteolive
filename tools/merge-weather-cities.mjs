@@ -2,8 +2,12 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const rootDir = process.cwd();
-const sourcePath = process.argv[2] ? path.resolve(rootDir, process.argv[2]) : path.join(rootDir, 'data', 'weather-cities-full.staging.json');
-const targetPath = process.argv[3] ? path.resolve(rootDir, process.argv[3]) : path.join(rootDir, 'data', 'weather-cities.json');
+const sourcePath = process.argv[2]
+  ? path.resolve(rootDir, process.argv[2])
+  : path.join(rootDir, 'data', 'weather-cities-full.staging.json');
+const targetPath = process.argv[3]
+  ? path.resolve(rootDir, process.argv[3])
+  : path.join(rootDir, 'data', 'weather-cities.json');
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
@@ -18,7 +22,9 @@ function cityKey(city) {
 }
 
 function sortCities(a, b) {
-  return a.voivodeshipSlug.localeCompare(b.voivodeshipSlug, 'pl') || a.name.localeCompare(b.name, 'pl') || a.county.localeCompare(b.county, 'pl');
+  return a.voivodeshipSlug.localeCompare(b.voivodeshipSlug, 'pl') ||
+    a.name.localeCompare(b.name, 'pl') ||
+    a.county.localeCompare(b.county, 'pl');
 }
 
 const source = readJson(sourcePath);
@@ -41,7 +47,7 @@ source.forEach((city) => {
 const merged = Array.from(mergedByKey.values()).sort(sortCities);
 writeJson(targetPath, merged);
 
-console.log(`Scalono bazę miast.`);
+console.log('Scalono bazę miast.');
 console.log(`Źródło: ${path.relative(rootDir, sourcePath)} (${source.length} rekordów)`);
 console.log(`Cel: ${path.relative(rootDir, targetPath)} (${target.length} -> ${merged.length} rekordów)`);
 console.log(`Dodane: ${added}`);

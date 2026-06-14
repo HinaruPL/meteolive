@@ -4,6 +4,8 @@
 
 MeteoLive is live on Cloudflare Pages with the production domain `meteolive.pl`.
 
+The weather city database was expanded to the current production-ready dataset in `data/weather-cities.json` and the city pages were regenerated with full SEO.
+
 The `/pogoda/` section has been rebuilt from a flat city list into a structured weather directory:
 
 - `/pogoda/` — list of 16 voivodeships + city search + geolocation.
@@ -22,6 +24,15 @@ Two generators have been added and tested:
 
 - `tools/generate-weather-region-pages.mjs`
 - `tools/generate-weather-city-pages.mjs`
+
+The audited staging snapshot was committed in:
+
+- `1a51c46` - `Add audited Polish weather cities staging dataset`
+
+Staging notes:
+
+- Source used for staging: Wikidata + public proxy list.
+- The source should still be verified against TERYT/SIMC when that data becomes available from this environment.
 
 Full Polish city database preparation has started. Added:
 
@@ -67,6 +78,9 @@ Full Polish city database preparation has started. Added:
   - Windy rain iframe centered on the city coordinates,
   - Windy wind iframe centered on the city coordinates,
   - full radar/map card section: rain, storms, wind, temperature, warnings, other cities.
+
+- Regenerated the full city directory from `data/weather-cities.json` after expanding the database to 1038 records.
+- The generated city pages keep the same SEO coverage as before, now across the full production-ready set of city records.
 
 Local command for full city page regeneration:
 
