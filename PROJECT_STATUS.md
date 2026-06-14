@@ -23,6 +23,12 @@ Two generators have been added and tested:
 - `tools/generate-weather-region-pages.mjs`
 - `tools/generate-weather-city-pages.mjs`
 
+Full Polish city database preparation has started. Added:
+
+- `tools/validate-weather-cities.mjs`
+- `tools/merge-weather-cities.mjs`
+- `docs/POLISH_CITIES_DATABASE.md`
+
 ## Completed
 
 ### Core site
@@ -86,6 +92,36 @@ This command overwrites `/pogoda/[miasto]/index.html` for every valid city recor
 - City search works by city name, slug, voivodeship, `voivodeshipSlug` and county.
 - Geolocation chooses the nearest available city from `data/weather-cities.json`.
 - Forecast widgets use coordinates from `data/weather-cities.json`.
+
+### Full Polish city database preparation
+
+- Added validator:
+  - `tools/validate-weather-cities.mjs`
+- Added merge helper:
+  - `tools/merge-weather-cities.mjs`
+- Added workflow documentation:
+  - `docs/POLISH_CITIES_DATABASE.md`
+- Purpose:
+  - safely prepare `data/weather-cities-full.staging.json`,
+  - validate required fields,
+  - detect duplicate slugs,
+  - detect invalid voivodeship slugs,
+  - detect coordinates outside Poland,
+  - merge staging data into `data/weather-cities.json`,
+  - regenerate city and region pages after validation.
+
+Validation commands:
+
+```bash
+node tools/validate-weather-cities.mjs data/weather-cities.json
+node tools/validate-weather-cities.mjs data/weather-cities-full.staging.json
+```
+
+Merge command:
+
+```bash
+node tools/merge-weather-cities.mjs data/weather-cities-full.staging.json data/weather-cities.json
+```
 
 ### Pogoda / voivodeship pages
 
@@ -166,10 +202,12 @@ node tools/generate-weather-region-pages.mjs
    - `/pogoda/swinoujscie/`
    - `/pogoda/warszawa/`
 3. Confirm that Windy rain and wind iframes center correctly on city coordinates.
-4. If the 47-city test batch is OK, prepare verified full Polish city database with duplicate-name handling.
-5. Add all Polish cities to `data/weather-cities.json` with unique slugs. If two cities have the same name, use disambiguated slugs such as `nazwa-wojewodztwo` or `nazwa-powiat`.
-6. Regenerate city pages and voivodeship pages from the data file.
-7. Regenerate/update `sitemap.xml` only with pages that actually exist.
-8. Consider Cloudflare Worker cache/proxy for MET Norway if traffic grows significantly.
-9. Configure Email Routing or SMTP for `kontakt@meteolive.pl` later.
-10. Add AdSense only after the site has enough finished content and privacy/cookie notes are updated.
+4. Prepare `data/weather-cities-full.staging.json` from a verified source that includes city names, voivodeships, counties and coordinates.
+5. Run validator on staging data.
+6. Fix duplicate slugs and problematic coordinates.
+7. Merge staging data into `data/weather-cities.json`.
+8. Regenerate city pages and voivodeship pages from the data file.
+9. Regenerate/update `sitemap.xml` only with pages that actually exist.
+10. Consider Cloudflare Worker cache/proxy for MET Norway if traffic grows significantly.
+11. Configure Email Routing or SMTP for `kontakt@meteolive.pl` later.
+12. Add AdSense only after the site has enough finished content and privacy/cookie notes are updated.
