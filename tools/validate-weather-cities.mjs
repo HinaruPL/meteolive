@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const rootDir = process.cwd();
-const filePath = process.argv[2] ? path.resolve(rootDir, process.argv[2]) : path.join(rootDir, 'data', 'weather-cities.json');
+const inputPath = process.argv[2] ? path.resolve(rootDir, process.argv[2]) : path.join(rootDir, 'data', 'weather-cities.json');
 
 const allowedVoivodeshipSlugs = new Set([
   'dolnoslaskie',
@@ -28,50 +28,94 @@ function fail(message) {
   process.exitCode = 1;
 }
 
+function isPlainString(value) {
+  return typeof value === 'string' && value.trim().length > 0;
+}
+
 function isNumber(value) {
   return typeof value === 'number' && Number.isFinite(value);
 }
 
-const raw = fs.readFileSync(filePath, 'utf8');
-const cities = JSON.parse(raw);
-
-if (!Array.isArray(cities)) {
-  fail('Plik musi zawierać tablicę rekordów miast.');
-  process.exit();
+if (!fs.existsSync(inputPath)) {
+  fail(`Nie znaleziono pliku: ${inputPath}`);
+  process.exit(1);
 }
 
-const slugs = new Map();
-const cityKeys = new Map();
-let valid = 0;
+let data;
+try {
+  data = JSON.parse(fs.readFileSync(inputPath, 'utf8'));
+} catch (error) {
+  fail(`Nieprawidłowy JSON: ${error.message}`);
+  process.exit(1);
+}
 
-cities.forEach((city, index) => {
-  const prefix = `Rekord #${index + 1}`;
+if (!Array.isArray(data)) {
+  fail('Plik musi zawierać tablicę rekordów miast.');
+  process.exit(1);
+}
 
-  if (!city || typeof city !== 'object') {
-    fail(`${prefix}: rekord nie jest obiektem.`);
-    return;
+const slugSet = new Map();
+const nameCounts = new Map();
+const errors = [];
+
+for (const [index, row] of data.entries()) {
+  const location = `Rekord #${index + 1}`;
+
+  if (!row || typeof row !== 'object' || Array.isArray(row)) {
+    errors.push(`${location}: rekord nie jest obiektem.`);
+    continue;
   }
 
-  ['name', 'slug', 'voivodeship', 'voivodeshipSlug', 'county'].forEach((field) => {
-    if (typeof city[field] !== 'string' || !city[field].trim()) fail(`${prefix}: brak lub pusty tekst w polu ${field}.`);
-  });
-
-  if (!isNumber(city.lat) || city.lat < 48.5 || city.lat > 55.2) fail(`${prefix}: nieprawidłowa szerokość geograficzna lat=${city.lat}.`);
-  if (!isNumber(city.lon) || city.lon < 13.8 || city.lon > 24.5) fail(`${prefix}: nieprawidłowa długość geograficzna lon=${city.lon}.`);
-
-  if (city.slug && !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(city.slug)) fail(`${prefix}: slug ma nieprawidłowy format: ${city.slug}.`);
-  if (city.voivodeshipSlug && !allowedVoivodeshipSlugs.has(city.voivodeshipSlug)) fail(`${prefix}: nieznany voivodeshipSlug: ${city.voivodeshipSlug}.`);
-
-  if (city.slug) {
-    if (slugs.has(city.slug)) fail(`${prefix}: duplikat sluga ${city.slug}; pierwszy rekord: #${slugs.get(city.slug) + 1}.`);
-    slugs.set(city.slug, index);
+  for (const field of ['name', 'slug', 'voivodeship', 'voivodeshipSlug', 'county']) {
+    if (!isPlainString(row[field])) {
+      errors.push(`${location}: brak lub pusty tekst w polu ${field}.`);
+    }
   }
 
-  const key = `${city.name}|${city.voivodeshipSlug}|${city.county}`.toLowerCase();
-  if (cityKeys.has(key)) fail(`${prefix}: możliwy duplikat miasta ${city.name} / ${city.voivodeship} / ${city.county}; pierwszy rekord: #${cityKeys.get(key) + 1}.`);
-  cityKeys.set(key, index);
+  if (!isNumber(row.lat) || row.lat < 48.5 || row.lat > 55.2) {
+    errors.push(`${location}: nieprawidłowa szerokość geograficzna lat=${row.lat}.`);
+  }
 
-  valid += 1;
-});
+  if (!isNumber(row.lon) || row.lon < 13.8 || row.lon > 24.5) {
+    errors.push(`${location}: nieprawidłowa długość geograficzna lon=${row.lon}.`);
+  }
 
-if (!process.exitCode) console.log(`OK: zwalidowano ${valid} rekordów z pliku ${path.relative(rootDir, filePath)}.`);
+  if (isPlainString(row.slug)) {
+    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(row.slug)) {
+      errors.push(`${location}: slug ma nieprawidłowy format: ${row.slug}.`);
+    }
+
+    if (slugSet.has(row.slug)) {
+      errors.push(`${location}: duplikat sluga ${row.slug}; pierwszy rekord: #${slugSet.get(row.slug) + 1}.`);
+    }
+    slugSet.set(row.slug, index);
+  }
+
+  if (isPlainString(row.voivodeshipSlug) && !allowedVoivodeshipSlugs.has(row.voivodeshipSlug)) {
+    errors.push(`${location}: nieznany voivodeshipSlug: ${row.voivodeshipSlug}.`);
+  }
+
+  if (isPlainString(row.name)) {
+    nameCounts.set(row.name, (nameCounts.get(row.name) || 0) + 1);
+  }
+}
+
+const duplicateNames = [...nameCounts.entries()].filter(([, count]) => count > 1);
+
+if (errors.length > 0) {
+  console.error(`Walidacja nie powiodła się dla ${inputPath}`);
+  for (const error of errors) {
+    console.error(`- ${error}`);
+  }
+  process.exit(1);
+}
+
+console.log(`Walidacja zakończona powodzeniem dla ${inputPath}`);
+console.log(`Rekordy: ${data.length}`);
+console.log(`Unikalne slugi: ${slugSet.size}`);
+console.log(`Duplikaty nazw widocznych: ${duplicateNames.length}`);
+if (duplicateNames.length > 0) {
+  for (const [name, count] of duplicateNames.slice(0, 20)) {
+    console.log(`- ${name}: ${count}`);
+  }
+}
