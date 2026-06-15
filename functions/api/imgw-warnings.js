@@ -1,4 +1,4 @@
-﻿const SOURCE_NAME = 'Instytut Meteorologii i Gospodarki Wodnej â€“ PaĹ„stwowy Instytut Badawczy';
+const SOURCE_NAME = 'Instytut Meteorologii i Gospodarki Wodnej – Państwowy Instytut Badawczy';
 const SOURCE_URL = 'https://meteo.imgw.pl/dyn/';
 const METEO_URL = 'https://danepubliczne.imgw.pl/api/data/warningsmeteo';
 const CACHE_TTL_SECONDS = 15 * 60;
@@ -70,17 +70,17 @@ function buildAreaSummary(item) {
 
   const count = Number(item.liczba_lokalizacji || item.liczba_powiatow || item.liczba_gmin);
   if (Number.isFinite(count) && count > 0) {
-    return `Obszar: ${count} lokalizacji objÄ™tych ostrzeĹĽeniem`;
+    return `Obszar: ${count} lokalizacji objętych ostrzeżeniem`;
   }
 
-  return 'Obszar: wybrane powiaty lub gminy - szczegĂłĹ‚y sprawdĹş w IMGW-PIB';
+  return 'Obszar: wybrane powiaty lub gminy - szczegóły sprawdź w IMGW-PIB';
 }
 
 function transformMeteoWarning(item) {
   const areaNames = collectAreaNames(item);
   return {
     id: item.id || null,
-    eventName: item.nazwa_zdarzenia || 'OstrzeĹĽenie meteorologiczne',
+    eventName: item.nazwa_zdarzenia || 'Ostrzeżenie meteorologiczne',
     degree: formatPriority(item.stopien),
     probability: formatPriority(item.prawdopodobienstwo),
     validFrom: item.obowiazuje_od || null,
@@ -106,12 +106,19 @@ function sortWarnings(a, b) {
 async function fetchJson(url, signal) {
   const response = await fetch(url, {
     signal,
-    headers: { Accept: 'application/json' }
+    headers: {
+      Accept: 'application/json',
+      'User-Agent': 'MeteoLive/1.0 (+https://meteolive.pl)'
+    }
   });
+
   if (!response.ok) {
     throw new Error(`IMGW API error ${response.status} for ${url}`);
   }
-  return response.json();
+
+  const text = await response.text();
+  const normalized = text.replace(/^\uFEFF/, '').trim();
+  return normalized ? JSON.parse(normalized) : [];
 }
 
 export async function onRequestGet({ request, context }) {
@@ -151,7 +158,7 @@ export async function onRequestGet({ request, context }) {
       sourceUrl: SOURCE_URL,
       processedBy: 'MeteoLive',
       error: true,
-      message: 'Nie udaĹ‚o siÄ™ chwilowo pobraÄ‡ danych ostrzeĹĽeĹ„. SprawdĹş oficjalnÄ… mapÄ™ IMGW-PIB.',
+      message: 'Nie udało się chwilowo pobrać danych ostrzeżeń. Sprawdź oficjalną mapę IMGW-PIB.',
       meteorological: []
     };
     return jsonResponse(payload, 502);

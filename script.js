@@ -13,6 +13,7 @@ const currentPath = window.location.pathname;
 const weatherCitiesDataUrl = '/data/weather-cities.json?v=20260613-structured-data';
 const citySearchResultLimit = 16;
 const imgwWarningsApiUrl = '/api/imgw-warnings';
+const imgwWarningsDirectApiUrl = 'https://danepubliczne.imgw.pl/api/data/warningsmeteo';
 
 let weatherCities = [];
 let weatherCitiesBySlug = {};
@@ -149,6 +150,105 @@ function formatImgwDateTime(value) {
   return new Intl.DateTimeFormat('pl-PL', { dateStyle: 'medium', timeStyle: 'short' }).format(parsed);
 }
 
+function collectImgwAreaNames(item) {
+  const names = [];
+  const add = (value) => {
+    if (typeof value === 'string') {
+      const trimmed = value.trim();
+      if (trimmed && !names.includes(trimmed)) names.push(trimmed);
+    }
+  };
+
+  add(item.wojewodztwo);
+  add(item.powiat);
+  add(item.gmina);
+  add(item.obszar);
+
+  if (Array.isArray(item.obszary)) {
+    item.obszary.forEach((entry) => {
+      add(entry?.wojewodztwo);
+      add(entry?.powiat);
+      add(entry?.gmina);
+      add(entry?.nazwa);
+      add(entry?.opis);
+    });
+  }
+
+  if (Array.isArray(item.teryt) && item.teryt.length) {
+    add(`wybrane lokalizacje objęte ostrzeżeniem (${item.teryt.length})`);
+  }
+
+  return names;
+}
+
+function buildImgwAreaSummary(item) {
+  const names = collectImgwAreaNames(item);
+  if (names.length) {
+    if (names.length === 1) return `Obszar: ${names[0]}`;
+    if (names.length === 2) return `Obszar: ${names[0]}, ${names[1]}`;
+    return `Obszar: ${names.slice(0, 3).join(', ')}${names.length > 3 ? ' i kolejne lokalizacje' : ''}`;
+  }
+
+  const count = Number(item.liczba_lokalizacji || item.liczba_powiatow || item.liczba_gmin || item.teryt?.length);
+  if (Number.isFinite(count) && count > 0) {
+    return `Obszar: ${count} lokalizacji objętych ostrzeżeniem`;
+  }
+
+  return 'Obszar: wybrane powiaty lub gminy — szczegóły sprawdź w IMGW-PIB';
+}
+
+function transformImgwWarningRecord(item) {
+  return {
+    id: item.id || null,
+    eventName: item.nazwa_zdarzenia || 'Ostrzeżenie meteorologiczne',
+    degree: Number.isFinite(Number(item.stopien)) ? Number(item.stopien) : null,
+    probability: Number.isFinite(Number(item.prawdopodobienstwo)) ? Number(item.prawdopodobienstwo) : null,
+    validFrom: item.obowiazuje_od || null,
+    validTo: item.obowiazuje_do || null,
+    publishedAt: item.opublikowano || null,
+    bureau: item.biuro || null,
+    areaSummary: buildImgwAreaSummary(item),
+    areaDetails: collectImgwAreaNames(item),
+    description: item.tresc || '',
+    note: item.komentarz && item.komentarz !== 'Brak.' ? item.komentarz : ''
+  };
+}
+
+function normalizeImgwWarningsPayload(data) {
+  if (Array.isArray(data)) {
+    return {
+      fetchedAt: new Date().toISOString(),
+      sourceName: 'Instytut Meteorologii i Gospodarki Wodnej – Państwowy Instytut Badawczy',
+      sourceUrl: 'https://meteo.imgw.pl/dyn/',
+      processedBy: 'MeteoLive',
+      counts: { meteorological: data.length },
+      meteorological: data.map(transformImgwWarningRecord)
+    };
+  }
+
+  if (Array.isArray(data?.meteorological)) {
+    return data;
+  }
+
+  return null;
+}
+
+async function fetchImgwWarningsPayload() {
+  const tryFetch = async (url) => {
+    const response = await fetch(url, { headers: { Accept: 'application/json' }, cache: 'no-store' });
+    const data = await response.json().catch(() => null);
+    return response.ok ? normalizeImgwWarningsPayload(data) : null;
+  };
+
+  const proxied = await tryFetch(imgwWarningsApiUrl);
+  if (proxied) return proxied;
+
+  const direct = await tryFetch(imgwWarningsDirectApiUrl);
+  if (direct) return direct;
+
+  throw new Error('IMGW warnings fetch failed');
+}
+
 function getWarningDegreeLabel(warning) {
   if (warning.degree === null || warning.degree === undefined) return 'Brak stopnia';
   return `Stopień ${warning.degree}`;
@@ -178,15 +278,13 @@ async function loadImgwWarnings() {
   const container = document.querySelector('[data-imgw-warnings]');
   if (!container) return;
   injectImgwWarningsStyles();
-  container.innerHTML = '<div class="imgw-warning-empty">ĹadujÄ™ aktualne ostrzeĹĽenia IMGW-PIB...</div>';
+  container.innerHTML = '<div class="imgw-warning-empty">Ładuję aktualne ostrzeżenia IMGW-PIB...</div>';
 
   try {
-    const response = await fetch(imgwWarningsApiUrl, { headers: { Accept: 'application/json' } });
-    const data = await response.json().catch(() => null);
-    if (!response.ok || !data) throw new Error(`IMGW warnings API error: ${response.status}`);
+    const data = await fetchImgwWarningsPayload();
     renderImgwWarnings(container, data);
   } catch (error) {
-    container.innerHTML = `<div class="imgw-warning-error"><h3>Nie udaĹ‚o siÄ™ chwilowo pobraÄ‡ danych ostrzeĹĽeĹ„.</h3><p>SprawdĹş oficjalnÄ… mapÄ™ IMGW-PIB.</p></div><div class="imgw-warning-footer"><div>ĹąrĂłdĹ‚o danych: Instytut Meteorologii i Gospodarki Wodnej â€“ PaĹ„stwowy Instytut Badawczy.</div><div><a href="https://meteo.imgw.pl/dyn/" rel="nofollow noopener" target="_blank">SprawdĹş oficjalnÄ… mapÄ™ IMGW-PIB</a></div></div>`;
+    container.innerHTML = `<div class="imgw-warning-error"><h3>Nie udało się chwilowo pobrać danych ostrzeżeń.</h3><p>Sprawdź oficjalną mapę IMGW-PIB.</p></div><div class="imgw-warning-footer"><div>Źródło danych: Instytut Meteorologii i Gospodarki Wodnej – Państwowy Instytut Badawczy.</div><div><a href="https://meteo.imgw.pl/dyn/" rel="nofollow noopener" target="_blank">Sprawdź oficjalną mapę IMGW-PIB</a></div></div>`;
   }
 }
 
