@@ -1,4 +1,4 @@
-# MeteoLive — PROJECT_STATUS
+﻿# MeteoLive â€” PROJECT_STATUS
 
 ## Current status
 
@@ -8,9 +8,9 @@ The weather city database was expanded to the current production-ready dataset i
 
 The `/pogoda/` section has been rebuilt from a flat city list into a structured weather directory:
 
-- `/pogoda/` — list of 16 voivodeships + city search + geolocation.
-- `/pogoda/[wojewodztwo]/` — cities from a voivodeship.
-- `/pogoda/[miasto]/` — city forecast page.
+- `/pogoda/` â€” list of 16 voivodeships + city search + geolocation.
+- `/pogoda/[wojewodztwo]/` â€” cities from a voivodeship.
+- `/pogoda/[miasto]/` â€” city forecast page.
 
 Existing city URLs stay flat under `/pogoda/[miasto]/`, for example `/pogoda/warszawa/`, `/pogoda/krakow/`, `/pogoda/gdynia/`.
 
@@ -74,9 +74,9 @@ Recent audit before AdSense:
 IMGW warnings integration:
 
 - added a Cloudflare Pages Function proxy at `/api/imgw-warnings`,
-- the endpoint uses only official IMGW public JSON endpoints,
+- the endpoint now uses only the official IMGW public meteorological warnings endpoint,
 - cache is enabled at the edge for 15 minutes to reduce repeated requests,
-- the warnings page now shows clear attribution, processing notice, and official-map link,
+- the warnings page now shows clear attribution, processing notice, plain-language area descriptions, and an official-map link,
 - MeteoLive still does not present itself as an official warning service.
 
 ## Completed
@@ -100,7 +100,7 @@ IMGW warnings integration:
 - Added 16 test city records, one from each voivodeship, to `data/weather-cities.json`.
 - Created and regenerated 47 city pages from `data/weather-cities.json`.
 - Regeneration commit:
-  - `23be7b3b886947807771e1f701816ca8589cdd4d` — `Regenerate full SEO weather city pages`.
+  - `23be7b3b886947807771e1f701816ca8589cdd4d` â€” `Regenerate full SEO weather city pages`.
 - Added full SEO city page generator:
   - `tools/generate-weather-city-pages.mjs`
 - The generator creates full city pages with:
@@ -231,7 +231,7 @@ node tools/generate-weather-region-pages.mjs
 - Added cookie banner through `script.js`.
 - GA4 measurement ID:
   - `G-MQ1X7GSLXX`
-- GA4 loads only after the user clicks `Akceptuję` in the cookie banner.
+- GA4 loads only after the user clicks `AkceptujÄ™` in the cookie banner.
 - Google AdSense is not added yet.
 
 ## Important notes

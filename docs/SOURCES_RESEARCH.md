@@ -1,4 +1,4 @@
-# MeteoLive — source research
+﻿# MeteoLive â€” source research
 
 This file tracks external map/data sources considered for MeteoLive.
 
@@ -12,9 +12,9 @@ MeteoLive is now live on `https://meteolive.pl/`. The current production version
 
 Current use:
 
-- `/radar-opadow/` — rain/weather map preview
-- `/radar-wiatru/` — wind map preview
-- `/mapa-temperatury/` — temperature map preview
+- `/radar-opadow/` â€” rain/weather map preview
+- `/radar-wiatru/` â€” wind map preview
+- `/mapa-temperatury/` â€” temperature map preview
 
 Notes:
 
@@ -31,7 +31,7 @@ Decision:
 
 Current use:
 
-- `/radar-burz/` — externally hosted animated storm map image linked to burze.dzis.net.
+- `/radar-burz/` â€” externally hosted animated storm map image linked to burze.dzis.net.
 
 Notes:
 
@@ -90,7 +90,7 @@ Decision:
 
 Current use:
 
-- `/ostrzezenia-pogodowe/` links to official IMGW-PIB weather information and warns users that MeteoLive does not replace official alerts.
+- `/ostrzezenia-pogodowe/` displays only meteorological IMGW-PIB warnings with clear attribution and a link to the official IMGW-PIB map.
 
 Potential future use:
 
@@ -106,8 +106,9 @@ Notes:
 Decision:
 
 - Use cautiously.
-- Current implementation links to official IMGW-PIB information rather than copying or reprocessing official alert data.
-- If MeteoLive later displays IMGW data directly, include required attribution and document data processing clearly.
+- Current implementation displays only meteorological IMGW-PIB warning data through a cacheable proxy and keeps visible attribution, disclaimer and a link to the official map.
+- Do not scrape IMGW HTML pages or expose hydrological warnings in the UI.
+- If MeteoLive later expands IMGW usage, include required attribution and document data processing clearly.
 
 ### Open-Meteo
 

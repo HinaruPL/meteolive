@@ -1,7 +1,6 @@
-const SOURCE_NAME = 'Instytut Meteorologii i Gospodarki Wodnej – Państwowy Instytut Badawczy';
+﻿const SOURCE_NAME = 'Instytut Meteorologii i Gospodarki Wodnej â€“ PaĹ„stwowy Instytut Badawczy';
 const SOURCE_URL = 'https://meteo.imgw.pl/dyn/';
 const METEO_URL = 'https://danepubliczne.imgw.pl/api/data/warningsmeteo';
-const HYDRO_URL = 'https://danepubliczne.imgw.pl/api/data/warningshydro';
 const CACHE_TTL_SECONDS = 15 * 60;
 
 function jsonResponse(body, status = 200, extraHeaders = {}) {
@@ -24,7 +23,7 @@ function parseDate(value) {
 }
 
 function isStillRelevant(item, now) {
-  const validTo = parseDate(item.obowiazuje_do || item.data_do);
+  const validTo = parseDate(item.obowiazuje_do);
   if (validTo && validTo < now) return false;
   return true;
 }
@@ -34,45 +33,64 @@ function formatPriority(value) {
   return Number.isFinite(numeric) ? numeric : null;
 }
 
+function collectAreaNames(item) {
+  const names = [];
+  const add = (value) => {
+    if (typeof value === 'string') {
+      const trimmed = value.trim();
+      if (trimmed && !names.includes(trimmed)) names.push(trimmed);
+    }
+  };
+
+  add(item.wojewodztwo);
+  add(item.powiat);
+  add(item.gmina);
+  add(item.obszar);
+
+  if (Array.isArray(item.obszary)) {
+    item.obszary.forEach((entry) => {
+      add(entry?.wojewodztwo);
+      add(entry?.powiat);
+      add(entry?.gmina);
+      add(entry?.nazwa);
+      add(entry?.opis);
+    });
+  }
+
+  return names;
+}
+
+function buildAreaSummary(item) {
+  const names = collectAreaNames(item);
+  if (names.length) {
+    if (names.length === 1) return `Obszar: ${names[0]}`;
+    if (names.length === 2) return `Obszar: ${names[0]}, ${names[1]}`;
+    return `Obszar: ${names.slice(0, 3).join(', ')}${names.length > 3 ? ' i kolejne lokalizacje' : ''}`;
+  }
+
+  const count = Number(item.liczba_lokalizacji || item.liczba_powiatow || item.liczba_gmin);
+  if (Number.isFinite(count) && count > 0) {
+    return `Obszar: ${count} lokalizacji objÄ™tych ostrzeĹĽeniem`;
+  }
+
+  return 'Obszar: wybrane powiaty lub gminy - szczegĂłĹ‚y sprawdĹş w IMGW-PIB';
+}
+
 function transformMeteoWarning(item) {
-  const territoryCount = Array.isArray(item.teryt) ? item.teryt.length : 0;
+  const areaNames = collectAreaNames(item);
   return {
     id: item.id || null,
-    category: 'meteorological',
-    eventName: item.nazwa_zdarzenia || 'Ostrzeżenie meteorologiczne',
+    eventName: item.nazwa_zdarzenia || 'OstrzeĹĽenie meteorologiczne',
     degree: formatPriority(item.stopien),
     probability: formatPriority(item.prawdopodobienstwo),
     validFrom: item.obowiazuje_od || null,
     validTo: item.obowiazuje_do || null,
     publishedAt: item.opublikowano || null,
     bureau: item.biuro || null,
-    areaSummary: territoryCount ? `${territoryCount} jednostek TERYT` : 'Obszar wskazany przez IMGW-PIB',
-    areaDetails: territoryCount ? item.teryt.slice(0, 20) : [],
+    areaSummary: buildAreaSummary(item),
+    areaDetails: areaNames,
     description: item.tresc || '',
     note: item.komentarz && item.komentarz !== 'Brak.' ? item.komentarz : ''
-  };
-}
-
-function transformHydroWarning(item) {
-  const areas = Array.isArray(item.obszary) ? item.obszary : [];
-  return {
-    id: item.numer || null,
-    category: 'hydrological',
-    eventName: item.zdarzenie || 'Ostrzeżenie hydrologiczne',
-    degree: formatPriority(item.stopień),
-    probability: formatPriority(item.prawdopodobienstwo),
-    validFrom: item.data_od || null,
-    validTo: item.data_do || null,
-    publishedAt: item.opublikowano || null,
-    bureau: item.biuro || null,
-    areaSummary: areas.length ? areas.map((area) => area.wojewodztwo).filter(Boolean).join(', ') : 'Obszar wskazany przez IMGW-PIB',
-    areaDetails: areas.map((area) => ({
-      voivodeship: area.wojewodztwo || '',
-      description: area.opis || '',
-      basinCodes: Array.isArray(area.kod_zlewni) ? area.kod_zlewni : []
-    })),
-    description: item.przebieg || '',
-    note: item.komentarz || ''
   };
 }
 
@@ -106,17 +124,10 @@ export async function onRequestGet({ request, context }) {
   const timeout = setTimeout(() => controller.abort(), 10000);
 
   try {
-    const [meteoRaw, hydroRaw] = await Promise.all([
-      fetchJson(METEO_URL, controller.signal),
-      fetchJson(HYDRO_URL, controller.signal)
-    ]);
-
+    const meteoRaw = await fetchJson(METEO_URL, controller.signal);
     const now = new Date();
     const meteorological = Array.isArray(meteoRaw)
       ? meteoRaw.filter((item) => isStillRelevant(item, now)).map(transformMeteoWarning).sort(sortWarnings)
-      : [];
-    const hydrological = Array.isArray(hydroRaw)
-      ? hydroRaw.filter((item) => isStillRelevant(item, now)).map(transformHydroWarning).sort(sortWarnings)
       : [];
 
     const payload = {
@@ -125,11 +136,9 @@ export async function onRequestGet({ request, context }) {
       sourceUrl: SOURCE_URL,
       processedBy: 'MeteoLive',
       counts: {
-        meteorological: meteorological.length,
-        hydrological: hydrological.length
+        meteorological: meteorological.length
       },
-      meteorological,
-      hydrological
+      meteorological
     };
 
     const response = jsonResponse(payload);
@@ -142,9 +151,8 @@ export async function onRequestGet({ request, context }) {
       sourceUrl: SOURCE_URL,
       processedBy: 'MeteoLive',
       error: true,
-      message: 'Nie udało się chwilowo pobrać danych ostrzeżeń. Sprawdź oficjalną mapę IMGW-PIB.',
-      meteorological: [],
-      hydrological: []
+      message: 'Nie udaĹ‚o siÄ™ chwilowo pobraÄ‡ danych ostrzeĹĽeĹ„. SprawdĹş oficjalnÄ… mapÄ™ IMGW-PIB.',
+      meteorological: []
     };
     return jsonResponse(payload, 502);
   } finally {

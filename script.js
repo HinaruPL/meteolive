@@ -1,11 +1,11 @@
-const yearEl = document.querySelector('[data-year]');
+﻿const yearEl = document.querySelector('[data-year]');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 const statusEl = document.querySelector('[data-live-status]');
 if (statusEl) {
   const now = new Date();
   const formatter = new Intl.DateTimeFormat('pl-PL', { hour: '2-digit', minute: '2-digit', day: '2-digit', month: '2-digit', year: 'numeric' });
-  statusEl.textContent = `Ostatnie odświeżenie widoku: ${formatter.format(now)}`;
+  statusEl.textContent = `Ostatnie odĹ›wieĹĽenie widoku: ${formatter.format(now)}`;
 }
 
 const siteBaseUrl = 'https://meteolive.pl';
@@ -19,20 +19,20 @@ let weatherCitiesBySlug = {};
 let weatherCitiesLoadPromise = null;
 
 const weatherRegions = [
-  { name: 'Dolnośląskie', slug: 'dolnoslaskie' },
+  { name: 'DolnoĹ›lÄ…skie', slug: 'dolnoslaskie' },
   { name: 'Kujawsko-pomorskie', slug: 'kujawsko-pomorskie' },
   { name: 'Lubelskie', slug: 'lubelskie' },
   { name: 'Lubuskie', slug: 'lubuskie' },
-  { name: 'Łódzkie', slug: 'lodzkie' },
-  { name: 'Małopolskie', slug: 'malopolskie' },
+  { name: 'ĹĂłdzkie', slug: 'lodzkie' },
+  { name: 'MaĹ‚opolskie', slug: 'malopolskie' },
   { name: 'Mazowieckie', slug: 'mazowieckie' },
   { name: 'Opolskie', slug: 'opolskie' },
   { name: 'Podkarpackie', slug: 'podkarpackie' },
   { name: 'Podlaskie', slug: 'podlaskie' },
   { name: 'Pomorskie', slug: 'pomorskie' },
-  { name: 'Śląskie', slug: 'slaskie' },
-  { name: 'Świętokrzyskie', slug: 'swietokrzyskie' },
-  { name: 'Warmińsko-mazurskie', slug: 'warminsko-mazurskie' },
+  { name: 'ĹšlÄ…skie', slug: 'slaskie' },
+  { name: 'ĹšwiÄ™tokrzyskie', slug: 'swietokrzyskie' },
+  { name: 'WarmiĹ„sko-mazurskie', slug: 'warminsko-mazurskie' },
   { name: 'Wielkopolskie', slug: 'wielkopolskie' },
   { name: 'Zachodniopomorskie', slug: 'zachodniopomorskie' }
 ];
@@ -55,11 +55,11 @@ async function loadWeatherCities() {
 
   weatherCitiesLoadPromise = fetch(weatherCitiesDataUrl, { headers: { 'Accept': 'application/json' } })
     .then((response) => {
-      if (!response.ok) throw new Error(`Nie udało się pobrać bazy miast: ${response.status}`);
+      if (!response.ok) throw new Error(`Nie udaĹ‚o siÄ™ pobraÄ‡ bazy miast: ${response.status}`);
       return response.json();
     })
     .then((cities) => {
-      if (!Array.isArray(cities)) throw new Error('Baza miast ma nieprawidłowy format.');
+      if (!Array.isArray(cities)) throw new Error('Baza miast ma nieprawidĹ‚owy format.');
       const validCities = cities.filter(validateCityRecord);
       weatherCities = validCities;
       weatherCitiesBySlug = Object.fromEntries(validCities.map((city) => [city.slug, city]));
@@ -84,20 +84,20 @@ function getRegionCityCount(regionSlug) {
 }
 
 const guideSchemas = {
-  '/poradniki/jak-czytac-radar-opadow/': 'Jak czytać radar opadów?',
-  '/poradniki/jak-sprawdzic-czy-bedzie-padac/': 'Jak sprawdzić, czy będzie padać?',
-  '/poradniki/jak-sprawdzic-pogode-przed-podroza/': 'Jak sprawdzić pogodę przed podróżą?',
-  '/poradniki/jak-sprawdzic-pogode-na-weekend/': 'Jak sprawdzić pogodę na weekend?',
+  '/poradniki/jak-czytac-radar-opadow/': 'Jak czytaÄ‡ radar opadĂłw?',
+  '/poradniki/jak-sprawdzic-czy-bedzie-padac/': 'Jak sprawdziÄ‡, czy bÄ™dzie padaÄ‡?',
+  '/poradniki/jak-sprawdzic-pogode-przed-podroza/': 'Jak sprawdziÄ‡ pogodÄ™ przed podrĂłĹĽÄ…?',
+  '/poradniki/jak-sprawdzic-pogode-na-weekend/': 'Jak sprawdziÄ‡ pogodÄ™ na weekend?',
   '/poradniki/kiedy-burza-jest-blisko/': 'Kiedy burza jest blisko?',
-  '/poradniki/jak-zabezpieczyc-balkon-przed-wichura/': 'Jak zabezpieczyć balkon przed wichurą?',
-  '/poradniki/co-oznaczaja-kolory-na-radarze-pogodowym/': 'Co oznaczają kolory na radarze pogodowym?',
-  '/poradniki/jak-sprawdzic-czy-bedzie-burza/': 'Jak sprawdzić, czy będzie burza?',
-  '/poradniki/jak-przygotowac-sie-na-burze/': 'Jak przygotować się na burzę?',
-  '/poradniki/jak-sprawdzic-kierunek-wiatru/': 'Jak sprawdzić kierunek wiatru?',
-  '/poradniki/jak-sprawdzic-silny-wiatr/': 'Jak sprawdzić silny wiatr?',
-  '/poradniki/jak-przetrwac-upal/': 'Jak przetrwać upał?',
-  '/poradniki/czym-rozni-sie-prognoza-od-radaru/': 'Czym różni się prognoza od radaru?',
-  '/poradniki/co-oznaczaja-ostrzezenia-imgw/': 'Co oznaczają ostrzeżenia IMGW?'
+  '/poradniki/jak-zabezpieczyc-balkon-przed-wichura/': 'Jak zabezpieczyÄ‡ balkon przed wichurÄ…?',
+  '/poradniki/co-oznaczaja-kolory-na-radarze-pogodowym/': 'Co oznaczajÄ… kolory na radarze pogodowym?',
+  '/poradniki/jak-sprawdzic-czy-bedzie-burza/': 'Jak sprawdziÄ‡, czy bÄ™dzie burza?',
+  '/poradniki/jak-przygotowac-sie-na-burze/': 'Jak przygotowaÄ‡ siÄ™ na burzÄ™?',
+  '/poradniki/jak-sprawdzic-kierunek-wiatru/': 'Jak sprawdziÄ‡ kierunek wiatru?',
+  '/poradniki/jak-sprawdzic-silny-wiatr/': 'Jak sprawdziÄ‡ silny wiatr?',
+  '/poradniki/jak-przetrwac-upal/': 'Jak przetrwaÄ‡ upaĹ‚?',
+  '/poradniki/czym-rozni-sie-prognoza-od-radaru/': 'Czym rĂłĹĽni siÄ™ prognoza od radaru?',
+  '/poradniki/co-oznaczaja-ostrzezenia-imgw/': 'Co oznaczajÄ… ostrzeĹĽenia IMGW?'
 };
 
 function addJsonLd(schema) {
@@ -150,40 +150,35 @@ function formatImgwDateTime(value) {
 }
 
 function getWarningDegreeLabel(warning) {
-  if (warning.category === 'hydrological' && Number(warning.degree) === -1) return 'Susza hydrologiczna';
   if (warning.degree === null || warning.degree === undefined) return 'Brak stopnia';
   return `Stopień ${warning.degree}`;
 }
 
 function renderImgwWarningCard(warning) {
   const details = Array.isArray(warning.areaDetails) ? warning.areaDetails : [];
-  const detailsMarkup = warning.category === 'hydrological'
-    ? details.map((area) => `<li><strong>${area.voivodeship || 'Obszar'}</strong>${area.description ? `<br>${area.description}` : ''}${area.basinCodes?.length ? `<br>Kod zlewni: ${area.basinCodes.join(', ')}` : ''}</li>`).join('')
-    : (warning.areaDetails?.length ? `<li><strong>Zakres TERYT</strong>: ${warning.areaDetails.join(', ')}</li>` : '');
+  const detailsMarkup = details.length ? `<ul class="imgw-warning-list">${details.map((area) => `<li>${area}</li>`).join('')}</ul>` : '';
 
-  return `<article class="imgw-warning-card"><div class="imgw-warning-meta"><span class="imgw-warning-badge">${warning.category === 'hydrological' ? 'Hydrologiczne' : 'Meteorologiczne'}</span><strong>${warning.eventName}</strong><span>${getWarningDegreeLabel(warning)}</span><span>Prawdopodobieństwo: ${warning.probability ?? 'brak danych'}%</span></div><p>${warning.description || 'Brak opisu dla tego ostrzeżenia.'}</p><div class="imgw-warning-details"><div><strong>Obszar:</strong> ${warning.areaSummary || 'brak danych'}</div><div><strong>Obowiązuje od:</strong> ${formatImgwDateTime(warning.validFrom)}</div><div><strong>Obowiązuje do:</strong> ${formatImgwDateTime(warning.validTo)}</div>${warning.bureau ? `<div><strong>Biuro:</strong> ${warning.bureau}</div>` : ''}${warning.note ? `<div><strong>Uwagi:</strong> ${warning.note}</div>` : ''}${detailsMarkup ? `<ul class="imgw-warning-list">${detailsMarkup}</ul>` : ''}</div></article>`;
+  return `<article class="imgw-warning-card"><div class="imgw-warning-meta"><span class="imgw-warning-badge">Meteorologiczne</span><strong>${warning.eventName}</strong><span>${getWarningDegreeLabel(warning)}</span><span>Prawdopodobieństwo: ${warning.probability ?? 'brak danych'}%</span></div><p>${warning.description || 'Brak opisu dla tego ostrzeżenia.'}</p><div class="imgw-warning-details"><div><strong>${warning.areaSummary || 'Obszar: brak danych'}</strong></div><div><strong>Obowiązuje od:</strong> ${formatImgwDateTime(warning.validFrom)}</div><div><strong>Obowiązuje do:</strong> ${formatImgwDateTime(warning.validTo)}</div>${warning.bureau ? `<div><strong>Biuro:</strong> ${warning.bureau}</div>` : ''}${warning.note ? `<div><strong>Uwagi:</strong> ${warning.note}</div>` : ''}${detailsMarkup}</div><div class="imgw-warning-source"><a class="card-link" href="https://meteo.imgw.pl/dyn/" rel="nofollow noopener" target="_blank">Sprawdź szczegóły w IMGW-PIB →</a></div></article>`;
 }
 
 function renderImgwWarnings(container, data) {
   const meteorological = Array.isArray(data?.meteorological) ? data.meteorological : [];
-  const hydrological = Array.isArray(data?.hydrological) ? data.hydrological : [];
   const fetchedAt = data?.fetchedAt ? new Intl.DateTimeFormat('pl-PL', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(data.fetchedAt)) : null;
   const officialMapUrl = data?.sourceUrl || 'https://meteo.imgw.pl/dyn/';
   const sourceName = data?.sourceName || 'Instytut Meteorologii i Gospodarki Wodnej – Państwowy Instytut Badawczy';
 
-  if (!meteorological.length && !hydrological.length) {
+  if (!meteorological.length) {
     container.innerHTML = `<div class="imgw-warning-empty"><h3>Brak aktywnych ostrzeżeń</h3><p>Nie ma teraz aktywnych ostrzeżeń IMGW-PIB albo dane nie zawierają jeszcze nowych komunikatów.</p></div><div class="imgw-warning-footer"><div>Źródło danych: ${sourceName}.</div><div>Dane IMGW-PIB zostały przetworzone przez MeteoLive w celu czytelnej prezentacji.</div><div>MeteoLive nie jest oficjalnym serwisem ostrzegawczym. W sytuacjach zagrożenia zawsze sprawdzaj oficjalne komunikaty IMGW-PIB oraz lokalnych służb.</div><div><a href="${officialMapUrl}" rel="nofollow noopener" target="_blank">Sprawdź oficjalną mapę IMGW-PIB</a></div>${fetchedAt ? `<div>Ostatnie pobranie: ${fetchedAt}</div>` : ''}</div>`;
     return;
   }
 
-  container.innerHTML = `<div class="imgw-warnings-shell"><div class="imgw-warning-footer"><div>Źródło danych: ${sourceName}.</div><div>Dane IMGW-PIB zostały przetworzone przez MeteoLive w celu czytelnej prezentacji.</div><div>MeteoLive nie jest oficjalnym serwisem ostrzegawczym. W sytuacjach zagrożenia zawsze sprawdzaj oficjalne komunikaty IMGW-PIB oraz lokalnych służb.</div><div><a href="${officialMapUrl}" rel="nofollow noopener" target="_blank">Sprawdź oficjalną mapę IMGW-PIB</a></div>${fetchedAt ? `<div>Ostatnie pobranie: ${fetchedAt}</div>` : ''}</div><div class="imgw-warnings-grid">${meteorological.length ? `<section class="imgw-warning-group"><h3>Ostrzeżenia meteorologiczne</h3>${meteorological.map(renderImgwWarningCard).join('')}</section>` : ''}${hydrological.length ? `<section class="imgw-warning-group"><h3>Ostrzeżenia hydrologiczne</h3>${hydrological.map(renderImgwWarningCard).join('')}</section>` : ''}</div></div>`;
+  container.innerHTML = `<div class="imgw-warnings-shell"><div class="imgw-warning-footer"><div>Źródło danych: ${sourceName}.</div><div>Dane IMGW-PIB zostały przetworzone przez MeteoLive w celu czytelnej prezentacji.</div><div>MeteoLive nie jest oficjalnym serwisem ostrzegawczym. W sytuacjach zagrożenia zawsze sprawdzaj oficjalne komunikaty IMGW-PIB oraz lokalnych służb.</div><div><a href="${officialMapUrl}" rel="nofollow noopener" target="_blank">Sprawdź oficjalną mapę IMGW-PIB</a></div>${fetchedAt ? `<div>Ostatnie pobranie: ${fetchedAt}</div>` : ''}</div><div class="imgw-warnings-grid"><section class="imgw-warning-group"><h3>Ostrzeżenia meteorologiczne</h3>${meteorological.map(renderImgwWarningCard).join('')}</section></div></div>`;
 }
-
 async function loadImgwWarnings() {
   const container = document.querySelector('[data-imgw-warnings]');
   if (!container) return;
   injectImgwWarningsStyles();
-  container.innerHTML = '<div class="imgw-warning-empty">Ładuję aktualne ostrzeżenia IMGW-PIB...</div>';
+  container.innerHTML = '<div class="imgw-warning-empty">ĹadujÄ™ aktualne ostrzeĹĽenia IMGW-PIB...</div>';
 
   try {
     const response = await fetch(imgwWarningsApiUrl, { headers: { Accept: 'application/json' } });
@@ -191,7 +186,7 @@ async function loadImgwWarnings() {
     if (!response.ok || !data) throw new Error(`IMGW warnings API error: ${response.status}`);
     renderImgwWarnings(container, data);
   } catch (error) {
-    container.innerHTML = `<div class="imgw-warning-error"><h3>Nie udało się chwilowo pobrać danych ostrzeżeń.</h3><p>Sprawdź oficjalną mapę IMGW-PIB.</p></div><div class="imgw-warning-footer"><div>Źródło danych: Instytut Meteorologii i Gospodarki Wodnej – Państwowy Instytut Badawczy.</div><div><a href="https://meteo.imgw.pl/dyn/" rel="nofollow noopener" target="_blank">Sprawdź oficjalną mapę IMGW-PIB</a></div></div>`;
+    container.innerHTML = `<div class="imgw-warning-error"><h3>Nie udaĹ‚o siÄ™ chwilowo pobraÄ‡ danych ostrzeĹĽeĹ„.</h3><p>SprawdĹş oficjalnÄ… mapÄ™ IMGW-PIB.</p></div><div class="imgw-warning-footer"><div>ĹąrĂłdĹ‚o danych: Instytut Meteorologii i Gospodarki Wodnej â€“ PaĹ„stwowy Instytut Badawczy.</div><div><a href="https://meteo.imgw.pl/dyn/" rel="nofollow noopener" target="_blank">SprawdĹş oficjalnÄ… mapÄ™ IMGW-PIB</a></div></div>`;
   }
 }
 
@@ -200,7 +195,7 @@ if (currentPath === '/poradniki/') {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: 'Poradniki pogodowe',
-    description: 'Proste poradniki pogodowe MeteoLive o radarach, opadach, burzach, wietrze, upale, podróży i ostrzeżeniach.',
+    description: 'Proste poradniki pogodowe MeteoLive o radarach, opadach, burzach, wietrze, upale, podrĂłĹĽy i ostrzeĹĽeniach.',
     url: `${siteBaseUrl}/poradniki/`,
     publisher: buildSitePublisher(),
     mainEntity: {
@@ -216,7 +211,7 @@ if (guideSchemas[currentPath]) {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: title,
-    description: `${title} — praktyczny poradnik pogodowy MeteoLive napisany prostym językiem.`,
+    description: `${title} â€” praktyczny poradnik pogodowy MeteoLive napisany prostym jÄ™zykiem.`,
     inLanguage: 'pl-PL',
     url: `${siteBaseUrl}${currentPath}`,
     mainEntityOfPage: `${siteBaseUrl}${currentPath}`,
@@ -226,9 +221,9 @@ if (guideSchemas[currentPath]) {
 }
 
 const weatherCodeLabels = {
-  clearsky: 'bezchmurnie', fair: 'pogodnie', partlycloudy: 'częściowe zachmurzenie', cloudy: 'pochmurno',
-  lightrain: 'słaby deszcz', rain: 'deszcz', heavyrain: 'silny deszcz', lightsnow: 'słaby śnieg', snow: 'śnieg', heavysnow: 'silny śnieg',
-  sleet: 'deszcz ze śniegiem', fog: 'mgła', lightrainshowers: 'przelotny słaby deszcz', rainshowers: 'przelotny deszcz', heavyrainshowers: 'silne przelotne opady',
+  clearsky: 'bezchmurnie', fair: 'pogodnie', partlycloudy: 'czÄ™Ĺ›ciowe zachmurzenie', cloudy: 'pochmurno',
+  lightrain: 'sĹ‚aby deszcz', rain: 'deszcz', heavyrain: 'silny deszcz', lightsnow: 'sĹ‚aby Ĺ›nieg', snow: 'Ĺ›nieg', heavysnow: 'silny Ĺ›nieg',
+  sleet: 'deszcz ze Ĺ›niegiem', fog: 'mgĹ‚a', lightrainshowers: 'przelotny sĹ‚aby deszcz', rainshowers: 'przelotny deszcz', heavyrainshowers: 'silne przelotne opady',
   thunderstorm: 'burza', rainandthunder: 'deszcz i burza', heavyrainandthunder: 'silny deszcz i burza'
 };
 
@@ -265,7 +260,7 @@ function injectForecastStyles() {
 }
 
 function normalizeText(value) {
-  return String(value || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ł/g, 'l');
+  return String(value || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/Ĺ‚/g, 'l');
 }
 
 function scoreCitySearchMatch(city, query) {
@@ -342,7 +337,7 @@ function createForecastSection(cityName) {
   injectForecastStyles();
   const section = document.createElement('section');
   section.className = 'section forecast-widget';
-  section.innerHTML = `<div class="container content-card" data-forecast-widget><div class="forecast-header"><div><span class="eyebrow"><span class="pulse"></span> Prognoza zewnętrzna</span><h2>Pogoda ${cityName} — prognoza</h2><p class="section-intro">Prognoza jest pobierana z MET Norway na podstawie współrzędnych miasta i zapisywana lokalnie w przeglądarce na około 60 minut.</p></div></div><p>Ładuję prognozę...</p></div>`;
+  section.innerHTML = `<div class="container content-card" data-forecast-widget><div class="forecast-header"><div><span class="eyebrow"><span class="pulse"></span> Prognoza zewnÄ™trzna</span><h2>Pogoda ${cityName} â€” prognoza</h2><p class="section-intro">Prognoza jest pobierana z MET Norway na podstawie wspĂłĹ‚rzÄ™dnych miasta i zapisywana lokalnie w przeglÄ…darce na okoĹ‚o 60 minut.</p></div></div><p>ĹadujÄ™ prognozÄ™...</p></div>`;
   const hero = document.querySelector('.hero');
   if (hero?.parentNode) hero.parentNode.insertBefore(section, hero.nextSibling);
   return section.querySelector('[data-forecast-widget]');
@@ -357,7 +352,7 @@ function renderForecast(container, cityName, data) {
   const nextBlocks = timeseries.slice(0, 4);
   const dailyForecast = buildDailyForecast(timeseries);
   const updatedAt = new Intl.DateTimeFormat('pl-PL', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }).format(new Date());
-  container.innerHTML = `<div class="forecast-header"><div><span class="eyebrow"><span class="pulse"></span> Prognoza zewnętrzna</span><h2>Pogoda ${cityName} — teraz i kolejne dni</h2><p class="section-intro">Dane orientacyjne dla współrzędnych miasta. Przy groźnej pogodzie sprawdzaj też oficjalne ostrzeżenia IMGW-PIB.</p></div><p class="notice">Aktualizacja widoku: ${updatedAt}</p></div><div class="forecast-current"><div class="forecast-metric"><span>Temperatura</span><strong>${Math.round(details.air_temperature)}°C</strong></div><div class="forecast-metric"><span>Warunki</span><strong>${describeWeather(symbol)}</strong></div><div class="forecast-metric"><span>Wiatr</span><strong>${Math.round(details.wind_speed || 0)} m/s</strong></div><div class="forecast-metric"><span>Opad</span><strong>${getPrecipitation(nowBlock).toFixed(1)} mm</strong></div></div><h3>Prognoza godzinowa</h3><div class="forecast-hours">${nextBlocks.map((block) => { const itemDetails = block.data.instant.details || {}; const itemSymbol = block.data.next_1_hours?.summary?.symbol_code || block.data.next_6_hours?.summary?.symbol_code || ''; return `<div class="forecast-hour"><span>${formatForecastTime(block.time)}</span><strong>${Math.round(itemDetails.air_temperature)}°C</strong><p>${describeWeather(itemSymbol)}</p><span>Wiatr: ${Math.round(itemDetails.wind_speed || 0)} m/s · Opad: ${getPrecipitation(block).toFixed(1)} mm</span></div>`; }).join('')}</div><h3>Prognoza na kolejne dni</h3><div class="forecast-days">${dailyForecast.map((day) => `<div class="forecast-day"><span>${formatForecastDay(day.dateKey)}</span><strong>${day.min}°C / ${day.max}°C</strong><p>${day.description}</p><span>Opad: ${day.precipitation.toFixed(1)} mm</span></div>`).join('')}</div><p class="forecast-source">Dalsza prognoza jest orientacyjna i może się zmieniać. Źródło prognozy: <a href="https://api.met.no/" rel="nofollow noopener">MET Norway / api.met.no</a>. MeteoLive nie jest oficjalnym serwisem ostrzeżeń — komunikaty bezpieczeństwa sprawdzaj w IMGW-PIB.</p>`;
+  container.innerHTML = `<div class="forecast-header"><div><span class="eyebrow"><span class="pulse"></span> Prognoza zewnÄ™trzna</span><h2>Pogoda ${cityName} â€” teraz i kolejne dni</h2><p class="section-intro">Dane orientacyjne dla wspĂłĹ‚rzÄ™dnych miasta. Przy groĹşnej pogodzie sprawdzaj teĹĽ oficjalne ostrzeĹĽenia IMGW-PIB.</p></div><p class="notice">Aktualizacja widoku: ${updatedAt}</p></div><div class="forecast-current"><div class="forecast-metric"><span>Temperatura</span><strong>${Math.round(details.air_temperature)}Â°C</strong></div><div class="forecast-metric"><span>Warunki</span><strong>${describeWeather(symbol)}</strong></div><div class="forecast-metric"><span>Wiatr</span><strong>${Math.round(details.wind_speed || 0)} m/s</strong></div><div class="forecast-metric"><span>Opad</span><strong>${getPrecipitation(nowBlock).toFixed(1)} mm</strong></div></div><h3>Prognoza godzinowa</h3><div class="forecast-hours">${nextBlocks.map((block) => { const itemDetails = block.data.instant.details || {}; const itemSymbol = block.data.next_1_hours?.summary?.symbol_code || block.data.next_6_hours?.summary?.symbol_code || ''; return `<div class="forecast-hour"><span>${formatForecastTime(block.time)}</span><strong>${Math.round(itemDetails.air_temperature)}Â°C</strong><p>${describeWeather(itemSymbol)}</p><span>Wiatr: ${Math.round(itemDetails.wind_speed || 0)} m/s Â· Opad: ${getPrecipitation(block).toFixed(1)} mm</span></div>`; }).join('')}</div><h3>Prognoza na kolejne dni</h3><div class="forecast-days">${dailyForecast.map((day) => `<div class="forecast-day"><span>${formatForecastDay(day.dateKey)}</span><strong>${day.min}Â°C / ${day.max}Â°C</strong><p>${day.description}</p><span>Opad: ${day.precipitation.toFixed(1)} mm</span></div>`).join('')}</div><p class="forecast-source">Dalsza prognoza jest orientacyjna i moĹĽe siÄ™ zmieniaÄ‡. ĹąrĂłdĹ‚o prognozy: <a href="https://api.met.no/" rel="nofollow noopener">MET Norway / api.met.no</a>. MeteoLive nie jest oficjalnym serwisem ostrzeĹĽeĹ„ â€” komunikaty bezpieczeĹ„stwa sprawdzaj w IMGW-PIB.</p>`;
 }
 
 async function loadCityForecast() {
@@ -380,7 +375,7 @@ async function loadCityForecast() {
     localStorage.setItem(cacheKey, JSON.stringify({ savedAt: Date.now(), data }));
     renderForecast(container, cityName, data);
   } catch (error) {
-    container.innerHTML = `<h2>Pogoda ${cityName} — prognoza chwilowo niedostępna</h2><div class="forecast-error"><p>Nie udało się pobrać prognozy z MET Norway. Radary i mapy pogodowe poniżej nadal działają.</p></div><p class="forecast-source">Źródło prognozy: <a href="https://api.met.no/" rel="nofollow noopener">MET Norway / api.met.no</a>.</p>`;
+    container.innerHTML = `<h2>Pogoda ${cityName} â€” prognoza chwilowo niedostÄ™pna</h2><div class="forecast-error"><p>Nie udaĹ‚o siÄ™ pobraÄ‡ prognozy z MET Norway. Radary i mapy pogodowe poniĹĽej nadal dziaĹ‚ajÄ….</p></div><p class="forecast-source">ĹąrĂłdĹ‚o prognozy: <a href="https://api.met.no/" rel="nofollow noopener">MET Norway / api.met.no</a>.</p>`;
   }
 }
 
@@ -405,13 +400,13 @@ function initCitySearch() {
 
   const updateCount = (visible, label = 'miast') => {
     if (!countEl) return;
-    if (visible === 1) countEl.textContent = `Znaleziono 1 ${label === 'województw' ? 'województwo' : 'miasto'}.`;
+    if (visible === 1) countEl.textContent = `Znaleziono 1 ${label === 'wojewĂłdztw' ? 'wojewĂłdztwo' : 'miasto'}.`;
     else countEl.textContent = `Znaleziono ${visible} ${label}.`;
   };
 
   const renderSearchResults = (items) => {
     if (!results) return;
-    results.innerHTML = items.slice(0, citySearchResultLimit).map((city) => `<a class="search-result-card" href="/pogoda/${city.slug}/"><span>${city.voivodeship || 'Miasto'}</span><strong>${city.name}</strong><span>Powiat: ${city.county || '—'} · Otwórz prognozę →</span></a>`).join('');
+    results.innerHTML = items.slice(0, citySearchResultLimit).map((city) => `<a class="search-result-card" href="/pogoda/${city.slug}/"><span>${city.voivodeship || 'Miasto'}</span><strong>${city.name}</strong><span>Powiat: ${city.county || 'â€”'} Â· OtwĂłrz prognozÄ™ â†’</span></a>`).join('');
   };
 
   const filterCities = () => {
@@ -426,7 +421,7 @@ function initCitySearch() {
         card.classList.toggle('city-card-hidden', !matches);
         if (matches) visibleCards += 1;
       });
-      updateCount(visibleCards, document.querySelector('[data-region-grid]') ? 'województw' : 'miast');
+      updateCount(visibleCards, document.querySelector('[data-region-grid]') ? 'wojewĂłdztw' : 'miast');
     }
 
     if (results) {
@@ -446,24 +441,24 @@ function initCitySearch() {
   };
 
   input.addEventListener('input', filterCities);
-  if (cards.length) updateCount(cards.length, document.querySelector('[data-region-grid]') ? 'województw' : 'miast');
+  if (cards.length) updateCount(cards.length, document.querySelector('[data-region-grid]') ? 'wojewĂłdztw' : 'miast');
   if (results) renderSearchResults([]);
 
   if (locateButton) {
     locateButton.addEventListener('click', () => {
       if (!navigator.geolocation) {
-        if (status) status.textContent = 'Twoja przeglądarka nie obsługuje geolokalizacji.';
+        if (status) status.textContent = 'Twoja przeglÄ…darka nie obsĹ‚uguje geolokalizacji.';
         return;
       }
-      if (status) status.textContent = 'Sprawdzam najbliższe miasto...';
+      if (status) status.textContent = 'Sprawdzam najbliĹĽsze miasto...';
       navigator.geolocation.getCurrentPosition((position) => {
         const { latitude, longitude } = position.coords;
         const nearest = weatherCities.map((city) => ({ ...city, distance: distanceKm(latitude, longitude, city.lat, city.lon) })).sort((a, b) => a.distance - b.distance)[0];
         if (!nearest) return;
-        if (status) status.textContent = `Najbliższe dostępne miasto: ${nearest.name} (${Math.round(nearest.distance)} km). Przekierowuję...`;
+        if (status) status.textContent = `NajbliĹĽsze dostÄ™pne miasto: ${nearest.name} (${Math.round(nearest.distance)} km). PrzekierowujÄ™...`;
         window.location.href = `/pogoda/${nearest.slug}/`;
       }, () => {
-        if (status) status.textContent = 'Nie udało się pobrać lokalizacji. Wpisz nazwę miasta ręcznie.';
+        if (status) status.textContent = 'Nie udaĹ‚o siÄ™ pobraÄ‡ lokalizacji. Wpisz nazwÄ™ miasta rÄ™cznie.';
       }, { enableHighAccuracy: false, timeout: 10000, maximumAge: 600000 });
     });
   }
@@ -476,8 +471,8 @@ async function addWeatherCollectionSchemas() {
     addJsonLd({
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
-      name: 'Pogoda w Polsce według województw',
-      description: 'Indeks pogody MeteoLive: województwa, wyszukiwarka miast i lokalne prognozy pogody.',
+      name: 'Pogoda w Polsce wedĹ‚ug wojewĂłdztw',
+      description: 'Indeks pogody MeteoLive: wojewĂłdztwa, wyszukiwarka miast i lokalne prognozy pogody.',
       url: `${siteBaseUrl}/pogoda/`,
       publisher: buildSitePublisher(),
       mainEntity: {
@@ -499,7 +494,7 @@ async function addWeatherCollectionSchemas() {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
       name: 'Pogoda mazowieckie',
-      description: 'Miasta i powiaty w województwie mazowieckim dostępne w MeteoLive.',
+      description: 'Miasta i powiaty w wojewĂłdztwie mazowieckim dostÄ™pne w MeteoLive.',
       url: `${siteBaseUrl}/pogoda/mazowieckie/`,
       publisher: buildSitePublisher(),
       mainEntity: {
@@ -542,7 +537,7 @@ function createCookieConsentBanner() {
   const banner = document.createElement('section');
   banner.className = 'cookie-banner';
   banner.setAttribute('aria-label', 'Informacja o cookies');
-  banner.innerHTML = `<div class="cookie-banner__content"><strong>Cookies, zewnętrzne mapy i analityka</strong><p>MeteoLive korzysta z podstawowych rozwiązań technicznych, zewnętrznych map pogodowych i prognozy MET Norway. Google Analytics uruchomimy tylko po kliknięciu „Akceptuję”.</p><a href="/cookies/">Dowiedz się więcej</a></div><div class="cookie-banner__actions"><button type="button" class="btn cookie-secondary" data-cookie-choice="necessary">Tylko niezbędne</button><button type="button" class="btn primary" data-cookie-choice="accepted">Akceptuję</button></div>`;
+  banner.innerHTML = `<div class="cookie-banner__content"><strong>Cookies, zewnÄ™trzne mapy i analityka</strong><p>MeteoLive korzysta z podstawowych rozwiÄ…zaĹ„ technicznych, zewnÄ™trznych map pogodowych i prognozy MET Norway. Google Analytics uruchomimy tylko po klikniÄ™ciu â€žAkceptujÄ™â€ť.</p><a href="/cookies/">Dowiedz siÄ™ wiÄ™cej</a></div><div class="cookie-banner__actions"><button type="button" class="btn cookie-secondary" data-cookie-choice="necessary">Tylko niezbÄ™dne</button><button type="button" class="btn primary" data-cookie-choice="accepted">AkceptujÄ™</button></div>`;
   banner.querySelectorAll('[data-cookie-choice]').forEach((button) => {
     button.addEventListener('click', () => {
       const choice = button.dataset.cookieChoice || 'closed';
