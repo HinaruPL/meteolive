@@ -1,4 +1,4 @@
-﻿# MeteoLive â€” source research
+﻿# MeteoLive — source research
 
 This file tracks external map/data sources considered for MeteoLive.
 
@@ -12,9 +12,9 @@ MeteoLive is now live on `https://meteolive.pl/`. The current production version
 
 Current use:
 
-- `/radar-opadow/` â€” rain/weather map preview
-- `/radar-wiatru/` â€” wind map preview
-- `/mapa-temperatury/` â€” temperature map preview
+- `/radar-opadow/` — rain/weather map preview
+- `/radar-wiatru/` — wind map preview
+- `/mapa-temperatury/` — temperature map preview
 
 Notes:
 
@@ -31,7 +31,7 @@ Decision:
 
 Current use:
 
-- `/radar-burz/` â€” externally hosted animated storm map image linked to burze.dzis.net.
+- `/radar-burz/` — externally hosted animated storm map image linked to burze.dzis.net.
 
 Notes:
 

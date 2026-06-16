@@ -1,4 +1,4 @@
-﻿# MeteoLive â€” PROJECT_STATUS
+﻿# MeteoLive — PROJECT_STATUS
 
 ## Current status
 
@@ -8,9 +8,9 @@ The weather city database was expanded to the current production-ready dataset i
 
 The `/pogoda/` section has been rebuilt from a flat city list into a structured weather directory:
 
-- `/pogoda/` â€” list of 16 voivodeships + city search + geolocation.
-- `/pogoda/[wojewodztwo]/` â€” cities from a voivodeship.
-- `/pogoda/[miasto]/` â€” city forecast page.
+- `/pogoda/` — list of 16 voivodeships + city search + geolocation.
+- `/pogoda/[wojewodztwo]/` — cities from a voivodeship.
+- `/pogoda/[miasto]/` — city forecast page.
 
 Existing city URLs stay flat under `/pogoda/[miasto]/`, for example `/pogoda/warszawa/`, `/pogoda/krakow/`, `/pogoda/gdynia/`.
 
@@ -67,9 +67,12 @@ The site is still being prepared for a calm future ad rollout after quality cont
 Recent audit before AdSense:
 
 - verified the main site structure, `sitemap.xml`, `robots.txt`, city search, hub pages, and formal pages,
+- standardized the main navigation, footer, and internal linking across the key public pages,
 - fixed missing `twitter:*` tags on a few existing pages,
 - confirmed the site is ready for a controlled future AdSense rollout from the content and SEO side,
 - AdSense is still not added yet.
+
+Next step after this cleanup can be a cautious AdSense rollout after one more quality pass.
 
 IMGW warnings integration:
 
@@ -100,7 +103,7 @@ IMGW warnings integration:
 - Added 16 test city records, one from each voivodeship, to `data/weather-cities.json`.
 - Created and regenerated 47 city pages from `data/weather-cities.json`.
 - Regeneration commit:
-  - `23be7b3b886947807771e1f701816ca8589cdd4d` â€” `Regenerate full SEO weather city pages`.
+  - `23be7b3b886947807771e1f701816ca8589cdd4d` — `Regenerate full SEO weather city pages`.
 - Added full SEO city page generator:
   - `tools/generate-weather-city-pages.mjs`
 - The generator creates full city pages with:
@@ -231,7 +234,7 @@ node tools/generate-weather-region-pages.mjs
 - Added cookie banner through `script.js`.
 - GA4 measurement ID:
   - `G-MQ1X7GSLXX`
-- GA4 loads only after the user clicks `AkceptujÄ™` in the cookie banner.
+- GA4 loads only after the user clicks `Akceptuję` in the cookie banner.
 - Google AdSense is not added yet.
 
 ## Important notes
