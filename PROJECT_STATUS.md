@@ -1,4 +1,4 @@
-﻿# MeteoLive — PROJECT_STATUS
+# MeteoLive — PROJECT_STATUS
 
 ## Current status
 
@@ -46,15 +46,18 @@ Full Polish city database preparation has started. Added:
 
 This data-sources page is part of the preparation for AdSense and for building user trust through clearer source disclosure.
 
-Prepared the privacy and cookies pages for a future AdSense rollout:
+Prepared and updated the privacy and cookies pages for the AdSense rollout:
 
 - `polityka-prywatnosci/index.html`
 - `cookies/index.html`
 
-Important:
+Google AdSense integration:
 
-- the Google AdSense script has not been added yet,
-- `ads.txt` has not been added yet.
+- added the AdSense script with publisher ID `pub-7645481846348914`,
+- added root `ads.txt`,
+- added cautious placeholder ad areas in selected pages and generated city pages,
+- no intrusive popups or ad placements over forecasts/warnings were added,
+- deployment still needs verification in the Google AdSense panel after Cloudflare Pages publishes the changes.
 
 Added three SEO hub pages:
 
@@ -62,17 +65,16 @@ Added three SEO hub pages:
 - `/pogoda-nad-morzem/`
 - `/pogoda-w-gorach/`
 
-The site is still being prepared for a calm future ad rollout after quality control. Google AdSense is not added yet.
+The site now has a cautious AdSense integration prepared for post-deploy verification in the Google AdSense panel.
 
 Recent audit before AdSense:
 
 - verified the main site structure, `sitemap.xml`, `robots.txt`, city search, hub pages, and formal pages,
 - standardized the main navigation, footer, and internal linking across the key public pages,
 - fixed missing `twitter:*` tags on a few existing pages,
-- confirmed the site is ready for a controlled future AdSense rollout from the content and SEO side,
-- AdSense is still not added yet.
+- confirmed the site was ready for a controlled AdSense rollout from the content and SEO side.
 
-Next step after this cleanup can be a cautious AdSense rollout after one more quality pass.
+Next step after this rollout is to verify AdSense status and serving eligibility in the Google AdSense panel.
 
 IMGW warnings integration:
 
@@ -235,7 +237,8 @@ node tools/generate-weather-region-pages.mjs
 - GA4 measurement ID:
   - `G-MQ1X7GSLXX`
 - GA4 loads only after the user clicks `Akceptuję` in the cookie banner.
-- Google AdSense is not added yet.
+- Google AdSense script is now added with publisher ID `pub-7645481846348914`.
+- `ads.txt` is present in the repository root.
 
 ## Important notes
 
@@ -247,7 +250,7 @@ node tools/generate-weather-region-pages.mjs
 - External source decisions should stay documented in `docs/SOURCES_RESEARCH.md`.
 - Counties remain data/grouping fields for now, not separate URL pages.
 - Existing city URLs stay flat under `/pogoda/[miasto]/`.
-- Google AdSense should be added only after the site has enough finished content and privacy/cookie notes are updated.
+- Google AdSense has been added cautiously; check serving status in the AdSense panel after deploy.
 
 ## Next steps
 
@@ -266,4 +269,4 @@ node tools/generate-weather-region-pages.mjs
 9. Regenerate/update `sitemap.xml` only with pages that actually exist.
 10. Consider Cloudflare Worker cache/proxy for MET Norway if traffic grows significantly.
 11. Configure Email Routing or SMTP for `kontakt@meteolive.pl` later.
-12. Add AdSense only after the site has enough finished content and privacy/cookie notes are updated.
+12. Verify Google AdSense status in the AdSense panel after deploy.

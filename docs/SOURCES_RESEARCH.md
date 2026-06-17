@@ -1,4 +1,4 @@
-﻿# MeteoLive — source research
+# MeteoLive — source research
 
 This file tracks external map/data sources considered for MeteoLive.
 

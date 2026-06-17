@@ -55,12 +55,18 @@ function cityPage(city) {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7645481846348914"
+     crossorigin="anonymous"></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Pogoda ${name}","description":"${escapeHtml(description)}","url":"https://meteolive.pl/pogoda/${slug}/","inLanguage":"pl-PL","isPartOf":{"@type":"WebSite","name":"MeteoLive","url":"https://meteolive.pl/"},"about":{"@type":"Place","name":"${name}","geo":{"@type":"GeoCoordinates","latitude":${lat},"longitude":${lon}},"address":{"@type":"PostalAddress","addressLocality":"${name}","addressRegion":"${voivodeship}","addressCountry":"PL"}}}</script>
 </head>
 <body>
   <header class="site-header"><div class="container nav"><a class="logo" href="/" aria-label="MeteoLive — strona główna"><span class="logo-mark">☁</span><span>MeteoLive</span></a><nav class="nav-links" aria-label="Główna nawigacja"><a href="/radar-burz/">Burze</a><a href="/radar-opadow/">Opady</a><a href="/radar-wiatru/">Wiatr</a><a href="/mapa-temperatury/">Temperatura</a><a href="/ostrzezenia-pogodowe/">Ostrzeżenia</a><a href="/pogoda/">Pogoda</a></nav></div></header>
   <main>
     <section class="hero"><div class="container"><nav class="breadcrumbs" aria-label="Okruszki"><a href="/">Strona główna</a><span>›</span><a href="/pogoda/">Pogoda</a><span>›</span><a href="/pogoda/${escapeHtml(city.voivodeshipSlug)}/">${voivodeship}</a><span>›</span><span>${name}</span></nav><span class="eyebrow"><span class="pulse"></span> Pogoda dla miasta</span><h1>Pogoda ${name}.</h1><p class="lead">Sprawdź lokalną prognozę pogody dla miasta ${name}, radar opadów ustawiony na okolice miasta, radar burz, mapę wiatru, temperaturę oraz oficjalne ostrzeżenia pogodowe. Województwo: ${voivodeship}. Powiat: ${county}.</p></div></section>
+
+    <section class="ad-slot" aria-label="Miejsce na reklamę">
+      <!-- Google AdSense display ad slot can be placed here after approval/configuration in AdSense panel. -->
+    </section>
 
     <section class="section"><div class="container content-card"><h2>Radar opadów ${name} — podgląd na żywo</h2><p class="section-intro">Mapa Windy poniżej jest ustawiona na współrzędne miasta ${name} (${lat}, ${lon}) i przybliżona do okolicy miasta.</p><div class="embed-box"><iframe title="Radar opadów Windy dla ${name}" src="${windyRain}" loading="lazy"></iframe></div><div class="attribution">Mapa: <a href="https://www.windy.com/" rel="nofollow noopener" target="_blank">Windy.com</a>. To podgląd orientacyjny — przy groźnej pogodzie sprawdzaj oficjalne ostrzeżenia IMGW-PIB.</div></div></section>
 
