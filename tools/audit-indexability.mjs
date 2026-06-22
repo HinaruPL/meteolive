@@ -11,6 +11,7 @@ const requiredHubPaths = [
   '/pogoda-na-weekend/',
   '/pogoda-nad-morzem/',
   '/pogoda-w-gorach/',
+  '/najpopularniejsze-miasta-pogoda/',
   '/poradniki/',
   '/skad-bierzemy-dane-pogodowe/',
 ];
@@ -26,6 +27,7 @@ const canonicalSamplePaths = [
   '/pogoda-na-weekend/',
   '/pogoda-nad-morzem/',
   '/pogoda-w-gorach/',
+  '/najpopularniejsze-miasta-pogoda/',
   '/skad-bierzemy-dane-pogodowe/',
 ];
 
@@ -338,6 +340,10 @@ Strony miast istnieją jako statyczne pliki \`pogoda/[slug]/index.html\`. Głów
 ${technicalOk
     ? 'Audyt nie wykazał technicznej blokady indeksacji. Sitemap, robots.txt, canonicale i statyczne pliki stron miast wyglądają poprawnie. Niski poziom indeksacji w Google Search Console najpewniej wynika z czasu potrzebnego na crawling, crawl budget oraz podobieństwa wielu lokalnych stron pogodowych. Warto obserwować GSC po kolejnych deployach i nie wykonywać nerwowych zmian masowych bez danych z raportów Google.'
     : 'Audyt wykazał elementy wymagające poprawy technicznej. Po poprawkach należy ponownie uruchomić skrypt audytowy i sprawdzić raport Google Search Console po kolejnym crawlu.'}
+
+## Działanie po audycie
+
+Po czystym audycie technicznym dodano hub \`/najpopularniejsze-miasta-pogoda/\` oraz mocniejsze linkowanie z \`/\`, \`/pogoda/\` i stopek głównych stron. Celem jest ułatwienie Google odkrywania i priorytetyzacji najważniejszych lokalnych URL-i bez dodawania masowych nowych stron.
 `;
 }
 

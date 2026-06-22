@@ -96,6 +96,12 @@ Indexability and sitemap audit:
 - found no `noindex` issue on `/pogoda/` pages,
 - current recommendation: the low indexed count in Google Search Console is most likely related to crawl timing, crawl budget and similarity of many local weather pages rather than a technical sitemap/canonical/robots blocker.
 
+Post-audit internal linking update:
+
+- added `/najpopularniejsze-miasta-pogoda/` as a curated hub for the most important local weather city pages,
+- linked the hub from the homepage, `/pogoda/`, the sitemap and the repeated footer on key public pages,
+- goal: improve internal linking and help Google discover and prioritize the most important city URLs without adding mass-generated pages.
+
 ## Completed
 
 ### Core site

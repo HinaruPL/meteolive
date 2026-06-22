@@ -1,13 +1,13 @@
 # Audyt indeksowalności MeteoLive
 
-Data audytu: 2026-06-22T15:19:25.994Z
+Data audytu: 2026-06-22T15:39:57.895Z
 
 ## Podsumowanie
 
 - Liczba miast w `data/weather-cities.json`: 1038
 - Liczba statycznych stron miast na dysku: 1038
 - Liczba stron województw na dysku: 16
-- Liczba URL-i w `sitemap.xml`: 1086
+- Liczba URL-i w `sitemap.xml`: 1087
 - Brakujące pliki stron miast: 0
 - Brakujące URL-e miast w sitemap: 0
 - URL-e z sitemap bez pliku: 0
@@ -18,7 +18,7 @@ Data audytu: 2026-06-22T15:19:25.994Z
 
 ## Sitemap
 
-`sitemap.xml` zawiera 1086 URL-i. Audyt potwierdził pokrycie wszystkich miast z bazy, stron województw, hubów SEO i strony źródeł danych.
+`sitemap.xml` zawiera 1087 URL-i. Audyt potwierdził pokrycie wszystkich miast z bazy, stron województw, hubów SEO i strony źródeł danych.
 
 Brakujące URL-e miast:
 
@@ -74,3 +74,7 @@ Strony miast istnieją jako statyczne pliki `pogoda/[slug]/index.html`. Główna
 ## Rekomendacja
 
 Audyt nie wykazał technicznej blokady indeksacji. Sitemap, robots.txt, canonicale i statyczne pliki stron miast wyglądają poprawnie. Niski poziom indeksacji w Google Search Console najpewniej wynika z czasu potrzebnego na crawling, crawl budget oraz podobieństwa wielu lokalnych stron pogodowych. Warto obserwować GSC po kolejnych deployach i nie wykonywać nerwowych zmian masowych bez danych z raportów Google.
+
+## Działanie po audycie
+
+Po czystym audycie technicznym dodano hub `/najpopularniejsze-miasta-pogoda/` oraz mocniejsze linkowanie z `/`, `/pogoda/` i stopek głównych stron. Celem jest ułatwienie Google odkrywania i priorytetyzacji najważniejszych lokalnych URL-i bez dodawania masowych nowych stron.
