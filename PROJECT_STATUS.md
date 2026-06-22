@@ -84,6 +84,18 @@ IMGW warnings integration:
 - the warnings page now shows clear attribution, processing notice, plain-language area descriptions, and an official-map link,
 - MeteoLive still does not present itself as an official warning service.
 
+Indexability and sitemap audit:
+
+- added `tools/audit-indexability.mjs`,
+- generated `docs/indexability-audit.md`,
+- confirmed `data/weather-cities.json` has 1038 cities and all 1038 city pages exist as static `index.html` files,
+- confirmed `sitemap.xml` has 1086 URLs, includes all city URLs, includes voivodeship pages, hub pages and `/skad-bierzemy-dane-pogodowe/`,
+- confirmed no duplicate sitemap URLs, no sitemap URLs without files and no URLs missing a trailing slash,
+- confirmed `robots.txt` allows `/pogoda/` and `/data/` and points to `https://meteolive.pl/sitemap.xml`,
+- checked canonical URLs on the homepage, `/pogoda/`, hub pages, several voivodeships and a distributed sample of 30 city pages,
+- found no `noindex` issue on `/pogoda/` pages,
+- current recommendation: the low indexed count in Google Search Console is most likely related to crawl timing, crawl budget and similarity of many local weather pages rather than a technical sitemap/canonical/robots blocker.
+
 ## Completed
 
 ### Core site
