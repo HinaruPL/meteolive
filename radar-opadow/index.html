@@ -19,15 +19,216 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7645481846348914"
-     crossorigin="anonymous"></script></head>
+     crossorigin="anonymous"></script>
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Strona główna",
+          "item": "https://meteolive.pl/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Radar opadów",
+          "item": "https://meteolive.pl/radar-opadow/"
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Co pokazuje radar opadów w czasie rzeczywistym?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Radar opadów na żywo pokazuje rzeczywiste strefy opadów atmosferycznych (deszcz, śnieg, grad) nad Polską. Dane te pochodzą z naziemnych stacji radarowych (w Polsce jest to sieć POLRAD obsługiwana przez IMGW-PIB) i są aktualizowane co 10 minut."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Czym różni się radar opadów od prognozy deszczu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Prognoza deszczu to symulacja numeryczna modelu meteorologicznego określająca prawdopodobieństwo opadów w przyszłości. Radar opadów pokazuje stan faktyczny – fizycznie zmierzone krople wody i lodu w chmurach w danej minucie."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Co oznacza wskaźnik dBZ na radarze pogodowym?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Wskaźnik dBZ (decybel reflektywności) określa siłę echa radarowego odbitego od opadu. Wartości poniżej 20 dBZ oznaczają mżawkę lub brak opadu na ziemi, 20-35 dBZ to słaby do umiarkowanego deszcz, 35-50 dBZ to silny deszcz, a powyżej 50 dBZ to ulewa nawalna i grad."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Czy radar opadów potrafi odróżnić deszcz od śniegu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Klasyczny radar mierzy jedynie odbicie (reflektywność). Jednak nowoczesne radary o podwójnej polaryzacji (dual-pol) potrafią określić kształt cząsteczek, co pozwala odróżnić deszcz, śnieg, grad, a nawet obiekty nie-meteorologiczne, takie jak ptaki czy owady."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Czym jest zjawisko virga widoczne czasami na radarze?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Virga to opad, który wypada z chmury, ale paruje w suchym powietrzu przed dotarciem do powierzchni ziemi. Radar rejestruje echo w wyższych partiach atmosfery (pokazując deszcz na mapie), jednak na ziemi nie spada ani jedna kropla wody."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Co to jest echo gruntu i dlaczego radar czasami się myli?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Echo gruntu (ground clutter) to zakłócenia wywołane odbiciem wiązki radarowej od obiektów stałych: wzniesień, wysokich budynków czy turbin wiatrowych. Powstają wtedy fałszywe plamy opadowe na mapie, które są stacjonarne."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Jak często aktualizowane są dane radarowe?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Większość radarów naziemnych w Europie, w tym sieć POLRAD w Polsce, wykonuje pełny skan atmosfery co 10 minut. Na naszej stronie dane te są natychmiast odświeżane po ich publikacji w systemie źródłowym."
+          }
+        }
+      ]
+    }
+  ]
+  </script>
+</head>
 <body>
   <header class="site-header"><div class="container nav"><a class="logo" href="/"><span class="logo-mark">☁</span><span>MeteoLive</span></a><nav class="nav-links" aria-label="Główna nawigacja"><a href="/pogoda/">Pogoda</a><a href="/radar-opadow/">Radar opadów</a><a href="/radar-burz/">Radar burz</a><a href="/radar-wiatru/">Radar wiatru</a><a href="/ostrzezenia-pogodowe/">Ostrzeżenia</a><a href="/poradniki/">Poradniki</a></nav></div></header>
   <main>
     <section class="hero"><div class="container"><nav class="breadcrumbs" aria-label="Okruszki"><a href="/">Strona główna</a><span>›</span><span>Radar opadów</span></nav><span class="eyebrow"><span class="pulse"></span> Radar opadów</span><h1>Radar opadów i mapa deszczu.</h1><p class="lead">Sprawdź, gdzie aktualnie znajdują się strefy opadów i czy deszcz może zbliżać się do Twojej okolicy. Radar opadów jest jedną z najpraktyczniejszych map pogodowych, bo pozwala szybko ocenić sytuację bez czytania długiej prognozy.</p></div></section>
-    <section class="section"><div class="container content-card"><h2>Mapa opadów — podgląd na żywo</h2><div class="embed-box"><iframe title="Mapa opadów Windy" src="https://embed.windy.com/embed2.html?lat=52.173&lon=19.480&detailLat=52.173&detailLon=19.480&width=650&height=450&zoom=5&level=surface&overlay=rain&product=ecmwf&menu=&message=true&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=-1"></iframe></div><div class="attribution">Mapa opadów: <a href="https://www.windy.com/" rel="nofollow noopener" target="_blank">Windy.com</a>. Widok służy do szybkiego podglądu stref deszczu, śniegu i opadów mieszanych. Przy trudnych warunkach sprawdź także oficjalne ostrzeżenia.</div></div></section>
-    <section class="section"><div class="container two-col"><article class="content-card"><h2>Jak czytać radar opadów?</h2><p>Radar opadów pokazuje obszary, w których występuje deszcz, śnieg albo mieszane opady. Najważniejsze są trzy rzeczy: intensywność koloru, rozmiar strefy opadu oraz kierunek jej przesuwania.</p><p>Jasny lub delikatny kolor zwykle oznacza słabszy opad, a mocniejsze barwy sugerują bardziej intensywny deszcz. Sama mapa nie daje jednak pełnej odpowiedzi, dlatego warto sprawdzić też mapę wiatru i ostrzeżenia pogodowe.</p></article><article class="content-card"><h2>Kiedy radar opadów jest przydatny?</h2><p>Najbardziej przydaje się przed wyjściem z domu, podróżą, pracą na zewnątrz albo planowaniem spaceru. Pozwala zobaczyć, czy opad jest lokalny i krótki, czy tworzy większą strefę, która może utrzymać się dłużej.</p><p>Ograniczeniem jest to, że mapa pokazuje sytuację bardzo dynamiczną. Opad może słabnąć, nasilać się albo zmienić kierunek. Dlatego radar warto traktować jako szybki podgląd, a nie gwarancję pogody w konkretnym punkcie.</p></article></div></section>
-    <section class="section"><div class="container two-col"><article class="content-card"><h2>Radar opadów a burze</h2><p>Silne, zwarte i szybko rosnące strefy opadów mogą być związane z burzami. W takiej sytuacji warto przejść także do radaru burz i sprawdzić, czy w pobliżu pojawiają się wyładowania atmosferyczne.</p><p>Najlepszy obraz daje porównanie kilku map: opadów, burz, wiatru i ostrzeżeń. Dzięki temu łatwiej ocenić, czy nadchodzi zwykły deszcz, czy pogoda może być gwałtowna.</p></article><article class="content-card"><h2>Co może zaburzać odczyt?</h2><p>Mapa opadów może mieć opóźnienie albo pokazywać dane w sposób uśredniony. Lokalny deszcz może być słabszy lub mocniejszy niż sugeruje mapa, zwłaszcza przy przelotnych opadach i burzach.</p><p>Dlatego przy planowaniu ważnych aktywności warto sprawdzić radar kilka razy, a nie tylko raz. Pogoda potrafi zmienić się w ciągu kilkunastu minut.</p></article></div></section>
-    <section class="section"><div class="container content-card"><h2>FAQ — radar opadów</h2><div class="faq"><details><summary>Co pokazuje radar opadów?</summary><p>Pokazuje obszary, w których występują opady oraz ich przybliżoną intensywność.</p></details><details><summary>Czy radar opadów powie dokładnie, kiedy zacznie padać?</summary><p>Nie zawsze. Pomaga ocenić kierunek i odległość strefy opadów, ale pogoda może się zmieniać bardzo szybko.</p></details><details><summary>Czy radar opadów pokazuje śnieg?</summary><p>Mapa może pokazywać różne rodzaje opadów zależnie od ustawień i źródła danych. Przy temperaturze blisko zera warto porównać ją z mapą temperatury.</p></details><details><summary>Z czym porównać radar opadów?</summary><p>Najlepiej z mapą wiatru, radarem burz, mapą temperatury i ostrzeżeniami pogodowymi.</p></details></div></div></section>
+    <section class="section"><div class="container content-card"><h2>Mapa opadów — podgląd na żywo</h2><div class="embed-box"><iframe title="Mapa opadów Windy" src="https://embed.windy.com/embed2.html?lat=52.173&lon=19.480&detailLat=52.173&detailLon=19.480&width=650&height=450&zoom=5&level=surface&overlay=radar&product=radar&menu=&message=true&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=-1"></iframe></div><div class="attribution">Mapa opadów: <a href="https://www.windy.com/" rel="nofollow noopener" target="_blank">Windy.com</a>. Widok służy do szybkiego podglądu stref deszczu, śniegu i opadów mieszanych. Przy trudnych warunkach sprawdź także oficjalne ostrzeżenia.</div></div></section>
+
+    <section class="section">
+      <div class="container two-col">
+        <article class="content-card">
+          <h2>Radar opadów a burze</h2>
+          <p>Silne, zwarte i szybko rosnące strefy opadów mogą być związane z burzami. W takiej sytuacji warto przejść także do radaru burz i sprawdzić, czy w pobliżu pojawiają się wyładowania atmosferyczne.</p>
+          <p>Najlepszy obraz daje porównanie kilku map: opadów, burz, wiatru i ostrzeżeń. Dzięki temu łatwiej ocenić, czy nadchodzi zwykły deszcz, czy pogoda może być gwałtowna.</p>
+        </article>
+        <article class="content-card">
+          <h2>Co może zaburzać odczyt?</h2>
+          <p>Mapa opadów może mieć opóźnienie albo pokazywać dane w sposób uśredniony. Lokalny deszcz może być słabszy lub mocniejszy niż sugeruje mapa, zwłaszcza przy przelotnych opadach i burzach.</p>
+          <p>Dlatego przy planowaniu ważnych aktywności warto sprawdzić radar kilka razy, a nie tylko raz. Pogoda potrafi zmienić się w ciągu kilkunastu minut.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-light">
+      <div class="container content-card">
+        <h2>Jak działają radary meteorologiczne w praktyce?</h2>
+        <p>Radary pogodowe to jedne z najbardziej skomplikowanych urządzeń stosowanych w nowoczesnej meteorologii. Ich działanie opiera się na wysyłaniu bardzo krótkich impulsów promieniowania elektromagnetycznego (najczęściej w pasmie mikrofalowym C o częstotliwości około 5.6 GHz) przez obracającą się antenę paraboliczną. Wiązka ta rozchodzi się w atmosferze i napotyka przeszkody – hydrometeory, czyli krople deszczu, płatki śniegu, krupki lodowe czy gradziny.</p>
+        <p>Gdy impuls napotka opad, część energii ulega rozproszeniu wstecznemu i powraca do anteny radarowej jako tzw. echo radarowe. Odbiornik mierzy moc powracającego sygnału oraz czas, jaki upłynął od wysłania impulsu do jego odebrania. Na podstawie czasu obliczana jest dokładna odległość strefy opadu od radaru, a moc sygnału określa gęstość i wielkość cząsteczek wody w powietrzu, czyli intensywność opadu. Współczesne radary dopplerowskie mierzą dodatkowo przesunięcie częstotliwości powracającej fali (efekt Dopplera), co pozwala określić prędkość i kierunek ruchu opadu względem radaru, a tym samym prędkość wiatru wewnątrz chmur.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Interpretacja skali reflektywności (dBZ)</h2>
+        <p>Intensywność opadów prezentowana na radarach jest bezpośrednio związana ze skalą <strong>dBZ</strong> (decybelami reflektywności). Jest to skala logarytmiczna, co oznacza, że niewielki wzrost wartości dBZ odpowiada ogromnemu wzrostowi ilości wody w chmurze. Poniższa tabela przedstawia klasyfikację intensywności opadów na podstawie wskaźnika dBZ stosowaną przez meteorologów:</p>
+        
+        <div class="table-wrap" style="margin: 2rem 0; overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; border: 1px solid var(--border); background: var(--bg-soft); border-radius: 12px;">
+            <thead>
+              <tr style="border-bottom: 2px solid var(--border); text-align: left; background: rgba(255,255,255,0.05);">
+                <th style="padding: 12px 18px;">Wartość dBZ</th>
+                <th style="padding: 12px 18px;">Kategoria opadu</th>
+                <th style="padding: 12px 18px;">Szacowany opad (mm/h)</th>
+                <th style="padding: 12px 18px;">Opis zjawiska</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid var(--border);">
+                <td style="padding: 12px 18px;"><strong>&lt; 20 dBZ</strong></td>
+                <td style="padding: 12px 18px;">Bardzo słaby / Mżawka</td>
+                <td style="padding: 12px 18px;">&lt; 0.25 mm/h</td>
+                <td style="padding: 12px 18px;">Lekka mżawka, chmury warstwowe, mgła. Często opad nie dociera do ziemi (zjawisko virga).</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border);">
+                <td style="padding: 12px 18px;"><strong>20 - 30 dBZ</strong></td>
+                <td style="padding: 12px 18px;">Słaby deszcz / Śnieg</td>
+                <td style="padding: 12px 18px;">0.25 - 1.5 mm/h</td>
+                <td style="padding: 12px 18px;">Ciągły, słaby deszcz lub opad śniegu. Typowy opad wielkoskalowy.</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border);">
+                <td style="padding: 12px 18px;"><strong>30 - 45 dBZ</strong></td>
+                <td style="padding: 12px 18px;">Umiarkowany / Silny deszcz</td>
+                <td style="padding: 12px 18px;">1.5 - 12 mm/h</td>
+                <td style="padding: 12px 18px;">Intensywny opad deszczu, krople są wyraźnie słyszalne. Może ograniczać widoczność na drogach.</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border);">
+                <td style="padding: 12px 18px;"><strong>45 - 55 dBZ</strong></td>
+                <td style="padding: 12px 18px;">Ulewa / Drobny grad</td>
+                <td style="padding: 12px 18px;">12 - 50 mm/h</td>
+                <td style="padding: 12px 18px;">Ulewny opad o charakterze konwekcyjnym. Sygnał rozwijającej się burzy. Ryzyko lokalnych podtopień.</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border);">
+                <td style="padding: 12px 18px;"><strong>&gt; 55 dBZ</strong></td>
+                <td style="padding: 12px 18px;">Nawałnica / Grad</td>
+                <td style="padding: 12px 18px;">&gt; 50 mm/h</td>
+                <td style="padding: 12px 18px;">Ekstremalne opady gradu i deszczu nawalnego. Prawie zawsze związane z niszczycielskimi superkomórkami burzowymi.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-light">
+      <div class="container content-card">
+        <h2>Ograniczenia odczytu – virga oraz echo gruntu</h2>
+        <p>Choć radary meteorologiczne są niezwykle precyzyjne, istnieją zjawiska fizyczne, które mogą zaburzać interpretację mapy opadów. Jednym z najczęstszych jest <strong>virga</strong>. Ma ona miejsce, gdy powietrze pod chmurą burzową lub deszczową jest bardzo suche. Krople wody spadające z chmury wyparowują całkowicie w drodze na dół. Wiązka radarowa przebiega wysoko nad ziemią i rejestruje te krople (pokazując strefę opadu na mapie), jednak na powierzchni gruntu nie spada ani jedna kropla. Użytkownik widzi deszcz na radarze, choć za oknem świeci słońce.</p>
+        <p>Odwrotnym problemem są zakłócenia znane jako <strong>echo gruntu (ground clutter)</strong>. Promieniowanie radarowe może odbijać się od obiektów stałych – wzniesień terenu, pasm górskich, wysokich kominów, farm wiatrowych, a nawet od dużych stad ptaków w locie lub chmar owadów. Takie odbicia są widoczne na mapach jako plamy o niskim lub średnim dBZ. Można je odróżnić od prawdziwego deszczu, ponieważ pozostają nieruchome w czasie, podczas gdy chmury deszczowe przesuwają się pod wpływem wiatru.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container content-card">
+        <h2>FAQ — radar opadów</h2>
+        <div class="faq">
+          <details>
+            <summary>Co pokazuje radar opadów w czasie rzeczywistym?</summary>
+            <p>Radar opadów na żywo pokazuje rzeczywiste strefy opadów atmosferycznych (deszcz, śnieg, grad) nad Polską. Dane te pochodzą z naziemnych stacji radarowych (w Polsce jest to sieć POLRAD obsługiwana przez IMGW-PIB) i są aktualizowane co 10 minut.</p>
+          </details>
+          <details>
+            <summary>Czym różni się radar opadów od prognozy deszczu?</summary>
+            <p>Prognoza deszczu to symulacja numeryczna modelu meteorologicznego określająca prawdopodobieństwo opadów w przyszłości. Radar opadów pokazuje stan faktyczny – fizycznie zmierzone krople wody i lodu w chmurach w danej minucie.</p>
+          </details>
+          <details>
+            <summary>Co oznacza wskaźnik dBZ na radarze pogodowym?</summary>
+            <p>Wskaźnik dBZ (decybel reflektywności) określa siłę echa radarowego odbitego od opadu. Wartości poniżej 20 dBZ oznaczają mżawkę lub brak opadu na ziemi, 20-35 dBZ to słaby do umiarkowanego deszcz, 35-50 dBZ to silny deszcz, a powyżej 50 dBZ to ulewa nawalna i grad.</p>
+          </details>
+          <details>
+            <summary>Czy radar opadów potrafi odróżnić deszcz od śniegu?</summary>
+            <p>Klasyczny radar mierzy jedynie odbicie (reflektywność). Jednak nowoczesne radary o podwójnej polaryzacji (dual-pol) potrafią określić kształt cząsteczek, co pozwala odróżnić deszcz, śnieg, grad, a nawet obiekty nie-meteorologiczne, takie jak ptaki czy owady.</p>
+          </details>
+          <details>
+            <summary>Czym jest zjawisko virga widoczne czasami na radarze?</summary>
+            <p>Virga to opad, który wypada z chmury, ale paruje w suchym powietrzu przed dotarciem do powierzchni ziemi. Radar rejestruje echo w wyższych partiach atmosfery (pokazując deszcz na mapie), jednak na ziemi nie spada ani jedna kropla wody.</p>
+          </details>
+          <details>
+            <summary>Co to jest echo gruntu i dlaczego radar czasami się myli?</summary>
+            <p>Echo gruntu (ground clutter) to zakłócenia wywołane odbiciem wiązki radarowej od obiektów stałych: wzniesień, wysokich budynków czy turbin wiatrowych. Powstają wtedy fałszywe plamy opadowe na mapie, które są stacjonarne.</p>
+          </details>
+          <details>
+            <summary>Jak często aktualizowane są dane radarowe?</summary>
+            <p>Większość radarów naziemnych w Europie, w tym sieć POLRAD w Polsce, wykonuje pełny skan atmosfery co 10 minut. Na naszej stronie dane te są natychmiast odświeżane po ich publikacji w systemie źródłowym.</p>
+          </details>
+        </div>
+      </div>
+    </section>
   </main>
   <footer class="footer">
     <div class="container footer-grid">

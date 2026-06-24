@@ -19,15 +19,237 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7645481846348914"
-     crossorigin="anonymous"></script></head>
+     crossorigin="anonymous"></script>
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Strona główna",
+          "item": "https://meteolive.pl/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Radar wiatru",
+          "item": "https://meteolive.pl/radar-wiatru/"
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Czym różni się średnia prędkość wiatru od porywów?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Średnia prędkość wiatru jest mierzona jako średnia wartość z okresu 10 minut. Porywy wiatru to krótkotrwałe (trwające zazwyczaj od kilku do kilkunastu sekund) wzrosty prędkości wiatru, które mogą przekraczać wiatr średni nawet dwu- lub trzykrotnie i to one stanowią największe zagrożenie."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Jak interpretować linie prądu (streamlines) na radarze wiatru?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ruchome linie prądu pokazują kierunek przepływu mas powietrza. Gęstość linii oraz prędkość ich animacji odpowiadają sile wiatru – im szybciej i gęściej poruszają się linie, tym silniejszy wiatr wieje w danym regionie."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Co wywołuje silny wiatr na ziemi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Główną przyczyną wiatru jest różnica ciśnienia atmosferycznego między dwoma obszarami (gradient ciśnienia). Powietrze naturalnie przemieszcza się z obszaru wysokiego ciśnienia (wyżu) do obszaru niskiego ciśnienia (niżu). Ruch ten jest dodatkowo modyfikowany przez siłę Coriolisa wynikającą z ruchu obrotowego Ziemi."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Jakie niebezpieczeństwa niesie ze sobą silny wiatr?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Silny wiatr może łamać i wyrywać drzewa z korzeniami, zrywać linie energetyczne (powodując braki prądu), uszkadzać dachy budynków oraz stwarzać śmiertelne zagrożenie dla pieszych i kierowców poprzez niesione wiatrem przedmioty."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Przy jakiej prędkości wiatru wydawane są ostrzeżenia meteorologiczne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "W Polsce ostrzeżenie 1. stopnia wydawane jest przy porywach 70-90 km/h, 2. stopnia przy porywach 90-115 km/h, a najwyższy 3. stopień ostrzeżenia obowiązuje przy porywach przekraczających 115 km/h."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Czym jest szkwał i jak powstaje?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Szkwał to nagły, gwałtowny wzrost prędkości wiatru (nawet do ponad 100 km/h) połączony z nagłą zmianą jego kierunku, trwający zazwyczaj kilka minut. Powstaje najczęściej pod chmurami burzowymi (Cumulonimbus) w wyniku opadania zimnego powietrza z wnętrza chmury (tzw. prąd zstępujący lub downburst)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Jak przeliczyć prędkość wiatru w m/s na km/h?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Aby przeliczyć metry na sekundę (m/s) na kilometry na godzinę (km/h), należy pomnożyć wartość przez 3.6. Na przykład: 10 m/s * 3.6 = 36 km/h. Aby przeliczyć odwrotnie, należy podzielić przez 3.6."
+          }
+        }
+      ]
+    }
+  ]
+  </script>
+</head>
 <body>
   <header class="site-header"><div class="container nav"><a class="logo" href="/"><span class="logo-mark">☁</span><span>MeteoLive</span></a><nav class="nav-links" aria-label="Główna nawigacja"><a href="/pogoda/">Pogoda</a><a href="/radar-opadow/">Radar opadów</a><a href="/radar-burz/">Radar burz</a><a href="/radar-wiatru/">Radar wiatru</a><a href="/ostrzezenia-pogodowe/">Ostrzeżenia</a><a href="/poradniki/">Poradniki</a></nav></div></header>
   <main>
     <section class="hero"><div class="container"><nav class="breadcrumbs" aria-label="Okruszki"><a href="/">Strona główna</a><span>›</span><span>Radar wiatru</span></nav><span class="eyebrow"><span class="pulse"></span> Radar wiatru</span><h1>Mapa wiatru i porywów.</h1><p class="lead">Mapa wiatru pomaga sprawdzić kierunek, siłę i możliwe porywy. Jest przydatna przed burzami, wichurami, podróżą, pracą na zewnątrz oraz wtedy, gdy prognoza zapowiada gwałtowną zmianę pogody.</p></div></section>
     <section class="section"><div class="container content-card"><h2>Mapa wiatru — podgląd na żywo</h2><div class="embed-box"><iframe title="Mapa wiatru Windy" src="https://embed.windy.com/embed2.html?lat=52.173&lon=19.480&detailLat=52.173&detailLon=19.480&width=650&height=450&zoom=5&level=surface&overlay=wind&product=ecmwf&menu=&message=true&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=-1"></iframe></div><div class="attribution">Mapa wiatru: <a href="https://www.windy.com/" rel="nofollow noopener" target="_blank">Windy.com</a>. Widok służy do szybkiego podglądu sytuacji pogodowej i nie zastępuje oficjalnych ostrzeżeń.</div></div></section>
     <section class="section"><div class="container two-col"><article class="content-card"><h2>Na co patrzeć na mapie wiatru?</h2><p>Najważniejsze są kierunek przemieszczania powietrza, średnia prędkość wiatru i porywy. Porywy mogą być dużo silniejsze niż wiatr średni, dlatego przy trudnej pogodzie nie wystarczy sprawdzić tylko jednej liczby.</p><p>W praktyce warto obserwować, czy silniejszy wiatr przesuwa się w stronę Twojego regionu. Przy burzach mapa wiatru pomaga też ocenić, w którym kierunku mogą przemieszczać się strefy opadów.</p></article><article class="content-card"><h2>Kiedy mapa wiatru jest najważniejsza?</h2><p>Najbardziej przydaje się przy ostrzeżeniach przed wichurami, burzami, załamaniem pogody i silnymi porywami. Jest ważna także dla kierowców, rowerzystów, osób pracujących na zewnątrz i wszystkich, którzy planują aktywność poza domem.</p><p>Mapa wiatru nie zastępuje ostrzeżeń pogodowych. Jeżeli prognozowane są silne porywy, warto sprawdzić też oficjalne komunikaty oraz radar opadów.</p></article></div></section>
-    <section class="section"><div class="container two-col"><article class="content-card"><h2>Wiatr a burze i opady</h2><p>Wiatr pomaga ocenić, w którą stronę mogą przesuwać się chmury, opady i komórki burzowe. Jeżeli radar opadów pokazuje intensywną strefę deszczu, a mapa wiatru wskazuje ruch w Twoim kierunku, warto obserwować sytuację częściej.</p><p>Przy burzach porywy wiatru mogą pojawić się nagle i być silniejsze niż wynikałoby z samej średniej prędkości wiatru. Dlatego przy aktywnych burzach zawsze sprawdź też radar burz.</p></article><article class="content-card"><h2>Silny wiatr i bezpieczeństwo</h2><p>Przy silnym wietrze trzeba uważać na łamiące się gałęzie, spadające przedmioty, utrudnienia na drogach i przerwy w dostawie prądu. Szczególnie groźne są nagłe porywy podczas burz.</p><p>Jeżeli widzisz ostrzeżenie przed wichurą, zabezpiecz rzeczy na balkonie i w ogrodzie, unikaj parkowania pod drzewami i sprawdzaj oficjalne komunikaty.</p></article></div></section>
-    <section class="section"><div class="container content-card"><h2>FAQ — radar wiatru</h2><div class="faq"><details><summary>Czym różni się wiatr średni od porywów?</summary><p>Wiatr średni opisuje bardziej stałą prędkość, a porywy to krótkie, silniejsze skoki prędkości wiatru.</p></details><details><summary>Czy kierunek wiatru pomaga przewidzieć opady?</summary><p>Może pomóc ocenić, w którą stronę przesuwają się strefy pogody, ale najlepiej porównać go z radarem opadów.</p></details><details><summary>Kiedy wiatr jest niebezpieczny?</summary><p>Niebezpieczny może być szczególnie wtedy, gdy pojawiają się silne porywy, burze, wichury albo oficjalne ostrzeżenia pogodowe.</p></details><details><summary>Z czym porównać mapę wiatru?</summary><p>Z radarem opadów, radarem burz, mapą temperatury i ostrzeżeniami pogodowymi.</p></details></div></div></section>
+    <section class="section">
+      <div class="container two-col">
+        <article class="content-card">
+          <h2>Wiatr a burze i opady</h2>
+          <p>Wiatr pomaga ocenić, w którą stronę mogą przesuwać się chmury, opady i komórki burzowe. Jeżeli radar opadów pokazuje intensywną strefę deszczu, a mapa wiatru wskazuje ruch w Twoim kierunku, warto obserwować sytuację częściej.</p>
+          <p>Przy burzach porywy wiatru mogą pojawić się nagle i być silniejsze niż wynikałoby z samej średniej prędkości wiatru. Dlatego przy aktywnych burzach zawsze sprawdź też radar burz.</p>
+        </article>
+        <article class="content-card">
+          <h2>Silny wiatr i bezpieczeństwo</h2>
+          <p>Przy silnym wietrze trzeba uważać na łamiące się gałęzie, spadające przedmioty, utrudnienia na drogach i przerwy w dostawie prądu. Szczególnie groźne są nagłe porywy podczas burz.</p>
+          <p>Jeżeli widzisz ostrzeżenie przed wichurą, zabezpiecz rzeczy na balkonie i w ogrodzie, unikaj parkowania pod drzewami i sprawdzaj oficjalne komunikaty.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-light">
+      <div class="container content-card">
+        <h2>Fizyka wiatru – gradient ciśnienia i siła Coriolisa</h2>
+        <p>Wiatr to poziomy ruch powietrza względem powierzchni ziemi, wywołany nierównomiernym nagrzewaniem się atmosfery przez Słońce, co prowadzi do powstawania różnic ciśnienia. Podstawowym motorem wiatru jest <strong>siła gradientu ciśnienia</strong> – powietrze naturalnie dąży do wyrównania gęstości, przemieszczając się z obszarów o wysokim ciśnieniu (wyżów barometrycznych) do stref o niskim ciśnieniu (niżów barometrycznych). Im większa różnica ciśnienia na danej odległości, tym silniejszy wiatr wieje.</p>
+        <p>Gdyby Ziemia nie obracała się wokół własnej osi, wiatr wiałby w prostej linii od wyżu do niżu. Jednak ruch obrotowy naszej planety generuje siłę bezwładności zwaną <strong>siła Coriolisa</strong>. Powoduje ona zakrzywienie toru ruchu powietrza – na półkuli północnej wiatr skręca w prawo, a na półkuli południowej w lewo. W rezultacie wokół ośrodków niskiego ciśnienia (cyklonów) na naszej półkuli wiatr kręci się przeciwnie do ruchu wskazówek zegara, a wokół wyżów (antycyklonów) zgodnie z nim. Blisko powierzchni ziemi dodatkowym czynnikiem jest tarcie o grunt, które zwalnia wiatr i powoduje, że kieruje się on lekko ukośnie w stronę niżu.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Skala Beauforta – klasyfikacja siły wiatru</h2>
+        <p>W meteorologii oraz żeglarstwie do oceny siły wiatru na podstawie obserwacji jego skutków na otoczenie stosuje się stworzoną w XIX wieku <strong>Skalę Beauforta</strong>. Jest to skala 12-stopniowa, gdzie stopień 0 oznacza całkowitą ciszę, a stopień 12 to niszczycielski huragan. Poniższa tabela przedstawia szczegółową klasyfikację wiatru wraz z przeliczeniem na km/h oraz m/s:</p>
+        
+        <div class="table-wrap" style="margin: 2rem 0; overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; border: 1px solid var(--border); background: var(--bg-soft); border-radius: 12px;">
+            <thead>
+              <tr style="border-bottom: 2px solid var(--border); text-align: left; background: rgba(255,255,255,0.05);">
+                <th style="padding: 12px 18px;">Stopień B</th>
+                <th style="padding: 12px 18px;">Nazwa wiatru</th>
+                <th style="padding: 12px 18px;">Prędkość (km/h)</th>
+                <th style="padding: 12px 18px;">Prędkość (m/s)</th>
+                <th style="padding: 12px 18px;">Skutki na lądzie</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid var(--border);">
+                <td style="padding: 12px 18px;"><strong>0 - 1</strong></td>
+                <td style="padding: 12px 18px;">Cisza / Powiew</td>
+                <td style="padding: 12px 18px;">&lt; 5 km/h</td>
+                <td style="padding: 12px 18px;">&lt; 1.5 m/s</td>
+                <td style="padding: 12px 18px;">Dym wznosi się pionowo, liście nie drżą. Delikatny ruch powietrza wyczuwalny na twarzy.</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border);">
+                <td style="padding: 12px 18px;"><strong>2 - 3</strong></td>
+                <td style="padding: 12px 18px;">Słaby / Łagodny wiatr</td>
+                <td style="padding: 12px 18px;">6 - 19 km/h</td>
+                <td style="padding: 12px 18px;">1.6 - 5.4 m/s</td>
+                <td style="padding: 12px 18px;">Liście szeleszczą, wiatrowskazy poruszają się. Liście i małe gałązki stale się kołyszą.</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border);">
+                <td style="padding: 12px 18px;"><strong>4 - 5</strong></td>
+                <td style="padding: 12px 18px;">Umiarkowany / Dość silny</td>
+                <td style="padding: 12px 18px;">20 - 38 km/h</td>
+                <td style="padding: 12px 18px;">5.5 - 10.7 m/s</td>
+                <td style="padding: 12px 18px;">Wiatr podnosi kurz i luźne papiery. Gałęzie drzew poruszają się, małe drzewa liściaste kołyszą się.</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border);">
+                <td style="padding: 12px 18px;"><strong>6 - 7</strong></td>
+                <td style="padding: 12px 18px;">Silny / Bardzo silny</td>
+                <td style="padding: 12px 18px;">39 - 61 km/h</td>
+                <td style="padding: 12px 18px;">10.8 - 17.1 m/s</td>
+                <td style="padding: 12px 18px;">Trudności w używaniu parasoli. Słychać szum wiatru w koronach drzew, kołyszą się duże gałęzie.</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border);">
+                <td style="padding: 12px 18px;"><strong>8 - 9</strong></td>
+                <td style="padding: 12px 18px;">Wicher / Silny wicher</td>
+                <td style="padding: 12px 18px;">62 - 88 km/h</td>
+                <td style="padding: 12px 18px;">17.2 - 24.4 m/s</td>
+                <td style="padding: 12px 18px;">Łamią się gałęzie drzew, chodzenie pod wiatr jest bardzo utrudnione. Drobne uszkodzenia dachów.</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border);">
+                <td style="padding: 12px 18px;"><strong>10 - 11</strong></td>
+                <td style="padding: 12px 18px;">Sztorm / Gwałtowny sztorm</td>
+                <td style="padding: 12px 18px;">89 - 117 km/h</td>
+                <td style="padding: 12px 18px;">24.5 - 32.6 m/s</td>
+                <td style="padding: 12px 18px;">Rzadko spotykany na lądzie. Drzewa są wyrywane z korzeniami, poważne uszkodzenia budynków.</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border);">
+                <td style="padding: 12px 18px;"><strong>12</strong></td>
+                <td style="padding: 12px 18px;">Huragan</td>
+                <td style="padding: 12px 18px;">&gt; 117 km/h</td>
+                <td style="padding: 12px 18px;">&gt; 32.7 m/s</td>
+                <td style="padding: 12px 18px;">Niszczycielskie skutki. Katastrofalne szkody w infrastrukturze, lasach i budynkach.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-light">
+      <div class="container content-card">
+        <h2>Jak interpretować linie prądu (streamlines) na radarze wiatru?</h2>
+        <p>Radary i mapy wiatru (np. Windy) prezentują przepływ powietrza za pomocą płynnych, animowanych linii, zwanych <strong>liniami prądu (streamlines)</strong>. Pozwala to na intuicyjną ocenę dynamiki atmosfery. Aby poprawnie odczytać te animacje, należy zwrócić uwagę na dwa główne czynniki:</p>
+        <p>Po pierwsze, <strong>prędkość ruchu linii:</strong> Im szybciej przesuwają się jasne linie na mapie, tym silniejszy wiatr wieje na danym obszarze. Po drugie, <strong>gęstość linii:</strong> Obszary, w których linie gromadzą się blisko siebie i łączą w zwarte prądy, oznaczają strefy silnego gradientu ciśnienia (czyli silnego wiatru). Kolor tła mapy (od błękitu przez zieleń, żółć aż po czerwień i fiolet) dodatkowo ułatwia szybkie zlokalizowanie stref o najwyższej prędkości wiatru oraz porywów.</p>
+        <p>Szczególnie widowiskowe i ważne są <strong>wirujące struktury:</strong> Kołowe zawirowania linii prądu wskazują na ośrodki niżowe (gdzie linie zbiegają się do środka przeciwnie do ruchu wskazówek zegara) oraz wyżowe (rozchodzące się na zewnątrz). Obserwując te cyrkulacje, możemy łatwo zrozumieć kierunek napływu mas powietrza nad Polskę – na przykład napływ chłodnego powietrza z północy lub gorącego, zwrotnikowego z południa.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container content-card">
+        <h2>FAQ — radar wiatru</h2>
+        <div class="faq">
+          <details>
+            <summary>Czym różni się średnia prędkość wiatru od porywów?</summary>
+            <p>Średnia prędkość wiatru jest mierzona jako średnia wartość z okresu 10 minut. Porywy wiatru to krótkotrwałe (trwające zazwyczaj od kilku do kilkunastu sekund) wzrosty prędkości wiatru, które mogą przekraczać wiatr średni nawet dwu- lub trzykrotnie i to one stanowią największe zagrożenie.</p>
+          </details>
+          <details>
+            <summary>Jak interpretować linie prądu (streamlines) na radarze wiatru?</summary>
+            <p>Ruchome linie prądu pokazują kierunek przepływu mas powietrza. Gęstość linii oraz prędkość ich animacji odpowiadają sile wiatru – im szybciej i gęściej poruszają się linie, tym silniejszy wiatr wieje w danym regionie.</p>
+          </details>
+          <details>
+            <summary>Co wywołuje silny wiatr na ziemi?</summary>
+            <p>Główną przyczyną wiatru jest różnica ciśnienia atmosferycznego między dwoma obszarami (gradient ciśnienia). Powietrze naturalnie przemieszcza się z obszaru wysokiego ciśnienia (wyżu) do obszaru niskiego ciśnienia (niżu). Ruch ten jest dodatkowo modyfikowany przez siłę Coriolisa wynikającą z ruchu obrotowego Ziemi.</p>
+          </details>
+          <details>
+            <summary>Jakie niebezpieczeństwa niesie ze sobą silny wiatr?</summary>
+            <p>Silny wiatr może łamać i wyrywać drzewa z korzeniami, zrywać linie energetyczne (powodując braki prądu), uszkadzać dachy budynków oraz stwarzać śmiertelne zagrożenie dla pieszych i kierowców poprzez niesione wiatrem przedmioty.</p>
+          </details>
+          <details>
+            <summary>Przy jakiej prędkości wiatru wydawane są ostrzeżenia meteorologiczne?</summary>
+            <p>W Polsce ostrzeżenie 1. stopnia wydawane jest przy porywach 70-90 km/h, 2. stopnia przy porywach 90-115 km/h, a najwyższy 3. stopień ostrzeżenia obowiązuje przy porywach przekraczających 115 km/h.</p>
+          </details>
+          <details>
+            <summary>Czym jest szkwał i jak powstaje?</summary>
+            <p>Szkwał to nagły, gwałtowny wzrost prędkości wiatru (nawet do ponad 100 km/h) połączony z nagłą zmianą jego kierunku, trwający zazwyczaj kilka minut. Powstaje najczęściej pod chmurami burzowymi (Cumulonimbus) w wyniku opadania zimnego powietrza z wnętrza chmury (tzw. prąd zstępujący lub downburst).</p>
+          </details>
+          <details>
+            <summary>Jak przeliczyć prędkość wiatru w m/s na km/h?</summary>
+            <p>Aby przeliczyć metry na sekundę (m/s) na kilometry na godzinę (km/h), należy pomnożyć wartość przez 3.6. Na przykład: 10 m/s * 3.6 = 36 km/h. Aby przeliczyć odwrotnie, należy podzielić przez 3.6.</p>
+          </details>
+        </div>
+      </div>
+    </section>
   </main>
   <footer class="footer">
     <div class="container footer-grid">

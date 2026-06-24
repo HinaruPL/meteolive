@@ -19,15 +19,190 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7645481846348914"
-     crossorigin="anonymous"></script></head>
+     crossorigin="anonymous"></script>
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Strona główna",
+          "item": "https://meteolive.pl/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Mapa temperatury",
+          "item": "https://meteolive.pl/mapa-temperatury/"
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Jaka jest różnica między temperaturą rzeczywistą a odczuwalną?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Temperatura rzeczywista to fizyczny parametr mierzony termometrem w osłonie radiacyjnej (na wysokości 2 metrów nad ziemią). Temperatura odczuwalna to subiektywne wrażenie cieplne organizmu ludzkiego, na które ogromny wpływ mają wilgotność powietrza, prędkość wiatru oraz nasłonecznienie."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Jak wiatr wpływa na odczuwanie zimna?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Silny wiatr przyspiesza parowanie wilgoci z powierzchni skóry i usuwa cienką warstwę ciepłego powietrza otaczającą ciało. Efekt ten, znany jako wskaźnik Wind Chill (indeks chłodzenia wiatrem), powoduje, że przy silnym wietrze ujemna temperatura wydaje się znacznie niższa niż wskazuje termometr."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Jak wilgotność powietrza wpływa na odczuwanie upału?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Wysoka wilgotność powietrza utrudnia parowanie potu ze skóry, co jest naturalnym mechanizmem termoregulacji ludzkiego organizmu. Indeks Heat Index (indeks ciepła) określa temperaturę odczuwalną w takich warunkach – przy wilgotności 70% temperatura rzeczywista 30 °C może być odczuwana jako 35 °C lub więcej."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Czym jest miejska wyspa ciepła (MWC)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Miejska wyspa ciepła to zjawisko klimatyczne polegające na tym, że temperatura w centrum dużych miast jest o kilka stopni wyżsła niż na otaczających je obszarach pozamiejskich. Wynika to z nagrzewania się betonu i asfaltu, braku roślinności oraz emisji ciepła przez samochody i klimatyzatory."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Czym charakteryzuje się inwersja temperatury?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Inwersja temperatury to zjawisko anomalnego wzrostu temperatury powietrza wraz z wysokością (zamiast standardowego spadku). Występuje najczęściej podczas bezwietrznych, jasnych nocy jesienią i zimą, gdy chłodne i ciężkie powietrze osiada w dolinach, a na szczytach gór panuje cieplejsza aura."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Jak prawidłowo mierzy się oficjalną temperaturę powietrza?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oficjalna temperatura powietrza mierzona jest w tzw. klatkach meteorologicznych (lub osłonach radiacyjnych), które chronią termometr przed bezpośrednim działaniem promieni słonecznych i opadów, zapewniając swobodny przepływ powietrza. Pomiaru dokonuje się na wysokości 2 metrów nad trawiastym podłożem."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Co to jest temperatura punktu rosy?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Temperatura punktu rosy to temperatura, do której musi schłodzić się powietrze o określonej wilgotności, aby zawarta w nim para wodna osiągnęła stan nasycenia i zaczęła się skraplać (tworząc mgłę, rosę lub chmury). Jest to kluczowy parametr przy prognozowaniu burz i mgieł."
+          }
+        }
+      ]
+    }
+  ]
+  </script>
+</head>
 <body>
   <header class="site-header"><div class="container nav"><a class="logo" href="/"><span class="logo-mark">☁</span><span>MeteoLive</span></a><nav class="nav-links" aria-label="Główna nawigacja"><a href="/pogoda/">Pogoda</a><a href="/radar-opadow/">Radar opadów</a><a href="/radar-burz/">Radar burz</a><a href="/radar-wiatru/">Radar wiatru</a><a href="/ostrzezenia-pogodowe/">Ostrzeżenia</a><a href="/poradniki/">Poradniki</a></nav></div></header>
   <main>
     <section class="hero"><div class="container"><nav class="breadcrumbs" aria-label="Okruszki"><a href="/">Strona główna</a><span>›</span><span>Mapa temperatury</span></nav><span class="eyebrow"><span class="pulse"></span> Mapa temperatury</span><h1>Temperatura w Polsce na mapie.</h1><p class="lead">Mapa temperatury pokazuje, gdzie jest najcieplej, gdzie najchłodniej i jak różnice temperatur rozkładają się między regionami. To przydatne przy upałach, przymrozkach, nagłych ochłodzeniach i planowaniu podróży.</p></div></section>
     <section class="section"><div class="container content-card"><h2>Mapa temperatury — podgląd na żywo</h2><div class="embed-box"><iframe title="Mapa temperatury Windy" src="https://embed.windy.com/embed2.html?lat=52.173&lon=19.480&detailLat=52.173&detailLon=19.480&width=650&height=450&zoom=5&level=surface&overlay=temp&product=ecmwf&menu=&message=true&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=-1"></iframe></div><div class="attribution">Mapa temperatury: <a href="https://www.windy.com/" rel="nofollow noopener" target="_blank">Windy.com</a>. Widok pokazuje orientacyjny rozkład temperatury i warto porównywać go z lokalną prognozą oraz ostrzeżeniami.</div></div></section>
     <section class="section"><div class="container two-col"><article class="content-card"><h2>Do czego przydaje się mapa temperatury?</h2><p>Mapa temperatury pozwala szybko zobaczyć różnice między regionami Polski. Przydaje się przy falach upałów, spadkach temperatury, przymrozkach i nagłych zmianach pogody.</p><p>Jest też pomocna, gdy chcesz porównać pogodę w kilku miastach albo sprawdzić, czy ochłodzenie dopiero nadchodzi, czy już objęło Twój region.</p></article><article class="content-card"><h2>Jak ją czytać?</h2><p>Najważniejsze są obszary cieplejsze i chłodniejsze oraz granice między nimi. Duży kontrast temperatur może oznaczać przechodzenie frontu albo wyraźną zmianę masy powietrza.</p><p>Mapę temperatury warto porównać z mapą wiatru i radarem opadów. Sama temperatura nie pokaże, czy pojawi się burza albo intensywny deszcz.</p></article></div></section>
-    <section class="section"><div class="container two-col"><article class="content-card"><h2>Upały i wysokie temperatury</h2><p>Latem mapa temperatury pomaga sprawdzić, które regiony są najbardziej narażone na upał. Wysoka temperatura w połączeniu z wilgotnym powietrzem może sprzyjać rozwojowi burz, dlatego warto wtedy sprawdzić także radar burz.</p><p>Przy długotrwałych upałach szczególnie ważne są oficjalne ostrzeżenia, nawodnienie, unikanie pełnego słońca i ostrożność u dzieci, seniorów oraz osób chorych.</p></article><article class="content-card"><h2>Przymrozki i ochłodzenia</h2><p>Wiosną, jesienią i zimą mapa temperatury pomaga ocenić, gdzie może pojawić się przymrozek, gołoledź albo nagłe ochłodzenie. Najbardziej istotne są okolice z temperaturą blisko zera.</p><p>Jeżeli temperatura szybko spada, porównaj mapę temperatury z radarem opadów. Opady przy niskiej temperaturze mogą oznaczać śnieg, deszcz ze śniegiem albo śliskie warunki na drogach.</p></article></div></section>
-    <section class="section"><div class="container content-card"><h2>FAQ — mapa temperatury</h2><div class="faq"><details><summary>Czy mapa temperatury pokazuje prognozę czy stan aktualny?</summary><p>To zależy od źródła danych i ustawień mapy. Widok mapy pogodowej może pokazywać dane modelowe, prognozę lub przybliżony rozkład temperatury.</p></details><details><summary>Dlaczego temperatura w mieście może różnić się od mapy?</summary><p>Różnice mogą wynikać z lokalizacji pomiaru, zabudowy, wysokości terenu, zachmurzenia i czasu aktualizacji danych.</p></details><details><summary>Czy mapa temperatury wystarczy do oceny pogody?</summary><p>Nie. Temperatura to tylko jeden element. Warto sprawdzić też wiatr, opady, burze i oficjalne ostrzeżenia.</p></details><details><summary>Z czym porównać mapę temperatury?</summary><p>Z mapą wiatru, radarem opadów i ostrzeżeniami pogodowymi, szczególnie przy upałach, przymrozkach i gwałtownych zmianach pogody.</p></details></div></div></section>
+    <section class="section">
+      <div class="container two-col">
+        <article class="content-card">
+          <h2>Upały i wysokie temperatury</h2>
+          <p>Latem mapa temperatury pomaga sprawdzić, które regiony są najbardziej narażone na upał. Wysoka temperatura w połączeniu z wilgotnym powietrzem może sprzyjać rozwojowi burz, dlatego warto wtedy sprawdzić także radar burz.</p>
+          <p>Przy długotrwałych upałach szczególnie ważne są oficjalne ostrzeżenia, nawodnienie, unikanie pełnego słońca i ostrożność u dzieci, seniorów oraz osób chorych.</p>
+        </article>
+        <article class="content-card">
+          <h2>Przymrozki i ochłodzenia</h2>
+          <p>Wiosną, jesienią i zimą mapa temperatury pomaga ocenić, gdzie może pojawić się przymrozek, gołoledź albo nagłe ochłodzenie. Najbardziej istotne są okolice z temperaturą blisko zera.</p>
+          <p>Jeżeli temperatura szybko spada, porównaj mapę temperatury z radarem opadów. Opady przy niskiej temperaturze mogą oznaczać śnieg, deszcz ze śniegiem albo śliskie warunki na drogach.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-light">
+      <div class="container content-card">
+        <h2>Temperatura rzeczywista a odczuwalna – rola wiatru i wilgotności</h2>
+        <p>Gdy patrzymy na termometr, widzimy temperaturę rzeczywistą powietrza. Jednak to, jak faktycznie czujemy temperaturę na zewnątrz, często diametralnie różni się od tej liczby. <strong>Temperatura odczuwalna</strong> to reakcja organizmu człowieka na warunki otoczenia, wyznaczana przez połączenie temperatury powietrza, wiatru, wilgotności względnej oraz promieniowania słonecznego. Za jej obliczanie odpowiadają dwa główne indeksy meteorologiczne:</p>
+        <p>W chłodnej połowie roku kluczowy jest wskaźnik <strong>Wind Chill</strong> (indeks chłodzenia wiatrem). Ruch powietrza usuwa ze skóry cienką, izolacyjną warstewkę ciepła, którą naturalnie ogrzewa nasze ciało. Im silniejszy wiatr, tym szybciej tracimy ciepło. Przykładowo, przy temperaturze 0 °C i wietrze wiejącym z prędkością 40 km/h, odczuwalna temperatura wynosi około -6 °C. Zimą ignorowanie tego indeksu może prowadzić do odmrożeń i hipotermii.</p>
+        <p>Z kolei latem decydującą rolę odgrywa wskaźnik <strong>Heat Index</strong> (indeks ciepła), oparty na wilgotności powietrza. Ludzkie ciało chłodzi się poprzez parowanie potu ze skóry. Jeśli powietrze jest suche, wilgoć paruje szybko, chłodząc organizm. Gdy jednak wilgotność względna jest wysoka (powyżej 60-70%), parowanie jest utrudnione. Wtedy organizm szybko się przegrzewa. Temperatura rzeczywista 32 °C przy wilgotności 70% da temperaturę odczuwalną na poziomie aż 41 °C, co stanowi skrajne zagrożenie udarem cieplnym.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container content-card">
+        <h2>Miejska wyspa ciepła i inwersja temperatury</h2>
+        <p>Lokalny rozkład temperatury zależy nie tylko od szerokości geograficznej czy mas powietrza, ale też od ukształtowania terenu i zagospodarowania przestrzeni. Wyrazem tego jest zjawisko <strong>miejskiej wyspy ciepła (MWC)</strong>. Obszary zurbanizowane, ze względu na gęstą zabudowę, ogromne powierzchnie betonowe i asfaltowe oraz małą ilość zieleni, kumulują ciepło słoneczne w ciągu dnia i oddają je bardzo powoli w nocy. Sprawia to, że centra dużych miast mogą być w nocy o 5–10 °C cieplejsze niż sąsiadujące z nimi obszary leśne i wiejskie.</p>
+        <p>Innym niezwykle ciekawym zjawiskiem termicznym jest <strong>inwersja temperatury</strong>. Zazwyczaj temperatura powietrza spada wraz ze wzrostem wysokości (średnio o 0.6 °C na każde 100 metrów). Jednak podczas pogodnych, bezwietrznych nocy (zwłaszcza jesienią i zimą) grunt gwałtownie oddaje ciepło drogą radiacji. Powietrze bezpośrednio przy ziemi staje się zimne, ciężkie i opada w najniższe punkty terenu (doliny, kotliny), podczas gdy cieplejsze, lżejsze powietrze unosi się wyżej. Tworzy się stabilny rozkład, w którym w dolinach panuje mróz i bezwietrzna cisza, a w wyższych partiach gór jest znacznie cieplej. Inwersja blokuje pionowy ruch powietrza, co sprzyja kumulacji zanieczyszczeń przy powierzchni ziemi i powstawaniu smogu.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Jak bezpiecznie przetrwać ekstremalne temperatury?</h2>
+        <p>Niezależnie od tego, czy mapa temperatury w naszym serwisie pokazuje czerwone barwy upałów, czy głęboki błękit silnego mrozu, ekstremalna pogoda wymaga odpowiedniego przygotowania. Oto kluczowe zasady bezpieczeństwa:</p>
+        
+        <div class="grid">
+          <div class="card" style="cursor: default; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 12px; padding: 24px;">
+            <div>
+              <div class="icon" style="font-size: 2.5rem; margin-bottom: 12px;">☀️</div>
+              <h3 style="margin-bottom: 12px; font-weight: 700;">Podczas upałów</h3>
+              <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.6;">Pij minimum 2–3 litry wody dziennie, unikając alkoholu i napojów gazowanych. W godzinach 11:00–16:00 ogranicz przebywanie na pełnym słońcu i wysiłek fizyczny. Noś jasne, przewiewne ubrania, okulary przeciwsłoneczne oraz nakrycie głowy. Stosuj kremy z filtrem UV. Nigdy nie zostawiaj dzieci ani zwierząt w samochodzie!</p>
+            </div>
+          </div>
+
+          <div class="card" style="cursor: default; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 12px; padding: 24px;">
+            <div>
+              <div class="icon" style="font-size: 2.5rem; margin-bottom: 12px;">❄️</div>
+              <h3 style="margin-bottom: 12px; font-weight: 700;">Podczas silnych mrozów</h3>
+              <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.6;">Ubieraj się warstwowo ("na cebulkę") – powietrze między warstwami ubrań działa jak świetny izolator. Zabezpiecz twarz i ręce tłustym kremem ochronnym (nie nawilżającym, który zawiera wodę). Chroń głowę i dłonie przed utratą ciepła. Ogranicz przebywanie na zewnątrz przy silnym wietrze.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container content-card">
+        <h2>FAQ — mapa temperatury</h2>
+        <div class="faq">
+          <details>
+            <summary>Czy mapa temperatury pokazuje prognozę czy stan aktualny?</summary>
+            <p>To zależy od źródła danych i ustawień mapy. Widok mapy pogodowej może pokazywać dane modelowe, prognozę lub przybliżony rozkład temperatury.</p>
+          </details>
+          <details>
+            <summary>Dlaczego temperatura w mieście może różnić się od mapy?</summary>
+            <p>Różnice mogą wynikać z lokalizacji pomiaru, zabudowy, wysokości terenu, zachmurzenia i czasu aktualizacji danych.</p>
+          </details>
+          <details>
+            <summary>Czy mapa temperatury wystarczy do oceny pogody?</summary>
+            <p>Nie. Temperatura to tylko jeden element. Warto sprawdzić też wiatr, opady, burze i oficjalne ostrzeżenia.</p>
+          </details>
+          <details>
+            <summary>Z czym porównać mapę temperatury?</summary>
+            <p>Z mapą wiatru, radarem opadów i ostrzeżeniami pogodowymi, szczególnie przy upałach, przymrozkach i gwałtownych zmianach pogody.</p>
+          </details>
+          <details>
+            <summary>Jaka jest różnica między temperaturą rzeczywistą a odczuwalną?</summary>
+            <p>Temperatura rzeczywista to fizyczny parametr mierzony termometrem w osłonie radiacyjnej (na wysokości 2 metrów nad ziemią). Temperatura odczuwalna to subiektywne wrażenie cieplne organizmu ludzkiego, na które ogromny wpływ mają wilgotność powietrza, prędkość wiatru oraz nasłonecznienie.</p>
+          </details>
+          <details>
+            <summary>Czym charakteryzuje się inwersja temperatury?</summary>
+            <p>Inwersja temperatury to zjawisko anomalnego wzrostu temperatury powietrza wraz z wysokością (zamiast standardowego spadku). Występuje najczęściej podczas bezwietrznych, jasnych nocy jesienią i zimą, gdy chłodne i ciężkie powietrze osiada w dolinach, a na szczytach gór panuje cieplejsza aura.</p>
+          </details>
+          <details>
+            <summary>Co to jest temperatura punktu rosy?</summary>
+            <p>Temperatura punktu rosy to temperatura, do której musi schłodzić się powietrze o określonej wilgotności, aby zawarta w nim para wodna osiągnęła stan nasycenia i zaczęła się skraplać (tworząc mgłę, rosę lub chmury). Jest to kluczowy parametr przy prognozowaniu burz i mgieł.</p>
+          </details>
+        </div>
+      </div>
+    </section>
   </main>
   <footer class="footer">
     <div class="container footer-grid">

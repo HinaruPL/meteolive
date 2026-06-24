@@ -20,15 +20,209 @@
   <link rel="stylesheet" href="/style.css">
   <style>.map-tabs{margin-top:20px}.map-tabs input{position:absolute;opacity:0;pointer-events:none}.tab-buttons{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}.tab-buttons label{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 16px;border:1px solid var(--border);border-radius:999px;background:rgba(255,255,255,.07);color:var(--muted);font-weight:900;cursor:pointer}#tab-weather:checked~.tab-buttons label[for="tab-weather"],#tab-lightning:checked~.tab-buttons label[for="tab-lightning"]{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#06101d;border-color:transparent}.tab-panel{display:none}#tab-weather:checked~.tab-panels .weather-panel-tab,#tab-lightning:checked~.tab-panels .lightning-panel-tab{display:block}.lightning-preview-box{display:flex;justify-content:center;align-items:center;padding:24px;border-radius:var(--radius);border:1px solid var(--border);background:rgba(255,255,255,.04);box-shadow:var(--shadow)}.lightning-preview-box a{display:inline-block}.lightning-preview-box img{display:block;width:auto;max-width:100%;height:auto;border-radius:14px;border:1px solid rgba(255,255,255,.14);background:#fff}.lightning-actions{margin-top:16px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px}.lightning-actions .btn{min-width:220px}</style>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7645481846348914"
-     crossorigin="anonymous"></script></head>
+     crossorigin="anonymous"></script>
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Strona główna",
+          "item": "https://meteolive.pl/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Radar burz",
+          "item": "https://meteolive.pl/radar-burz/"
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Co pokazuje radar burz?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Radar burz w naszym serwisie łączy dwa widoki: radar opadów Windy (który pozwala zidentyfikować silne rdzenie opadowe chmur burzowych) oraz mapę wyładowań Blitzortung z serwisu burze.dzis.net, która rejestruje uderzenia piorunów niemal w czasie rzeczywistym."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Czy mapa burz wystarczy do oceny zagrożenia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nie, sama mapa wyładowań pokazuje tylko zarejestrowane uderzenia piorunów. Burzy często towarzyszą inne niebezpieczne zjawiska, takie jak silne porywy wiatru (szkwały) czy nawalne opady deszczu i gradu. Zawsze warto porównywać mapę burz z radarem opadów, wiatru oraz oficjalnymi ostrzeżeniami IMGW."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Dlaczego w zakładkach są dwa różne widoki?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pierwsza zakładka (Radar pogody) pokazuje strefy opadów i intensywność deszczu, co pozwala zaobserwować zbliżający się front. Druga zakładka (Mapa wyładowań) pozwala zobaczyć, czy w danej strefie deszczu występują aktywne wyładowania atmosferyczne."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Czy radar burz pokazuje dokładną trasę burzy w przyszłości?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nie. Radar burz pokazuje sytuację historyczną oraz aktualną. Kierunek przemieszczania się burzy można oszacować na podstawie animacji ruchu chmur z ostatnich godzin, ale burze mogą nagle zmieniać kierunek, gwałtownie wygasać lub szybko się rozwijać."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Czym różnią się wyładowania doziemne od chmurowych?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Wyładowania doziemne (CG - Cloud-to-Ground) zachodzą między chmurą a powierzchnią ziemi i stanowią bezpośrednie zagrożenie dla życia i mienia. Wyładowania chmurowe (IC - Intra-Cloud) oraz międzychmurowe (CC) występują wyłącznie wewnątrz chmur lub między nimi, wywołując rozbłyski na niebie, ale nie uderzają bezpośrednio w ziemię."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Jak działa system Blitzortung wykorzystywany do detekcji wyładowań?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "System Blitzortung to globalna sieć detektorów fal radiowych VLF (bardzo niskiej częstotliwości). Piorun emituje impuls elektromagnetyczny, który rejestrowany jest przez stacje z dokładnym czasem GPS. Centralny serwer oblicza dokładne miejsce uderzenia pioruna za pomocą metody triangulacji (różnicy czasu dotarcia sygnału)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Co to jest zasada 30-30 w kontekście bezpieczeństwa burzowego?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Zasada 30-30 mówi, że jeśli od usłyszenia grzmotu do zobaczenia błyskawicy upłynie mniej niż 30 sekund (oznacza to odległość ok. 10 km), należy natychmiast schronić się w bezpiecznym miejscu. Drugie '30' oznacza, że bezpieczne schronienie można opuścić dopiero po 30 minutach od ostatniego słyszanego grzmotu."
+          }
+        }
+      ]
+    }
+  ]
+  </script>
+</head>
 <body>
   <header class="site-header"><div class="container nav"><a class="logo" href="/"><span class="logo-mark">☁</span><span>MeteoLive</span></a><nav class="nav-links" aria-label="Główna nawigacja"><a href="/pogoda/">Pogoda</a><a href="/radar-opadow/">Radar opadów</a><a href="/radar-burz/">Radar burz</a><a href="/radar-wiatru/">Radar wiatru</a><a href="/ostrzezenia-pogodowe/">Ostrzeżenia</a><a href="/poradniki/">Poradniki</a></nav></div></header>
   <main>
     <section class="hero"><div class="container"><nav class="breadcrumbs" aria-label="Okruszki"><a href="/">Strona główna</a><span>›</span><span>Radar burz</span></nav><span class="eyebrow"><span class="pulse"></span> Radar burz</span><h1>Radar burz i mapa wyładowań.</h1><p class="lead">Sprawdź aktualną sytuację burzową w Polsce. Najpierw zobacz radar pogody z opadami i komórkami burzowymi, a potem przełącz się na mapę wyładowań atmosferycznych.</p></div></section>
     <section class="section"><div class="container content-card"><h2>Radar pogody i wyładowania</h2><p>Widok podstawowy pokazuje radar pogody Windy, który pomaga ocenić strefy opadów i możliwe komórki burzowe. Druga zakładka pokazuje szybki podgląd wyładowań atmosferycznych z burze.dzis.net oraz link do pełnej mapy.</p><div class="map-tabs"><input type="radio" name="storm-map-tabs" id="tab-weather" checked><input type="radio" name="storm-map-tabs" id="tab-lightning"><div class="tab-buttons" role="tablist" aria-label="Wybór mapy burzowej"><label for="tab-weather" role="tab">Radar pogody</label><label for="tab-lightning" role="tab">Mapa wyładowań</label></div><div class="tab-panels"><div class="tab-panel weather-panel-tab" role="tabpanel"><div class="embed-box"><iframe title="Radar pogody Windy" src="https://embed.windy.com/embed2.html?lat=52.173&lon=19.480&detailLat=52.173&detailLon=19.480&width=650&height=450&zoom=5&level=surface&overlay=radar&product=radar&menu=&message=true&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=-1"></iframe></div><div class="attribution">Radar pogody: <a href="https://www.windy.com/" rel="nofollow noopener" target="_blank">Windy.com</a>. Widok pomaga obserwować opady i możliwe komórki burzowe, ale nie zastępuje oficjalnych ostrzeżeń.</div></div><div class="tab-panel lightning-panel-tab" role="tabpanel"><div class="lightning-preview-box"><a href="https://burze.dzis.net/?page=mapa&amp;animacja=on" rel="nofollow noopener" target="_blank" aria-label="Otwórz pełną mapę burz na burze.dzis.net"><img src="https://burze.dzis.net/img/mapa_burzowa_anim.gif" alt="Animowana mapa burzowa Polski z wyładowaniami atmosferycznymi"></a></div><div class="lightning-actions"><a class="btn primary" href="https://burze.dzis.net/?page=mapa&amp;animacja=on" rel="nofollow noopener" target="_blank">Otwórz pełną mapę wyładowań</a></div><div class="attribution">Mapa wyładowań: <a href="https://burze.dzis.net/?page=mapa" rel="nofollow noopener" target="_blank">burze.dzis.net</a>. Źródło danych wyładowań atmosferycznych: <a href="https://www.blitzortung.org/" rel="nofollow noopener" target="_blank">Blitzortung.org</a>. MeteoLive pokazuje mapę jako zewnętrzny podgląd i nie pobiera surowych danych wyładowań.</div></div></div></div></div></section>
-    <section class="section"><div class="container two-col"><article class="content-card"><h2>Jak korzystać z radaru burz?</h2><p>Najpierw sprawdź radar pogody. Jeżeli widzisz intensywną strefę opadów przesuwającą się w Twoją stronę, przełącz się na mapę wyładowań i zobacz, czy w tej samej strefie występują aktywne burze.</p><p>Najważniejsze jest połączenie kilku informacji: miejsca wyładowań, kierunku przemieszczania opadów i siły wiatru. Sama obecność wyładowania nie oznacza, że burza przejdzie dokładnie nad Twoją lokalizacją, ale jest ważnym sygnałem ostrzegawczym.</p></article><article class="content-card"><h2>Ograniczenia mapy burz</h2><p>Mapa burz nie zastępuje oficjalnych komunikatów bezpieczeństwa. Dane mogą mieć opóźnienie, a sytuacja burzowa potrafi zmienić się w kilka minut. Lokalna burza może powstać szybko, szczególnie w gorące i wilgotne dni.</p><p>Dlatego MeteoLive łączy radar pogody, mapę wyładowań, radar opadów, mapę wiatru i ostrzeżenia. Taki zestaw daje pełniejszy obraz niż jedna mapa.</p></article></div></section>
-    <section class="section"><div class="container two-col"><article class="content-card"><h2>Kiedy burza jest blisko?</h2><p>Jeżeli na mapie wyładowań pojawiają się punkty w pobliżu Twojej okolicy, a radar pogody pokazuje intensywny opad przesuwający się w Twoim kierunku, warto zachować ostrożność. Szczególnie ważne są szybkie zmiany: narastający opad, ciemne chmury, silniejszy wiatr i częstsze grzmoty.</p><p>Przy burzy nie warto czekać do ostatniej chwili. Jeżeli planujesz aktywność na zewnątrz, sprawdź mapy wcześniej i porównaj je z oficjalnymi ostrzeżeniami.</p></article><article class="content-card"><h2>Radar burz a bezpieczeństwo</h2><p>Radar burz pomaga ocenić sytuację, ale nie jest systemem alarmowym. W czasie burzy unikaj otwartych przestrzeni, samotnych drzew, wody, metalowych konstrukcji oraz wysokich punktów terenu.</p><p>Jeżeli słyszysz grzmoty, burza jest już na tyle blisko, że trzeba potraktować sytuację poważnie. Najbezpieczniej schronić się w budynku albo samochodzie i poczekać, aż zagrożenie minie.</p></article></div></section>
-    <section class="section"><div class="container content-card"><h2>FAQ — radar burz</h2><div class="faq"><details><summary>Co pokazuje radar burz?</summary><p>Pokazuje radar pogody z opadami i osobną mapę wyładowań atmosferycznych, dzięki czemu łatwiej ocenić, gdzie rozwijają się burze.</p></details><details><summary>Czy mapa burz wystarczy do oceny zagrożenia?</summary><p>Nie. Warto porównać ją z radarem opadów, mapą wiatru, mapą temperatury i oficjalnymi ostrzeżeniami.</p></details><details><summary>Dlaczego są dwie zakładki?</summary><p>Radar pogody pomaga zobaczyć strefy opadów i komórki burzowe, a mapa wyładowań pokazuje aktywność elektryczną burz. Razem dają lepszy obraz sytuacji.</p></details><details><summary>Czy radar burz pokazuje dokładną trasę burzy?</summary><p>Nie zawsze. Pomaga ocenić kierunek i aktywność burzy, ale komórki burzowe mogą szybko zmieniać siłę, kierunek i zasięg.</p></details></div></div></section>
+    <section class="section">
+      <div class="container two-col">
+        <article class="content-card">
+          <h2>Kiedy burza jest blisko?</h2>
+          <p>Jeżeli na mapie wyładowań pojawiają się punkty w pobliżu Twojej okolicy, a radar pogody pokazuje intensywny opad przesuwający się w Twoim kierunku, warto zachować ostrożność. Szczególnie ważne są szybkie zmiany: narastający opad, ciemne chmury, silniejszy wiatr i częstsze grzmoty.</p>
+          <p>Przy burzy nie warto czekać do ostatniej chwili. Jeżeli planujesz aktywność na zewnątrz, sprawdź mapy wcześniej i porównaj je z oficjalnymi ostrzeżeniami.</p>
+        </article>
+        <article class="content-card">
+          <h2>Radar burz a bezpieczeństwo</h2>
+          <p>Radar burz pomaga ocenić sytuację, ale nie jest systemem alarmowym. W czasie burzy unikaj otwartych przestrzeni, samotnych drzew, wody, metalowych konstrukcji oraz wysokich punktów terenu.</p>
+          <p>Jeżeli słyszysz grzmoty, burza jest już na tyle blisko, że trzeba potraktować sytuację poważnie. Najbezpieczniej schronić się w budynku albo samochodzie i poczekać, aż zagrożenie minie.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-light">
+      <div class="container content-card">
+        <h2>Fizyka wyładowań i mechanizm powstawania burz</h2>
+        <p>Burza to jedno z najbardziej spektakularnych, ale zarazem niebezpiecznych zjawisk atmosferycznych. Powstaje w wyniku gwałtownej konwekcji – unoszenia się ciepłego i wilgotnego powietrza w chłodniejsze warstwy troposfery. Prowadzi to do formowania się potężnych chmur pionowych typu <strong>Cumulonimbus</strong> (chmur burzowych), które mogą sięgać od wysokości kilkuset metrów aż po samą granicę troposfery (nawet 12–15 kilometrów nad ziemią).</p>
+        <p>Wewnątrz chmury Cumulonimbus panują ekstremalne warunki: silne prądy wznoszące i zstępujące (osiągające prędkości ponad 100 km/h) powodują nieustanne zderzenia kryształków lodu, gradu oraz kropel wody. Tarcie to prowadzi do separacji ładunków elektrycznych. Zazwyczaj dodatnio naładowane cząsteczki lodu unoszą się w górne partie chmury, podczas gdy cięższe, naładowane ujemnie krople i krupki lodowe gromadzą się w jej dolnej części. Gdy różnica potencjałów między chmurą a ziemią lub wewnątrz samej chmury staje się zbyt duża, następuje przebicie dielektryczne powietrza i dochodzi do wyładowania atmosferycznego – pioruna.</p>
+        <p>Wyróżniamy dwa podstawowe rodzaje błyskawic:</p>
+        <ul>
+          <li><strong>Wyładowania chmurowe (IC - Intra-Cloud) oraz międzychmurowe (CC - Cloud-to-Cloud):</strong> Stanowią większość wszystkich wyładowań w czasie burzy. Zachodzą wewnątrz jednej chmury lub między sąsiednimi komórkami. Objawiają się jako rozbłyski światła na niebie i nie zagrażają bezpośrednio obiektom na ziemi.</li>
+          <li><strong>Wyładowania doziemne (CG - Cloud-to-Ground):</strong> Następują między chmurą a powierzchnią ziemi. Są niezwykle niebezpieczne, niosąc prąd o natężeniu od kilkunastu do kilkuset tysięcy amperów i temperaturze sięgającej 30 000 °C (pięciokrotnie wyższej niż temperatura powierzchni Słońca). Mogą wywoływać pożary, uszkadzać sieć elektroenergetyczną i są bezpośrednim zagrożeniem dla ludzi.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Zasady bezpieczeństwa podczas burzy – kompletny poradnik</h2>
+        <p>Śledzenie radaru burz daje nam cenny czas na reakcję. Jeśli zobaczysz, że komórka burzowa zmierza w Twoim kierunku, zastosuj się do poniższych zasad bezpieczeństwa w zależności od tego, gdzie się znajdujesz:</p>
+        
+        <div class="grid">
+          <div class="card" style="cursor: default; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 12px; padding: 24px;">
+            <div>
+              <div class="icon" style="font-size: 2.5rem; margin-bottom: 12px;">🏠</div>
+              <h3 style="margin-bottom: 12px; font-weight: 700;">W domu i budynku</h3>
+              <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.6;">Zamknij wszystkie okna i drzwi. Odłącz od sieci elektrycznej wrażliwe urządzenia elektroniczne (komputery, telewizory), ponieważ przepięcia wywołane uderzeniem pioruna w sieć mogą je trwale uszkodzić. Unikaj korzystania z telefonów stacjonarnych oraz kąpieli w wannie – metalowe rury mogą przewodzić ładunek.</p>
+            </div>
+          </div>
+
+          <div class="card" style="cursor: default; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 12px; padding: 24px;">
+            <div>
+              <div class="icon" style="font-size: 2.5rem; margin-bottom: 12px;">🚗</div>
+              <h3 style="margin-bottom: 12px; font-weight: 700;">W samochodzie</h3>
+              <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.6;">Samochód z metalowym nadwoziem działa jak <strong>klatka Faradaya</strong>. Ładunek elektryczny w przypadku uderzenia pioruna spłynie po karoserii bezpośrednio do ziemi, nie czyniąc szkody pasażerom. Zjedź na bezpieczne pobocze z dala od drzew i reklam, wyłącz silnik i nie dotykaj metalowych elementów.</p>
+            </div>
+          </div>
+
+          <div class="card" style="cursor: default; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 12px; padding: 24px;">
+            <div>
+              <div class="icon" style="font-size: 2.5rem; margin-bottom: 12px;">🌳</div>
+              <h3 style="margin-bottom: 12px; font-weight: 700;">Na otwartej przestrzeni</h3>
+              <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.6;">Nigdy nie szukaj schronienia pod pojedynczymi, wysokimi drzewami ani w pobliżu masztów, linii wysokiego napięcia czy metalowych ogrodzeń. Jeśli nie masz gdzie się schronić, znajdź obniżenie terenu, kucnij ze złączonymi i przyciągniętymi stopami. Nie kładź się płasko na ziemi!</p>
+            </div>
+          </div>
+
+          <div class="card" style="cursor: default; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 12px; padding: 24px;">
+            <div>
+              <div class="icon" style="font-size: 2.5rem; margin-bottom: 12px;">⛰️</div>
+              <h3 style="margin-bottom: 12px; font-weight: 700;">W górach i nad wodą</h3>
+              <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.6;">Jeżeli jesteś na wodzie, jak najszybciej dopłyń do brzegu i wyjdź na ląd – woda doskonale przewodzi prąd. W górach natychmiast zejdź z eksponowanych grani i szczytów w niższe partie dolin. Pozbądź się metalowych przedmiotów i unikaj dotykania metalowych zabezpieczeń szlaków.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-light">
+      <div class="container content-card">
+        <h2>Jak działa detekcja wyładowań w systemie Blitzortung?</h2>
+        <p>Prezentowana na naszej stronie mapa wyładowań opiera się na danych z globalnej sieci detektorów <strong>Blitzortung.org</strong>. Jest to społecznościowy projekt zrzeszający tysiące stacji odbiorczych na całym świecie. Każda stacja wyposażona jest w czułe anteny odbierające fale radiowe o bardzo niskiej częstotliwości (VLF), które są emitowane przez każdy błysk pioruna. Sygnał ten porusza się z prędkością światła.</p>
+        <p>Gdy piorun uderza, impuls dociera do wielu stacji detekcyjnych w różnym czasie. Każda stacja rejestruje dokładny moment odebrania sygnału z precyzją rzędu mikrosekund, korzystając z wbudowanych odbiorników GPS. Dane te są natychmiast przesyłane do serwera centralnego, który za pomocą zaawansowanych algorytmów matematycznych oblicza punkt przecięcia hiperbol (metoda triangulacji czasu dotarcia - TOA, Time of Arrival). Dzięki temu możliwe jest określenie miejsca uderzenia pioruna z dokładnością dochodzącą do kilkudziesięciu metrów w ułamku sekundy po jego wystąpieniu.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container content-card">
+        <h2>FAQ — radar burz</h2>
+        <div class="faq">
+          <details>
+            <summary>Co pokazuje radar burz?</summary>
+            <p>Radar burz w naszym serwisie łączy dwa widoki: radar opadów Windy (który pozwala zidentyfikować silne rdzenie opadowe chmur burzowych) oraz mapę wyładowań Blitzortung z serwisu burze.dzis.net, która rejestruje uderzenia piorunów niemal w czasie rzeczywistym.</p>
+          </details>
+          <details>
+            <summary>Czy mapa burz wystarczy do oceny zagrożenia?</summary>
+            <p>Nie. Burzy często towarzyszą inne niebezpieczne zjawiska, takie jak porywisty wiatr (szkwały) czy ulewne opady deszczu i gradu. Zawsze warto porównać ją z radarem opadów, mapą wiatru, mapą temperatury i oficjalnymi ostrzeżeniami IMGW.</p>
+          </details>
+          <details>
+            <summary>Dlaczego są dwie zakładki na mapie burzowej?</summary>
+            <p>Pierwsza zakładka (Radar pogody) pozwala zlokalizować strefy deszczu i ich intensywność. Druga zakładka (Mapa wyładowań) pozwala zobaczyć, czy w danej strefie deszczu występują wyładowania atmosferyczne.</p>
+          </details>
+          <details>
+            <summary>Czy radar burz pokazuje dokładną trasę burzy?</summary>
+            <p>Nie zawsze. Pomaga ocenić kierunek i aktywność komórek burzowych na podstawie animacji z ostatnich godzin, ale burze mogą gwałtownie zmieniać swoją trasę, siłę i zasięg w ciągu kilku minut.</p>
+          </details>
+          <details>
+            <summary>Czym różnią się wyładowania doziemne (CG) od chmurowych (IC)?</summary>
+            <p>Wyładowania doziemne (CG) biegną od chmury do powierzchni ziemi i są niebezpieczne dla ludzi i infrastruktury. Wyładowania chmurowe (IC) zachodzą wewnątrz chmur i nie stanowią bezpośredniego zagrożenia na ziemi, choć wywołują widoczne rozbłyski.</p>
+          </details>
+          <details>
+            <summary>Jak działa system Blitzortung wykorzystywany na mapie wyładowań?</summary>
+            <p>Blitzortung to społecznościowa sieć odbiorników radiowych VLF. Każdy piorun wysyła impuls elektromagnetyczny, który stacje odbierają z dokładnym czasem GPS. Serwer trianguluje te dane, określając lokalizację uderzenia pioruna.</p>
+          </details>
+          <details>
+            <summary>Co to jest zasada 30-30 w ochronie przed burzami?</summary>
+            <p>Zasada 30-30 mówi, że jeśli czas od błysku do grzmotu jest krótszy niż 30 sekund, należy natychmiast schronić się w bezpiecznym miejscu (burza jest bliżej niż 10 km). Bezpieczne schronienie należy opuścić dopiero 30 minut po ostatnim słyszanym grzmotu.</p>
+          </details>
+        </div>
+      </div>
+    </section>
   </main>
   <footer class="footer">
     <div class="container footer-grid">

@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MeteoLive — radar burz, opadów, wiatru i pogoda na żywo</title>
-  <meta name="description" content="MeteoLive to centrum map pogodowych dla Polski: radar burz, radar opadów, mapa wiatru, mapa temperatury i ostrzeżenia pogodowe w jednym miejscu.">
+  <title>MeteoLive — radar burz, opadów, wiatru i pogoda na żywo | Serwis Pogodowy</title>
+  <meta name="description" content="MeteoLive to nowoczesna strona pogodowa z radarami burz, opadów, wiatru, mapą temperatury i ostrzeżeniami pogodowymi dla Polski. Sprawdź radar pogody na żywo.">
   <link rel="canonical" href="https://meteolive.pl/">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <meta property="og:type" content="website">
@@ -18,8 +18,83 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7645481846348914"
-     crossorigin="anonymous"></script></head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7645481846348914" crossorigin="anonymous"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "MeteoLive",
+    "url": "https://meteolive.pl/",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://meteolive.pl/pogoda/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Czym jest MeteoLive i jakie narzędzia udostępnia?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MeteoLive to nowoczesny, niezależny portal pogodowy oferujący dostęp do radarów pogodowych w czasie rzeczywistym. W serwisie znajdziesz radar burz (mapę wyładowań), radar opadów (deszczu, śniegu i gradu), radar wiatru (kierunek i siła porywów), mapę temperatury oraz oficjalne ostrzeżenia meteorologiczne dla Polski."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Skąd pochodzą dane prezentowane w serwisie MeteoLive?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Dane w serwisie pochodzą wyłącznie z oficjalnych, sprawdzonych źródeł meteorologicznych. Wykresy i prognozy lokalne generowane są na podstawie modeli norweskiego instytutu MET Norway, mapy radarowe dostarcza system Windy, dane o wyładowaniach pochodzą z sieci Blitzortung (poprzez burze.dzis.net), a alerty pogodowe są bezpośrednio powiązane z komunikatami IMGW-PIB."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Czy dane na radarach pogodowych są aktualizowane na żywo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tak, radary opadów oraz wyładowań działają w trybie na żywo. Dane radarowe są aktualizowane co 10-15 minut (zależnie od stacji naziemnych), a mapa wyładowań rejestruje uderzenia piorunów z opóźnieniem zaledwie kilkunastu sekund. Prognozy numeryczne MET Norway aktualizowane są 4 razy na dobę."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Jakie modele pogodowe są wykorzystywane do obliczeń prognoz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Głównym modelem wykorzystywanym do krótkoterminowych prognoz dla Polski w naszym serwisie jest model ECMWF (Europejskie Centrum Prognoz Średnioterminowych) uznawany za najdokładniejszy na świecie, a także model GFS (amerykański model globalny) oraz ICON (model niemieckiej służby DWD)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Czym różni się radar opadów od zwykłej prognozy pogody?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Zwykła prognoza pogody to obliczenia matematyczne modeli określające prawdopodobieństwo zjawisk w przyszłości. Radar opadów natomiast wysyła wiązki mikrofalowe i rejestruje fizyczne odbicie od kropel deszczu lub płatków śniegu w powietrzu, pokazując stan rzeczywisty w danej minucie."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Gdzie szukać oficjalnych i wiążących alertów pogodowych w Polsce?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Jedynym oficjalnym źródłem ostrzeżeń meteorologicznych i hydrologicznych w Polsce jest Instytut Meteorologii i Gospodarki Wodnej (IMGW-PIB). MeteoLive udostępnia te dane za pomocą integracji API w celach informacyjnych, jednak w sytuacjach kryzysowych należy bezwzględnie kierować się komunikatami IMGW-PIB oraz komunikatami Alertu RCB."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Czy korzystanie z portalu MeteoLive jest bezpłatne?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tak, wszystkie funkcjonalności serwisu MeteoLive – w tym radary na żywo, prognoza pogody dla ponad 1000 miast w Polsce oraz artykuły poradnikowe – są całkowicie bezpłatne dla wszystkich użytkowników. Utrzymanie serwisu jest finansowane z nieinwazyjnych reklam AdSense."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
 <body>
   <header class="site-header">
     <div class="container nav">
@@ -27,7 +102,14 @@
         <span class="logo-mark">☁</span>
         <span>MeteoLive</span>
       </a>
-      <nav class="nav-links" aria-label="Główna nawigacja"><a href="/pogoda/">Pogoda</a><a href="/radar-opadow/">Radar opadów</a><a href="/radar-burz/">Radar burz</a><a href="/radar-wiatru/">Radar wiatru</a><a href="/ostrzezenia-pogodowe/">Ostrzeżenia</a><a href="/poradniki/">Poradniki</a></nav>
+      <nav class="nav-links" aria-label="Główna nawigacja">
+        <a href="/pogoda/">Pogoda</a>
+        <a href="/radar-opadow/">Radar opadów</a>
+        <a href="/radar-burz/">Radar burz</a>
+        <a href="/radar-wiatru/">Radar wiatru</a>
+        <a href="/ostrzezenia-pogodowe/">Ostrzeżenia</a>
+        <a href="/poradniki/">Poradniki</a>
+      </nav>
     </div>
   </header>
 
@@ -37,9 +119,9 @@
         <div>
           <span class="eyebrow"><span class="pulse"></span> Pogoda i radary na żywo dla Polski</span>
           <h1>Sprawdź, co nadciąga nad Polskę.</h1>
-          <p class="lead">MeteoLive zbiera najważniejsze mapy pogodowe w jednym miejscu: radar burz, radar opadów, mapę wiatru, temperaturę i ostrzeżenia. Szybko sprawdzisz, czy zbliża się deszcz, burza, silny wiatr albo nagła zmiana pogody.</p>
+          <p class="lead">MeteoLive to nowoczesny, szybki i w pełni responsywny portal pogodowy. Łączymy w jednym miejscu najdokładniejsze dane: radar burz, radar opadów, animację wiatru, rozkład temperatur oraz oficjalne ostrzeżenia meteorologiczne. Sprawdź sytuację pogodową bez reklamowego chaosu.</p>
           <div class="actions">
-            <a class="btn primary" href="/radar-burz/">Zobacz radar burz</a>
+            <a class="btn primary" href="/radar-opadow/">Otwórz radar opadów</a>
             <a class="btn" href="#radary">Przejdź do radarów</a>
           </div>
         </div>
@@ -47,11 +129,11 @@
         <aside class="weather-panel" aria-label="Podgląd mapy pogodowej">
           <div class="map-placeholder"></div>
           <div class="panel-card">
-            <h2>Centrum pogodowe</h2>
-            <p class="notice" data-live-status>Widok odświeżony</p>
+            <h2>Panel pogodowy</h2>
+            <p class="notice" data-live-status>Widok testowy MVP</p>
             <div class="live-badges">
-              <div class="badge"><strong>Burze</strong>Radar i wyładowania</div>
-              <div class="badge"><strong>Opady</strong>Mapa deszczu</div>
+              <div class="badge"><strong>Burze</strong>Mapa wyładowań</div>
+              <div class="badge"><strong>Opady</strong>Radar deszczu</div>
               <div class="badge"><strong>Wiatr</strong>Kierunek i porywy</div>
             </div>
           </div>
@@ -61,14 +143,14 @@
 
     <section class="section" id="radary">
       <div class="container">
-        <h2>Najważniejsze narzędzia pogodowe</h2>
-        <p class="section-intro">Wybierz mapę, której potrzebujesz. Każda sekcja zawiera podgląd pogody oraz proste wyjaśnienia, jak czytać dane i z czym je porównać.</p>
+        <h2>Radary i mapy pogodowe na żywo</h2>
+        <p class="section-intro">Sprawdź aktualne dane meteorologiczne prezentowane na interaktywnych mapach. Nasz serwis łączy dane radarowe z zaawansowanymi prognozami numerycznymi.</p>
         <div class="grid">
           <a class="card" href="/radar-burz/">
             <div>
               <div class="icon">⚡</div>
               <h3>Radar burz</h3>
-              <p>Radar pogody i mapa wyładowań pomagają sprawdzić, gdzie rozwijają się burze i intensywne opady.</p>
+              <p>Śledź komórki burzowe i wyładowania atmosferyczne w czasie rzeczywistym. Zobacz, gdzie grzmi i w którą stronę zmierza nawałnica.</p>
             </div>
             <span class="card-link">Otwórz radar →</span>
           </a>
@@ -76,7 +158,7 @@
             <div>
               <div class="icon">🌧</div>
               <h3>Radar opadów</h3>
-              <p>Mapa deszczu i opadów pomaga szybko ocenić, czy nadciąga ulewa, śnieg albo przelotny opad.</p>
+              <p>Najdokładniejszy radar deszczu, śniegu i gradu. Obserwuj przemieszczanie się frontów deszczowych bezpośrednio nad Twoją miejscowością.</p>
             </div>
             <span class="card-link">Otwórz radar →</span>
           </a>
@@ -84,7 +166,7 @@
             <div>
               <div class="icon">💨</div>
               <h3>Radar wiatru</h3>
-              <p>Zobacz kierunek, siłę i porywy wiatru na mapie pogodowej dla Polski i Europy.</p>
+              <p>Wizualizacja prądów powietrznych na żywo. Sprawdź kierunek, średnią prędkość wiatru oraz niebezpieczne porywy.</p>
             </div>
             <span class="card-link">Otwórz mapę →</span>
           </a>
@@ -92,7 +174,7 @@
             <div>
               <div class="icon">🌡</div>
               <h3>Mapa temperatury</h3>
-              <p>Sprawdź rozkład temperatury, różnice między regionami oraz możliwe ochłodzenia i upały.</p>
+              <p>Rozkład temperatur w Polsce i Europie. Zobacz różnice termiczne między regionami oraz strefy frontowe.</p>
             </div>
             <span class="card-link">Otwórz mapę →</span>
           </a>
@@ -100,7 +182,7 @@
             <div>
               <div class="icon">⚠️</div>
               <h3>Ostrzeżenia pogodowe</h3>
-              <p>Sprawdź, gdzie szukać oficjalnych ostrzeżeń i z jakimi mapami warto je porównać.</p>
+              <p>Aktualne alerty meteorologiczne IMGW-PIB. Dowiedz się o prognozowanych niebezpieczeństwach w Twoim powiecie.</p>
             </div>
             <span class="card-link">Sprawdź →</span>
           </a>
@@ -108,86 +190,59 @@
             <div>
               <div class="icon">🏙</div>
               <h3>Pogoda dla miast</h3>
-              <p>Lokalne strony pogodowe pomagają szybko przejść do radarów dla wybranego miasta.</p>
+              <p>Wyszukaj swoją miejscowość i zobacz prognozę MET Norway, lokalne radary i współrzędne geograficzne.</p>
             </div>
-            <span class="card-link">Zobacz miasta →</span>
+            <span class="card-link">Szukaj miasta →</span>
           </a>
         </div>
       </div>
     </section>
 
-    <section class="ad-slot" aria-label="Miejsce na reklamę">
-      <!-- Google AdSense display ad slot can be placed here after approval/configuration in AdSense panel. -->
-    </section>
-
-    <section class="section">
+    <section class="section section-light">
       <div class="container">
-        <h2>Popularne tematy</h2>
-        <p class="section-intro">Te strony pomagają przejść od ogólnego sprawdzenia pogody do konkretnego planu wyjazdu, spaceru albo analizy źródeł danych.</p>
-        <div class="grid">
-          <a class="card" href="/pogoda-na-weekend/">
-            <div>
-              <div class="icon">🗓</div>
-              <h3>Pogoda na weekend</h3>
-              <p>Jak ocenić pogodę na sobotę i niedzielę, zanim zrobisz plany.</p>
-            </div>
-            <span class="card-link">Czytaj →</span>
-          </a>
-          <a class="card" href="/pogoda-nad-morzem/">
-            <div>
-              <div class="icon">🌊</div>
-              <h3>Pogoda nad morzem</h3>
-              <p>Wiatr, temperatura i opady nad Bałtykiem w praktycznym ujęciu.</p>
-            </div>
-            <span class="card-link">Czytaj →</span>
-          </a>
-          <a class="card" href="/pogoda-w-gorach/">
-            <div>
-              <div class="icon">🏔</div>
-              <h3>Pogoda w górach</h3>
-              <p>Ostrożne planowanie wyjścia, burze, wiatr i widoczność.</p>
-            </div>
-            <span class="card-link">Czytaj →</span>
-          </a>
-          <a class="card" href="/poradniki/">
-            <div>
-              <div class="icon">📘</div>
-              <h3>Poradniki pogodowe</h3>
-              <p>Proste wyjaśnienia radarów, burz, wiatru, upału i ostrzeżeń.</p>
-            </div>
-            <span class="card-link">Czytaj →</span>
-          </a>
-          <a class="card" href="/najpopularniejsze-miasta-pogoda/">
-            <div>
-              <div class="icon">🏙</div>
-              <h3>Najpopularniejsze miasta</h3>
-              <p>Szybki wybór najczęściej sprawdzanych lokalnych prognoz w MeteoLive.</p>
-            </div>
-            <span class="card-link">Zobacz miasta →</span>
-          </a>
-          <a class="card" href="/skad-bierzemy-dane-pogodowe/">
-            <div>
-              <div class="icon">ℹ</div>
-              <h3>Źródła danych pogodowych</h3>
-              <p>Skąd MeteoLive bierze prognozy, mapy i ostrzeżenia.</p>
-            </div>
-            <span class="card-link">Czytaj →</span>
-          </a>
+        <div class="section-heading" style="text-align: center; margin-bottom: 2rem;">
+          <p class="eyebrow">Dane naukowe</p>
+          <h2>Jak działają nowoczesne modele pogodowe?</h2>
+          <p>Prognozowanie pogody to skomplikowany proces matematyczno-fizyczny oparty na superkomputerach rozwiązujących równania dynamiki atmosfery. Poniżej porównujemy najpopularniejsze modele numeryczne wykorzystywane w Europie.</p>
         </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <h2>Poradniki pogodowe</h2>
-        <p class="section-intro">Nie musisz znać trudnych pojęć meteorologicznych. Przygotowaliśmy proste poradniki, które pomagają zrozumieć radary, deszcz, burze, wiatr, upał i ostrzeżenia.</p>
-        <div class="grid">
-          <a class="card" href="/poradniki/jak-czytac-radar-opadow/"><div><div class="icon">🌧</div><h3>Jak czytać radar opadów?</h3><p>Kolory, kierunek deszczu, animacja i sytuacje, w których radar może się mylić.</p></div><span class="card-link">Czytaj →</span></a>
-          <a class="card" href="/poradniki/jak-sprawdzic-czy-bedzie-padac/"><div><div class="icon">☔</div><h3>Czy będzie padać?</h3><p>Jak szybko ocenić ryzyko deszczu przed wyjściem albo trasą.</p></div><span class="card-link">Czytaj →</span></a>
-          <a class="card" href="/poradniki/jak-sprawdzic-silny-wiatr/"><div><div class="icon">🌬</div><h3>Silny wiatr</h3><p>Jak sprawdzić porywy, zabezpieczyć balkon i korzystać z ostrzeżeń.</p></div><span class="card-link">Czytaj →</span></a>
-          <a class="card" href="/poradniki/jak-przetrwac-upal/"><div><div class="icon">☀️</div><h3>Jak przetrwać upał?</h3><p>Mapa temperatury, ostrzeżenia, nawodnienie i bezpieczeństwo w gorące dni.</p></div><span class="card-link">Czytaj →</span></a>
-          <a class="card" href="/poradniki/jak-sprawdzic-czy-bedzie-burza/"><div><div class="icon">⚡</div><h3>Jak sprawdzić burzę?</h3><p>Jak łączyć radar burz, mapę wyładowań, wiatr i oficjalne ostrzeżenia.</p></div><span class="card-link">Czytaj →</span></a>
-          <a class="card" href="/poradniki/co-oznaczaja-ostrzezenia-imgw/"><div><div class="icon">⚠️</div><h3>Ostrzeżenia IMGW</h3><p>Co oznaczają stopnie ostrzeżeń i dlaczego warto sprawdzać oficjalne komunikaty.</p></div><span class="card-link">Czytaj →</span></a>
+        
+        <div class="table-wrap" style="margin: 2rem 0; overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; border: 1px solid var(--border); background: var(--bg-soft); border-radius: 12px;">
+            <thead>
+              <tr style="border-bottom: 2px solid var(--border); text-align: left; background: rgba(255,255,255,0.05);">
+                <th style="padding: 12px 18px;">Nazwa modelu</th>
+                <th style="padding: 12px 18px;">Instytucja / Kraj</th>
+                <th style="padding: 12px 18px;">Rozdzielczość siatki</th>
+                <th style="padding: 12px 18px;">Zastosowanie i specyfika</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid var(--border);">
+                <td style="padding: 12px 18px;"><strong>ECMWF</strong></td>
+                <td style="padding: 12px 18px;">Europejskie Centrum Prognoz (UE)</td>
+                <td style="padding: 12px 18px;">~9 km</td>
+                <td style="padding: 12px 18px;">Uznawany za najdokładniejszy model średnioterminowy na świecie. Doskonale radzi sobie z układami frontowymi.</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border);">
+                <td style="padding: 12px 18px;"><strong>GFS</strong></td>
+                <td style="padding: 12px 18px;">NOAA / USA</td>
+                <td style="padding: 12px 18px;">~13 km</td>
+                <td style="padding: 12px 18px;">Model globalny o darmowym dostępie. Bardzo popularny, ale czasami wykazuje tendencję do przeszacowywania opadów.</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border);">
+                <td style="padding: 12px 18px;"><strong>ICON</strong></td>
+                <td style="padding: 12px 18px;">DWD / Niemcy</td>
+                <td style="padding: 12px 18px;">~13 km (global) / ~6.5 km (Europa)</td>
+                <td style="padding: 12px 18px;">Nowoczesny model charakteryzujący się bardzo dobrą sprawdzalnością w Europie Środkowej.</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border);">
+                <td style="padding: 12px 18px;"><strong>ALARO (AROME)</strong></td>
+                <td style="padding: 12px 18px;">Konsorcjum RC LACE / w tym IMGW</td>
+                <td style="padding: 12px 18px;">~2 km do 4 km</td>
+                <td style="padding: 12px 18px;">Model mezoskalowy wysokiej rozdzielczości. Idealny do prognozowania zjawisk lokalnych (np. burz, mgieł i opadów orograficznych).</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
@@ -195,15 +250,48 @@
     <section class="section">
       <div class="container two-col">
         <article class="content-card">
-          <h2>Jak korzystać z MeteoLive?</h2>
-          <p>Najlepiej porównywać kilka map naraz. Radar opadów pokaże strefy deszczu, radar burz pomoże ocenić komórki burzowe, a mapa wiatru pokaże kierunek przemieszczania się pogody.</p>
-          <p>Przy trudnych warunkach zawsze sprawdzaj też oficjalne ostrzeżenia pogodowe. MeteoLive pomaga analizować sytuację, ale nie zastępuje komunikatów służb i instytucji.</p>
+          <h2>Jak poprawnie korzystać z radarów pogodowych?</h2>
+          <p>Kluczem do właściwej interpretacji pogody jest łączenie danych z kilku źródeł. Sam pojedynczy radar opadów pokazuje, gdzie w danej sekundzie pada deszcz, ale nie określa, czy chmura niesie ze sobą ładunki elektryczne. Aby uzyskać pełen obraz sytuacji:</p>
+          <ol>
+            <li><strong>Sprawdź kierunek wiatru:</strong> Pozwoli Ci to ustalić, w którą stronę przemieszczają się chmury deszczowe widoczne na radarze.</li>
+            <li><strong>Zweryfikuj aktywność elektryczną:</strong> Przełącz się na radar burz, aby zobaczyć, czy w chmurze występują wyładowania.</li>
+            <li><strong>Monitoruj temperaturę:</strong> Duże kontrasty termiczne na małym obszarze często zapowiadają przejście gwałtownego frontu chłodnego.</li>
+          </ol>
         </article>
+
         <article class="content-card">
-          <h2>Dlaczego MeteoLive?</h2>
-          <p>Celem serwisu jest szybki dostęp do najważniejszych map pogodowych bez chaosu i zbędnych elementów. Strona jest prosta, responsywna i przygotowana pod dalszą rozbudowę o kolejne miasta oraz poradniki pogodowe.</p>
-          <p>Każde źródło mapy jest oznaczone w widocznym miejscu, a dane zewnętrzne nie są przedstawiane jako własne dane MeteoLive.</p>
+          <h2>Poradnik bezpieczeństwa: Szybka ocena ryzyka</h2>
+          <p>Zanim zaplanujesz podróż, wyjście w góry czy odpoczynek nad jeziorem, spójrz na mapę ostrzeżeń meteorologicznych. Jeżeli w Twoim powiecie obowiązuje ostrzeżenie 2. lub 3. stopnia:</p>
+          <ul>
+            <li>Zabezpiecz wolnostojące przedmioty na balkonie i tarasie.</li>
+            <li>Unikaj parkowania pojazdów pod drzewami i liniami energetycznymi.</li>
+            <li>Śledź radar opadów i wyładowań w odstępach 15-minutowych.</li>
+            <li>W przypadku zbliżającej się nawałnicy bezwzględnie schroń się w bezpiecznym budynku.</li>
+          </ul>
         </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container content-card">
+        <h2>Jak interpretować dane z radarów pogodowych w praktyce?</h2>
+        <p>Wielu użytkowników rozpoczynających swoją przygodę z analizą map pogodowych zastanawia się, jak poprawnie czytać informacje przesyłane przez systemy radarowe. Kluczowym pojęciem, z którym należy się zapoznać, jest <strong>reflektywność radarowa</strong>, wyrażana w jednostkach <strong>dBZ</strong> (decybelach reflektywności). Im wyższa wartość dBZ, tym większa gęstość i rozmiar kropel wody lub kryształków lodu w chmurze, co bezpośrednio przekłada się na intensywność opadów:</p>
+        <ul>
+          <li><strong>Poniżej 20 dBZ:</strong> Bardzo słabe opady, mżawka lub chmury piętra niskiego, które mogą nie dawać żadnego opadu docierającego do powierzchni ziemi (tzw. zjawisko virga).</li>
+          <li><strong>20 do 35 dBZ:</strong> Umiarkowany opad deszczu. Klasyczna pogoda deszczowa, stabilne opady wielkoskalowe bez gwałtownych zjawisk towarzyszących.</li>
+          <li><strong>35 do 50 dBZ:</strong> Silne opady deszczu, często o charakterze przelotnym. Przy tych wartościach mogą pojawiać się pierwsze komórki burzowe oraz drobny grad.</li>
+          <li><strong>Powyżej 50 dBZ:</strong> Bardzo silne, nawalne opady deszczu oraz gradu. Wartości te są niemal zawsze powiązane z chmurami burzowymi Cumulonimbus i sygnalizują wysokie ryzyko niebezpiecznych zjawisk, takich jak podtopienia czy silne porywy wiatru (szkwały).</li>
+        </ul>
+        <p>Warto również pamiętać o zjawisku zwanym <strong>echem gruntu (ground clutter)</strong>. Radary meteorologiczne wysyłają wiązki mikrofalowe, które mogą odbijać się od obiektów naziemnych, takich jak wysokie budynki, góry, turbiny wiatrowe, a nawet stada ptaków czy roje owadów. Nowoczesne algorytmy filtrują te zakłócenia, jednak na mapach czasami mogą pojawiać się fałszywe strefy opadów, które nie poruszają się wraz z wiatrem i nagle znikają. Porównanie radaru opadów z mapą satelitarną lub radarem burz pozwala szybko zweryfikować, czy mamy do czynienia z rzeczywistym deszczem.</p>
+        <p>Kolejnym ważnym elementem jest <strong>predykcja ruchu chmur</strong>. Większość radarów udostępnia animację z ostatnich 1–2 godzin. Analizując kierunek i prędkość przemieszczania się stref opadowych, możemy z dużym prawdopodobieństwem określić, za ile minut deszcz dotrze do naszej lokalizacji. Pamiętajmy jednak, że komórki burzowe charakteryzują się bardzo dynamicznym rozwojem – nowa chmura burzowa może powstać bezpośrednio nad naszą głową w zaledwie 15-20 minut, nie dając wcześniejszych ostrzeżeń na radarze przesuwającym się z sąsiedniego regionu. Z tego powodu regularne monitorowanie mapy radarowej na żywo jest tak ważne dla bezpieczeństwa podczas uprawiania sportów na wolnym powietrzu, wycieczek górskich czy prac rolniczych.</p>
+      </div>
+    </section>
+
+    <section class="section section-light">
+      <div class="container content-card">
+        <h2>Dlaczego warto wybrać MeteoLive jako swoje główne źródło pogodowe?</h2>
+        <p>MeteoLive powstało jako niezależna inicjatywa pasjonatów meteorologii i inżynierów oprogramowania, którzy mieli dość przeładowanych i powolnych portali pogodowych. Naszym głównym celem jest dostarczenie przejrzystego, minimalistycznego i niezwykle szybkiego dashboardu pogodowego bez zbędnych, migających reklam oraz wyskakujących okienek, które utrudniają odczyt map i wykresów, zwłaszcza na ekranach smartfonów. Skupiamy się na maksymalnej czytelności, pełnej responsywności mobilnej oraz absolutnej rzetelności prezentowanych źródeł danych.</p>
+        <p>Prezentujemy oficjalne dane pochodzące bezpośrednio ze stacji radarowych, satelitów geostacjonarnych oraz wiodących modeli matematycznych. Chcemy nie tylko informować o bieżącej pogodzie, ale również edukować naszych użytkowników, tłumacząc trudne pojęcia meteorologiczne (takie jak współczynnik dBZ, wyładowania doziemne, inwersja termiczna czy linie prądu wiatru) prostym i zrozumiałym językiem. Zachęcamy do regularnego odwiedzania naszego działu <a href="/poradniki/" style="color: var(--accent); text-decoration: underline;">Poradniki</a>, w którym publikujemy praktyczne przewodniki o zjawiskach atmosferycznych oraz radach, jak zabezpieczyć się przed ekstremalną aurą.</p>
       </div>
     </section>
   </main>

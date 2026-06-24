@@ -20,6 +20,70 @@
   <link rel="stylesheet" href="/style.css">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Skąd bierzemy dane pogodowe?","description":"Sprawdź, z jakich źródeł korzysta MeteoLive: prognoza MET Norway, mapy Windy, ostrzeżenia IMGW-PIB i lokalne strony pogody dla miast.","url":"https://meteolive.pl/skad-bierzemy-dane-pogodowe/","inLanguage":"pl-PL","publisher":{"@type":"Organization","name":"MeteoLive","url":"https://meteolive.pl/","logo":"https://meteolive.pl/assets/favicon.svg"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Strona główna","item":"https://meteolive.pl/"},{"@type":"ListItem","position":2,"name":"Źródła danych","item":"https://meteolive.pl/skad-bierzemy-dane-pogodowe/"}]}</script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Z jakich głównych źródeł danych korzysta MeteoLive?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MeteoLive agreguje dane z oficjalnych i publicznie dostępnych źródeł. Wykresy i prognozy lokalne pochodzą z norweskiego instytutu MET Norway (yr.no), mapy radarowe i wiatru dostarcza system Windy.com, mapa wyładowań bazuje na sieci Blitzortung (poprzez portal burze.dzis.net), a oficjalne ostrzeżenia meteorologiczne są powiązane z komunikatami IMGW-PIB."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Co to są otwarte dane (Open Data) w meteorologii?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Otwarte dane to informacje udostępniane bezpłatnie przez instytucje publiczne i instytuty badawcze do ponownego wykorzystania. W meteorologii umożliwiają one niezależnym serwisom, takim jak MeteoLive, tworzenie przejrzystych interfejsów i ułatwianie dostępu do prognoz bez komercyjnych opłat."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Czy prognozy z MET Norway są odpowiednie dla Polski?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tak, MET Norway korzysta z zaawansowanych modeli globalnych (ECMWF) oraz regionalnego modelu MEPS (MetCoOp Ensemble Prediction System) obejmującego Europę Środkową i Północną. Dzięki temu ich prognozy krótkoterminowe charakteryzują się bardzo wysoką sprawdzalnością w Polsce."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Czy dane prezentowane na mapach Windy.com są aktualizowane na żywo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tak, Windy.com integruje dane z naziemnych stacji radarowych i modeli pogodowych. Mapy radarowe (deszcz/grad) oraz wyładowania atmosferyczne odświeżają się w czasie rzeczywistym, co 10-15 minut, a prognozy wiatru i temperatury są aktualizowane kilka razy na dobę."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Skąd pochodzą ostrzeżenia przed burzami i silnym wiatrem?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oficjalne ostrzeżenia pochodzą z bazy danych Instytutu Meteorologii i Gospodarki Wodnej (IMGW-PIB). Dodatkowo, w celach edukacyjnych, MeteoLive prezentuje podgląd wyładowań z sieci detektorów Blitzortung."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Czy MeteoLive pobiera opłaty za korzystanie z danych pogodowych?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nie, wszystkie funkcjonalności MeteoLive – w tym prognozy dla ponad 1000 polskich miast, mapy wiatru, temperatur oraz radary na żywo – są w 100% darmowe i dostępne dla każdego użytkownika bez rejestracji."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Czy dane meteorologiczne na stronie mogą być wykorzystywane profesjonalnie?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Dane te mają charakter wyłącznie informacyjny i edukacyjny. Do zastosowań profesjonalnych, lotnictwa, żeglugi, rolnictwa przemysłowego lub w celach ratunkowych należy zawsze używać oficjalnych, certyfikowanych źródeł rządowych oraz komunikatów Państwowej Służby Hydrologiczno-Meteorologicznej."
+        }
+      }
+    ]
+  }
+  </script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7645481846348914"
      crossorigin="anonymous"></script></head>
 <body>
@@ -38,7 +102,7 @@
         </nav>
         <span class="eyebrow"><span class="pulse"></span> Przejrzystość i zaufanie</span>
         <h1>Skąd bierzemy dane pogodowe?</h1>
-        <p class="lead">MeteoLive porządkuje dane pogodowe w prosty sposób, żeby łatwiej było sprawdzić prognozę, mapy i ostrzeżenia dla swojego miasta. Poniżej opisujemy, skąd pochodzą najważniejsze informacje na stronie.</p>
+        <p class="lead">MeteoLive agreguje i porządkuje rozproszone dane pogodowe w prosty, czytelny i nowoczesny sposób, żeby każdy użytkownik mógł błyskawicznie sprawdzić prognozę, mapy radarowe oraz oficjalne ostrzeżenia meteorologiczne dla swojego miasta bez przedzierania się przez nieczytelne strony i uciążliwe reklamy. Poniżej opisujemy szczegółowo, skąd dokładnie pochodzą najważniejsze informacje meteorologiczne prezentowane w naszym serwisie.</p>
       </div>
     </section>
 
@@ -82,12 +146,82 @@
       </div>
     </section>
 
+    <section class="section section-light">
+      <div class="container content-card">
+        <h2>Rola Otwartych Danych (Open Data) w nowoczesnej meteorologii</h2>
+        <p>W przeszłości dostęp do precyzyjnych danych meteorologicznych – takich jak surowe wyniki modeli numerycznych, pomiary ze stacji naziemnych czy dane radarowe – był ściśle ograniczony i kosztowny. Współczesny świat idzie jednak w kierunku pełnej transparentności i wolnego dostępu do informacji naukowej. Ruch <strong>Open Data (Otwarte Dane)</strong> zrewolucjonizował sposób, w jaki społeczeństwo korzysta z informacji pogodowych.</p>
+        <p>Państwowe instytuty meteorologiczne, takie jak norweski <strong>MET Norway</strong> czy amerykański <strong>NOAA</strong>, udostępniają swoje dane pomiarowe oraz wyniki zaawansowanych obliczeń superkomputerowych całkowicie bezpłatnie za pośrednictwem otwartych interfejsów API. Pozwala to programistom i pasjonatom na całym świecie tworzyć innowacyjne portale, aplikacje mobilne oraz systemy ostrzegania lokalnego. Otwarte dane zwiększają bezpieczeństwo publiczne (informacje o zagrożeniach docierają szybciej do większej liczby osób) oraz stymulują rozwój gospodarczy i naukowy. MeteoLive w pełni popiera tę ideę, prezentując publiczne dane w przejrzystej, przyjaznej dla użytkownika formie, jednocześnie wyraźnie wskazując ich pierwotnych autorów.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Zestawienie źródeł danych serwisu MeteoLive</h2>
+        <p>Dbamy o pełną transparentność. Poniższa tabela przedstawia szczegółowe informacje o pochodzeniu danych prezentowanych na naszej stronie, częstotliwości ich aktualizacji oraz licencjach, na jakich są udostępniane:</p>
+        
+        <div class="table-wrap" style="margin: 2rem 0; overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; border: 1px solid var(--border); background: var(--bg-soft); border-radius: 12px;">
+            <thead>
+              <tr style="border-bottom: 2px solid var(--border); text-align: left; background: rgba(255,255,255,0.05);">
+                <th style="padding: 12px 18px;">Źródło danych</th>
+                <th style="padding: 12px 18px;">Prezentowane dane</th>
+                <th style="padding: 12px 18px;">Częstotliwość aktualizacji</th>
+                <th style="padding: 12px 18px;">Licencja i warunki</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid var(--border);">
+                <td style="padding: 12px 18px;"><strong>MET Norway (yr.no)</strong></td>
+                <td style="padding: 12px 18px;">Lokalne prognozy godzinowe i długoterminowe dla miast, ciśnienie, zachmurzenie.</td>
+                <td style="padding: 12px 18px;">4 razy na dobę (co 6 godzin)</td>
+                <td style="padding: 12px 18px;">Creative Commons Attribution 4.0 International (CC BY 4.0). Wolny dostęp API.</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border);">
+                <td style="padding: 12px 18px;"><strong>Windy.com (system Windy)</strong></td>
+                <td style="padding: 12px 18px;">Interaktywne widgety: radar opadów, mapa wiatru, mapa rozkładu temperatur.</td>
+                <td style="padding: 12px 18px;">Co 10-15 minut (radary) / Co 6 godzin (modele)</td>
+                <td style="padding: 12px 18px;">Darmowe osadzenie iframe Windy (Windy Embed API) zgodnie z regulaminem Windy.com.</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border);">
+                <td style="padding: 12px 18px;"><strong>IMGW-PIB</strong></td>
+                <td style="padding: 12px 18px;">Oficjalne ostrzeżenia meteorologiczne (1., 2. i 3. stopień) dla powiatów w Polsce.</td>
+                <td style="padding: 12px 18px;">W czasie rzeczywistym (natychmiast po publikacji)</td>
+                <td style="padding: 12px 18px;">Dane publiczne udostępniane na podstawie Ustawy o otwartych danych i ponownym wykorzystywaniu informacji.</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border);">
+                <td style="padding: 12px 18px;"><strong>Blitzortung.org (poprzez burze.dzis.net)</strong></td>
+                <td style="padding: 12px 18px;">Mapa wyładowań atmosferycznych (piorunów) nad Polską w czasie rzeczywistym.</td>
+                <td style="padding: 12px 18px;">Co kilkanaście sekund (podgląd animowany)</td>
+                <td style="padding: 12px 18px;">Projekt społecznościowy non-profit. Podgląd udostępniony na zasadach niekomercyjnej współpracy.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container content-card">
+        <h2>Jak przetwarzamy i integrujemy dane pogodowe?</h2>
+        <p>Główną wartością portalu MeteoLive jest integracja wielu rozproszonych źródeł w jeden spójny i niezwykle szybki system. Zamiast otwierać kilka różnych witryn internetowych w poszukiwaniu prognozy temperatury, opadów, wiatru, wyładowań i ostrzeżeń, użytkownik otrzymuje komplet informacji na jednej karcie. Nasze serwery i skrypty klienckie wykonują zapytania API asynchronicznie, co pozwala zminimalizować czas ładowania strony i zapobiega blokowaniu przeglądarki.</p>
+        <p>Przykładowo, prognoza pogody dla ponad 1000 lokalizacji w Polsce pobierana jest bezpośrednio z serwerów MET Norway w formacie JSON. Nasz kod analizuje współrzędne geograficzne danego miasta, odpytuje norweski interfejs, a następnie mapuje odebrane parametry (takie jak wilgotność, ciśnienie, temperatura, prędkość wiatru) na czytelne, dynamiczne wykresy i tabele w języku polskim. Równolegle integrujemy skrypty Windy.com, ustawiając precyzyjnie parametry geograficzne (lat, lon, zoom) odpowiadające wybranemu miastu, co pozwala na natychmiastowe załadowanie właściwego wycinka mapy radarowej bez konieczności ręcznego przesuwania i przybliżania przez użytkownika.</p>
+      </div>
+    </section>
+
+    <section class="section section-light">
+      <div class="container content-card">
+        <h2>Odpowiedzialność i ograniczenia prognoz numerycznych</h2>
+        <p>Warto pamiętać, że każda prognoza pogody – nawet ta oparta na najnowocześniejszych superkomputerach i modelach matematycznych – jest jedynie przybliżeniem rzeczywistości. Atmosfera jest układem chaotycznym, co oznacza, że minimalne błędy pomiarowe na etapie początkowym (np. niedokładność czujnika na stacji meteorologicznej) mogą po kilku dniach dać skrajnie różne wyniki prognozy. Zjawisko to potocznie nazywane jest efektem motyla.</p>
+        <p>W MeteoLive kładziemy ogromny nacisk na to, aby nasi użytkownicy rozumieli ograniczenia prezentowanych danych. Prognozy numeryczne z modeli takich jak GFS czy ECMWF świetnie radzą sobie z przewidywaniem przejścia rozległych frontów atmosferycznych, ale mogą nie doszacować gwałtownej, lokalnej burzy, która rozwija się nad jednym miastem w gorący letni dzień. Dlatego zawsze edukujemy i przypominamy: w przypadku planowania trudnych wypraw (szczególnie w góry lub na wodę) oraz podczas obowiązywania alertów wydanych przez synoptyków IMGW-PIB, należy kierować się przede wszystkim zdrowym rozsądkiem i oficjalnymi komunikatami państwowych służb ratunkowych.</p>
+      </div>
+    </section>
+
     <section class="section">
       <div class="container two-col">
         <article class="content-card">
-          <h2>Jak korzystać z danych bezpiecznie</h2>
-          <p>Traktuj MeteoLive jako wygodne narzędzie do szybkiego sprawdzenia sytuacji, a nie jedyne źródło decyzji. Dane mogą się zmieniać, więc przed wyjściem z domu warto jeszcze raz odświeżyć prognozę i sprawdzić ostrzeżenia.</p>
-          <p>Przy burzach, wichurach, ulewach i upałach najważniejsze są oficjalne informacje, zdrowy rozsądek i szybka reakcja na pogorszenie warunków.</p>
+          <h2>Jak korzystać z danych bezpiecznie?</h2>
+          <p>Traktuj MeteoLive jako wygodne narzędzie pomocnicze do szybkiego sprawdzenia sytuacji w jednym miejscu, a nie jedyne źródło decyzji o charakterze życiowym. Dane meteorologiczne mogą się zmieniać niezwykle dynamicznie w ciągu kilku minut, zwłaszcza w okresie letnim, kiedy komórki burzowe rozwijają się lokalnie w tempie ekspresowym. Przed każdym wyjściem z domu, wyjazdem w dłuższą trasę, wyjściem na szlak górski lub wypłynięciem na wodę, warto kilkukrotnie odświeżyć prognozę, sprawdzić radar opadów oraz zweryfikować mapę ostrzeżeń.</p>
+          <p>Przy gwałtownych zjawiskach, takich jak burze, trąby powietrzne, wichury, ulewy czy ekstremalne fale upałów, najważniejsze są zawsze oficjalne informacje państwowych służb ratunkowych, zdrowy rozsądek oraz natychmiastowa reakcja na pogarszające się warunki atmosferyczne wokół nas.</p>
         </article>
 
         <article class="content-card">
